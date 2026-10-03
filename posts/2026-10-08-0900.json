@@ -1,0 +1,12 @@
+{
+  "rubric": "#keys",
+  "title": "Real keys — MATERIAL KERAK",
+  "status": "needs_input",
+  "caption": "🔍 <b>Real keys: [jo'natma nega ushlanib qoldi — bir jumlada]</b>\n\n📦 <b>Nima keldi:</b> [tovar, taxminiy qiymati, qaysi kanal — pochta yoki kuryer]\n\n⛔ <b>Muammo:</b> [nima sabab bo'ldi — masalan, tovar nomi noaniq, qiymati ko'rsatilmagan, ruxsatnoma talab qilingan]\n\n🛠 <b>Qanday hal qilindi:</b> [qadamlar: qaysi hujjat, qayerga murojaat, necha kunda]\n\n✅ <b>Xulosa:</b> [boshqalar bu xatoning oldini qanday oladi — 1–2 jumla]\n\n📄 Asos: [hujjat, raqam, sana, band — lex.uz]\n\nShunga o'xshash holatga tushdingizmi? Vaziyatingizni ko'rib chiqib, yo'l ko'rsataman 👇\n💬 <a href=\"{{CONSULT_URL}}\">Maslahat olish</a>\n\n➖➖➖\n@Pochtachi_shopo  #keys",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Clean, modern 3D-minimal style, calm and trustworthy. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper half.\n\n1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#keys\".\n2) Center: a matte cardboard parcel on a customs inspection counter, a large indigo magnifying glass hovering over its label, and a small checklist clipboard beside it. Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of amber (#F59E0B); soft studio lighting, gentle shadows, generous space around it.\n3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: \"Real keys\"\n4) Under the headline, a smaller medium-grey line: \"Jo'natma nega ushlanib qoldi\"\n5) Bottom, above a thin light divider: left bold near-black \"@Pochtachi_shopo\".\n\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
+  "notes": "MATERIAL KERAK: kvadrat qavslarni o'zingizning real holatingiz bilan to'ldiring. Ism, jo'natma raqami, aniq sana va tanib olinadigan tafsilot yozmang — faqat mexanika. Pullik maslahat havolasi config.json dagi consult_url dan olinadi.",
+  "id": "2026-10-08-0900",
+  "scheduled_at": "2026-10-08T09:00:00+05:00",
+  "sources": [],
+  "product_url": null
+}

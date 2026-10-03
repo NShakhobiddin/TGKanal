@@ -1,0 +1,17 @@
+name: Postlarni tekshirish
+
+on:
+  push:
+    branches: [main]
+    paths: ["posts/**", "tools/**"]
+  workflow_dispatch:
+
+jobs:
+  check:
+    # Panel va bot commitlari tekshirilmaydi (daqiqalarni tejash uchun) — faqat Claude Code yuborganlari
+    if: ${{ github.event_name == 'workflow_dispatch' || (!startsWith(github.event.head_commit.message, 'panel:') && !startsWith(github.event.head_commit.message, 'bot:')) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 tools/check_posts.py posts

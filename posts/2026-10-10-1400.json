@@ -1,0 +1,37 @@
+{
+  "rubric": "#obraz",
+  "title": "Erkaklar: sovuq kunlar obrazi",
+  "caption": "🧥 <b>Tayyor obraz: sovuq kunlar uchun</b>\n<i>Erkaklar uchun · 5 element · bitta do'kondan (H&amp;M, AQSh)</i>\n\n1️⃣ Paxtali bomber kurtka — <b>$59.99</b>\n2️⃣ Yumshoq sviter — <b>$24.99</b> <s>$34.99</s>\n3️⃣ Jinsi shim — <b>$34.99</b> <s>$49.99</s>\n4️⃣ Chelsi etik — <b>$49.99</b>\n5️⃣ To'qima shapka — <b>$12.99</b>\n\n🛒 <b>Tovarlar: $182.95</b> (aksiyasiz $207.95)\n\n📦 <b>Toshkentgacha</b>\n• Yetkazish — ~$37 (≈3,9 kg)\n• Toshkent bo'ylab — ~$3\n• Bojxona — <b>0 so'm</b>\n• <b>Jami ≈ 2 633 000 so'm</b>\n\n⚠️ $182.95 — 200 $ normaga yaqin. Shu oyda boshqa posilka kutayotgan bo'lsangiz, birini keyingi oyga qoldiring.\n\n💡 Etik eng og'ir element (~1,6 kg). Byudjet tor bo'lsa, etikni Toshkentdan oling — yetkazish ~15 $ ga arzonlashadi.\n\n🔗 <a href=\"https://www2.hm.com/en_us/men/products/jackets-coats.html\">Kurtka</a> · <a href=\"https://www2.hm.com/en_us/men/products/cardigans-sweaters.html\">Sviter</a> · <a href=\"https://www2.hm.com/en_us/men/products/jeans.html\">Jinsi</a> · <a href=\"https://www2.hm.com/en_us/men/products/shoes.html\">Etik</a> · <a href=\"https://www2.hm.com/en_us/men/products/accessories.html\">Shapka</a>\n\n<i>Narxlar 03.10.2026 holatiga.</i>\n➖➖➖\n@Pochtachi_shopo  #obraz",
+  "prompt": "Create a vertical 4:5 flat-lay outfit card for a Telegram channel, e-commerce catalog style. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper area.\n\nTop-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#obraz\", and next to it a bold near-black headline: \"Sovuq kunlar uchun\".\n\nArrange five clothing items neatly with generous spacing, each cleanly cut out with a soft realistic shadow:\n1) a dark olive padded bomber jacket, laid flat\n2) a heather-grey brushed knit sweater, neatly folded\n3) mid-blue regular-fit jeans, folded\n4) a pair of dark brown suede chelsea boots, three-quarter angle\n5) a charcoal rib-knit beanie\n\nNext to each item place a small solid indigo (#4F46E5) circle with a white number — 1, 2, 3, 4, 5 — matching the list order.\n\nBottom strip, above a thin divider: left bold near-black \"@Pochtachi_shopo\", right grey \"5 element · 1 do'kon · $182.95\".\n\nClean studio product photography, soft even lighting, muted palette (olive, grey, denim blue, brown). No people, no mannequins, no price tags.\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
+  "sources": [
+    {
+      "label": "H&M US — men's jackets & coats",
+      "url": "https://www2.hm.com/en_us/men/products/jackets-coats.html"
+    },
+    {
+      "label": "H&M US — sweaters",
+      "url": "https://www2.hm.com/en_us/men/products/cardigans-sweaters.html"
+    },
+    {
+      "label": "H&M US — jeans",
+      "url": "https://www2.hm.com/en_us/men/products/jeans.html"
+    },
+    {
+      "label": "H&M US — shoes",
+      "url": "https://www2.hm.com/en_us/men/products/shoes.html"
+    },
+    {
+      "label": "H&M US — accessories",
+      "url": "https://www2.hm.com/en_us/men/products/accessories.html"
+    },
+    {
+      "label": "Yetkazib beruvchilar narxi, 16.07.2026 (spot.uz)",
+      "url": "https://www.spot.uz/oz/2026/07/16/delivery"
+    }
+  ],
+  "notes": "Og'irliklar taxminiy (jami ≈3,9 kg). Hisob: 182.95 + 37.05 + 3 = 223.00 $. Etik 1,6 kg × 9,50 ≈ 15,20 $.",
+  "id": "2026-10-10-1400",
+  "scheduled_at": "2026-10-10T14:00:00+05:00",
+  "status": "draft",
+  "product_url": null
+}

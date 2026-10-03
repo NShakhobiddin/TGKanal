@@ -1,0 +1,51 @@
+name: Telegram'ga joylash
+
+run-name: ${{ github.event_name == 'workflow_dispatch' && format('{0} {1} {2}', inputs.mode, inputs.post_id, inputs.req) || 'jadval' }}
+
+on:
+  schedule:
+    # Toshkent 08:05–23:35, har 30 daqiqada (UTC = Toshkent − 5 soat).
+    # GitHub jadvali 5–20 daqiqa kechikishi mumkin; aniq vaqt kerak bo'lsa — panelda «Hozir joylash».
+    - cron: "5,35 3-18 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "due — jadval, test — o'zingizga sinov, health — ulanish tekshiruvi"
+        type: choice
+        options: [due, test, health]
+        default: due
+      post_id:
+        description: "Post ID (test uchun)"
+        type: string
+        default: ""
+      req:
+        description: "Panel so'rov ID si (ichki)"
+        type: string
+        default: ""
+
+# Kanalga joylovchi ishlar navbat bilan — post ikki marta chiqmasin.
+# Sinov va tekshiruv kanalga yozmaydi, ular parallel ishlayveradi.
+concurrency:
+  group: ${{ (inputs.mode == 'test' || inputs.mode == 'health') && format('aux-{0}', github.run_id) || 'publish' }}
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 1
+
+      - name: Joylash
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          MODE: ${{ inputs.mode || 'due' }}
+          POST_ID: ${{ inputs.post_id }}
+          REQ: ${{ inputs.req }}
+        run: python3 tools/publish.py

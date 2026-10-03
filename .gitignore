@@ -1,0 +1,8 @@
+config.json
+.env
+*.pem
+*_ed25519*
+deploy_key*
+.venv/
+__pycache__/
+*.pyc

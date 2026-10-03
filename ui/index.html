@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pochtachi Panel</title>
+<meta name="robots" content="noindex">
+<style>
+/* ---------- Telegram mavzusi: yorug' ---------- */
+:root{
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: ui-monospace, "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  --app-bg:#eef1f4; --panel:#ffffff; --panel-2:#f4f6f8; --line:#e3e7eb;
+  --ink:#0f1419; --ink-2:#4a5560; --muted:#7f8b96;
+  --accent:#3390ec; --accent-ink:#ffffff; --accent-soft:#e6f1fd;
+
+  --chat-a:#d4e2b6; --chat-b:#bcd59c; --chat-c:#dfe3b0; --pattern:rgba(70,95,40,.10);
+  --bubble:#ffffff; --bubble-ink:#000000; --bubble-meta:#a0acb6; --link:#168acd;
+  --pill:rgba(38,54,22,.32); --pill-ink:#ffffff;
+
+  --ok:#1e9e5a; --ok-soft:#e3f5ea; --warn:#c77700; --warn-soft:#fff3dc;
+  --bad:#d63a3a; --bad-soft:#fde8e8; --info:#3390ec; --info-soft:#e6f1fd;
+  --shadow:0 1px 2px rgba(16,35,47,.13);
+}
+/* ---------- Telegram mavzusi: tungi ---------- */
+:root[data-theme="dark"]{
+  --app-bg:#0e1621; --panel:#17212b; --panel-2:#1e2c3a; --line:#26333f;
+  --ink:#f5f7f9; --ink-2:#c3ccd4; --muted:#7d8b99;
+  --accent:#5eb5f7; --accent-ink:#0e1621; --accent-soft:#1f3346;
+
+  --chat-a:#0f1b26; --chat-b:#0b1520; --chat-c:#122030; --pattern:rgba(140,180,220,.06);
+  --bubble:#182533; --bubble-ink:#f5f7f9; --bubble-meta:#6d8193; --link:#6ab3f3;
+  --pill:rgba(30,44,58,.85); --pill-ink:#e6edf3;
+
+  --ok:#4bd18a; --ok-soft:#173527; --warn:#f0b04a; --warn-soft:#3a2d14;
+  --bad:#ff7b7b; --bad-soft:#3d1d22; --info:#5eb5f7; --info-soft:#1f3346;
+  --shadow:0 1px 2px rgba(0,0,0,.4);
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{font-family:var(--font);font-size:15px;line-height:1.45;color:var(--ink);background:var(--app-bg);
+  -webkit-font-smoothing:antialiased}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+
+/* ---------- yuqori panel ---------- */
+.topbar{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:10px 18px;background:var(--panel);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;min-width:180px}
+.logo{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#6a63f0,#4f46e5);
+  color:#fff;display:grid;place-items:center;font-weight:700;font-size:17px}
+.brand b{display:block;font-size:15px}
+.brand span{display:block;font-size:12px;color:var(--muted)}
+.stats{display:flex;gap:6px;flex-wrap:wrap;flex:1}
+.stat{font-size:12.5px;padding:4px 10px;border-radius:999px;background:var(--panel-2);color:var(--ink-2);white-space:nowrap}
+.stat b{color:var(--ink);font-variant-numeric:tabular-nums}
+.actions{display:flex;gap:8px;align-items:center}
+.btn{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:7px 12px;border-radius:9px;font-size:13.5px;
+  display:inline-flex;align-items:center;gap:6px;white-space:nowrap;transition:background .15s}
+.btn:hover{background:var(--panel-2)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.primary:hover{filter:brightness(1.06)}
+.btn.ok{background:var(--ok);border-color:var(--ok);color:#fff}
+.btn.danger{color:var(--bad)}
+.btn.ghost{border-color:transparent;background:transparent}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+select.btn{padding-right:28px}
+
+/* ---------- maket ---------- */
+.layout{display:grid;grid-template-columns:300px 1fr;min-height:calc(100vh - 58px)}
+.plan{background:var(--panel);border-right:1px solid var(--line);padding:14px 10px 40px;overflow-y:auto;
+  position:sticky;top:58px;height:calc(100vh - 58px)}
+.plan h3{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 10px 6px;font-weight:600}
+.plan h3:first-child{margin-top:4px}
+.row{display:grid;grid-template-columns:44px 1fr auto;gap:8px;align-items:center;padding:7px 10px;border-radius:10px;
+  cursor:pointer;color:var(--ink)}
+.row:hover{background:var(--panel-2)}
+.row.active{background:var(--accent-soft)}
+.row .tm{font-variant-numeric:tabular-nums;font-size:13px;color:var(--muted)}
+.row .ttl{font-size:13.5px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .ttl small{display:block;font-size:11.5px;color:var(--accent);font-family:var(--mono)}
+.dot{display:inline-block;vertical-align:middle;width:9px;height:9px;border-radius:50%;background:var(--muted)}
+.dot.draft{background:#a6b1bb}.dot.needs_input{background:var(--warn)}.dot.approved{background:var(--info)}
+.dot.published{background:var(--ok)}.dot.failed{background:var(--bad)}.dot.overdue{background:var(--warn)}
+.row .img-ok{font-size:11px;margin-right:4px;opacity:.8}
+
+/* ---------- Telegram chat ---------- */
+.chat{position:relative;min-width:0;
+  background:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><g fill='none' stroke='%23000' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round' opacity='1'><rect x='14' y='18' width='26' height='20' rx='3'/><path d='M14 26h26M27 18v20'/><path d='M100 22l22-8-8 22-4-9z'/><rect x='58' y='86' width='30' height='20' rx='3'/><path d='M58 88l15 10 15-10'/><circle cx='128' cy='110' r='9'/><path d='M124 110h8M128 106v8'/><path d='M20 120c6-8 14-8 20 0'/><path d='M96 60l6 6 12-12'/></g></svg>"),
+    linear-gradient(135deg,var(--chat-a),var(--chat-b) 55%,var(--chat-c));
+  background-size:160px 160px, cover; background-attachment: local, fixed}
+.chat::before{content:"";position:absolute;inset:0;pointer-events:none}
+:root:not([data-theme="dark"]) .chat{background-blend-mode:soft-light, normal}
+:root[data-theme="dark"] .chat{background-blend-mode:overlay, normal}
+
+.chat-head{position:sticky;top:58px;z-index:20;display:flex;align-items:center;gap:12px;padding:9px 18px;
+  background:var(--panel);border-bottom:1px solid var(--line)}
+.chat-head .av{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#6a63f0,#4f46e5);color:#fff;
+  display:grid;place-items:center;font-weight:700}
+.chat-head b{display:block}
+.chat-head span{font-size:13px;color:var(--muted)}
+
+.feed{max-width:620px;margin:0 auto;padding:14px 14px 120px}
+.date-pill{display:flex;justify-content:center;margin:18px 0 10px;position:sticky;top:118px;z-index:5}
+.date-pill span{background:var(--pill);color:var(--pill-ink);font-size:13px;font-weight:500;padding:4px 11px;border-radius:999px;
+  backdrop-filter:blur(6px)}
+
+.msg{margin:6px 0 18px;scroll-margin-top:165px}
+.msg.flash .bubble{animation:flash 1.2s ease}
+@keyframes flash{0%,100%{box-shadow:var(--shadow)}30%{box-shadow:0 0 0 3px var(--accent)}}
+@media (prefers-reduced-motion:reduce){.msg.flash .bubble{animation:none}}
+
+.bubble{position:relative;max-width:440px;background:var(--bubble);color:var(--bubble-ink);border-radius:14px 14px 14px 4px;
+  box-shadow:var(--shadow);overflow:hidden}
+.bubble::after{content:"";position:absolute;left:-6px;bottom:0;width:12px;height:14px;background:var(--bubble);
+  clip-path:path("M12 0 C12 8 6 14 0 14 L12 14 Z")}
+.media{position:relative;background:var(--panel-2)}
+.media img{display:block;width:100%;height:auto}
+.drop{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;
+  aspect-ratio:4/3;padding:18px;color:var(--muted);font-size:13.5px;cursor:pointer;
+  border:2px dashed color-mix(in srgb,var(--muted) 45%,transparent);margin:8px;border-radius:10px;transition:background .15s}
+.drop:hover,.drop.over{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.drop .ic{font-size:26px;line-height:1}
+.drop b{color:var(--ink-2);font-weight:600}
+.media .rm{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.55);color:#fff;border:0;border-radius:8px;
+  padding:4px 9px;font-size:12.5px}
+
+.cap{padding:8px 12px 4px;font-size:15px;line-height:1.38;white-space:normal;overflow-wrap:anywhere}
+.cap a{color:var(--link);text-decoration:none}
+.cap a:hover{text-decoration:underline}
+.cap code{font-family:var(--mono);font-size:13.5px;background:color-mix(in srgb,var(--link) 12%,transparent);padding:0 4px;border-radius:4px}
+.cap blockquote{margin:4px 0;padding:2px 10px;border-left:3px solid var(--link);background:color-mix(in srgb,var(--link) 8%,transparent);border-radius:4px}
+.cap .spoiler{background:var(--bubble-meta);color:transparent;border-radius:4px}
+.cap .spoiler:hover{color:inherit;background:transparent}
+.meta{display:flex;justify-content:flex-end;align-items:center;gap:8px;padding:0 10px 6px;font-size:12px;color:var(--bubble-meta);
+  font-variant-numeric:tabular-nums}
+
+/* ---------- boshqaruv kartasi ---------- */
+.ctrl{max-width:440px;margin-top:6px;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px;
+  box-shadow:var(--shadow)}
+.ctrl-top{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.badge{font-size:12px;font-weight:600;padding:3px 9px;border-radius:999px}
+.s-draft{background:var(--panel-2);color:var(--ink-2)}
+.s-needs_input{background:var(--warn-soft);color:var(--warn)}
+.s-approved{background:var(--info-soft);color:var(--info)}
+.s-published{background:var(--ok-soft);color:var(--ok)}
+.s-failed{background:var(--bad-soft);color:var(--bad)}
+.s-overdue{background:var(--warn-soft);color:var(--warn)}
+.tag{font-family:var(--mono);font-size:12.5px;color:var(--accent)}
+.count{margin-left:auto;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.count.over{color:var(--bad);font-weight:600}
+.note{background:var(--warn-soft);color:var(--ink);border-radius:9px;padding:8px 10px;font-size:13.5px;margin-bottom:8px;white-space:pre-line}
+.note b{color:var(--warn)}
+.err{background:var(--bad-soft);color:var(--bad);border-radius:9px;padding:8px 10px;font-size:13.5px;margin-bottom:8px}
+
+details{border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--panel-2)}
+details > summary{list-style:none;cursor:pointer;padding:8px 10px;font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:8px}
+details > summary::-webkit-details-marker{display:none}
+details > summary::after{content:"▾";margin-left:auto;color:var(--muted);transition:transform .15s}
+details[open] > summary::after{transform:rotate(180deg)}
+.prompt-body{padding:0 10px 10px}
+.prompt-body pre{margin:0 0 8px;white-space:pre-wrap;font-family:var(--mono);font-size:12.5px;line-height:1.5;
+  background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:10px;max-height:260px;overflow:auto;color:var(--ink)}
+.steps{font-size:13px;color:var(--ink-2);margin:0 0 8px;padding-left:18px}
+.steps li{margin:2px 0}
+.src{padding:0 12px 10px;font-size:13px;margin:0}
+.src li{margin:3px 0;overflow-wrap:anywhere}
+.src a{color:var(--link)}
+
+.btns{display:flex;flex-wrap:wrap;gap:6px}
+.btns .spacer{flex:1}
+
+.edit{margin-top:8px;display:grid;gap:8px}
+.edit textarea{width:100%;min-height:260px;font-family:var(--mono);font-size:13px;line-height:1.5;color:var(--ink);
+  background:var(--panel-2);border:1px solid var(--line);border-radius:9px;padding:10px;resize:vertical}
+.edit .r{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.edit input[type=datetime-local],.edit input[type=text]{font:inherit;font-size:13.5px;color:var(--ink);background:var(--panel-2);
+  border:1px solid var(--line);border-radius:9px;padding:6px 9px}
+.edit label{font-size:12.5px;color:var(--muted)}
+
+/* ---------- xabarlar ---------- */
+#toast{position:fixed;left:50%;bottom:22px;transform:translateX(-50%);z-index:60;display:grid;gap:8px;width:min(92vw,420px)}
+.t{background:#1f2a35;color:#fff;padding:10px 14px;border-radius:12px;font-size:14px;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.t.bad{background:#a82a2a}.t.ok{background:#167a46}
+.health{position:fixed;right:18px;top:68px;z-index:50;width:min(92vw,360px);background:var(--panel);border:1px solid var(--line);
+  border-radius:14px;box-shadow:0 12px 32px rgba(0,0,0,.18);padding:14px 16px}
+.health h4{margin:0 0 8px;font-size:15px}
+.health ul{list-style:none;margin:0;padding:0;display:grid;gap:6px;font-size:13.5px}
+.health li{display:flex;gap:8px}
+.health .y{color:var(--ok)}.health .n{color:var(--bad)}
+.health p{font-size:12.5px;color:var(--muted);margin:10px 0 0}
+
+.empty{max-width:440px;margin:60px auto;background:var(--panel);border-radius:14px;padding:22px;text-align:center;color:var(--ink-2)}
+
+.plan-close{display:none}
+@media (max-width: 900px){
+  .topbar{position:static;gap:8px;padding:8px 12px}
+  .brand{min-width:0}
+  .stats{order:3;flex-basis:100%;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .stats::-webkit-scrollbar{display:none}
+  .actions{margin-left:auto;gap:6px}
+  #btnHealth .lbl{display:none}
+  .layout{grid-template-columns:1fr}
+  .plan{display:none;position:fixed;inset:0;height:100vh;z-index:40;top:0}
+  body.show-plan .plan{display:block}
+  .plan-close{display:flex;width:100%;justify-content:center;margin-bottom:6px}
+  .chat-head{position:static}
+  .date-pill{top:6px}
+  .msg{scroll-margin-top:50px}
+  .feed{padding:10px 8px 100px}
+  #btnPlan{display:inline-flex !important}
+}
+#btnPlan{display:none}
+/* ---------- GitHub rejimi ---------- */
+.setup{position:fixed;inset:0;z-index:80;display:none;align-items:center;justify-content:center;padding:16px;
+  background:linear-gradient(135deg,var(--chat-a),var(--chat-b))}
+body.need-setup .setup{display:flex}
+body.need-setup .topbar, body.need-setup .layout{visibility:hidden}
+.setup .card{width:min(100%,460px);background:var(--panel);border-radius:18px;box-shadow:0 18px 50px rgba(0,0,0,.18);padding:22px}
+.setup h1{margin:0 0 4px;font-size:20px}
+.setup p{margin:0 0 14px;color:var(--ink-2);font-size:14px;line-height:1.45}
+.setup label{display:block;font-size:12.5px;color:var(--muted);margin:10px 0 4px}
+.setup input{width:100%;font:inherit;font-size:14px;color:var(--ink);background:var(--panel-2);border:1px solid var(--line);border-radius:10px;padding:9px 11px}
+.setup .btn.primary{width:100%;justify-content:center;margin-top:16px;padding:10px}
+.setup details{margin-top:14px;font-size:13px;color:var(--ink-2)}
+.setup details ol{margin:8px 0 0;padding-left:18px;display:grid;gap:4px}
+.setup .msg-err{color:var(--bad);font-size:13px;margin-top:10px;min-height:1em}
+.job{display:none;align-items:center;gap:6px;font-size:12.5px;color:var(--ink-2);background:var(--info-soft);border-radius:999px;padding:5px 10px;white-space:nowrap}
+.job.on{display:inline-flex}
+.job a{color:var(--link)}
+.spin{width:12px;height:12px;border:2px solid var(--accent);border-right-color:transparent;border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion: reduce){.spin{animation:none}}
+.media img.loading{min-height:260px;background:var(--panel-2)}
+.more{display:flex;justify-content:center;margin:18px 0}
+</style>
+</head>
+<body class="need-setup">
+
+<div class="setup" role="dialog" aria-labelledby="setupTitle">
+  <form class="card" id="setupForm" autocomplete="off">
+    <h1 id="setupTitle">Pochtachi paneli</h1>
+    <p>Postlar yopiq GitHub repoda saqlanadi. Kirish uchun repo nomi va GitHub tokenini kiriting — token faqat shu brauzerda saqlanadi.</p>
+    <label for="inRepo">Ma'lumotlar repo (egasi/nomi)</label>
+    <input id="inRepo" placeholder="NShakhobiddin/pochtachi" required spellcheck="false">
+    <label for="inToken">GitHub token (fine-grained)</label>
+    <input id="inToken" type="password" placeholder="github_pat_…" required spellcheck="false">
+    <button class="btn primary" type="submit" id="setupBtn">Kirish</button>
+    <div class="msg-err" id="setupErr" aria-live="polite"></div>
+    <details>
+      <summary>Token qanday olinadi?</summary>
+      <ol>
+        <li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com → Settings → Developer settings → Fine-grained tokens → Generate new token</a></li>
+        <li>Nomi: <b>pochtachi-panel</b>, muddati: 1 yil</li>
+        <li>Repository access: <b>Only select repositories</b> → faqat ma'lumotlar repo</li>
+        <li>Permissions → Repository: <b>Contents — Read and write</b>, <b>Actions — Read and write</b></li>
+        <li>Generate → tokenni nusxalab shu yerga qo'ying</li>
+      </ol>
+    </details>
+  </form>
+</div>
+
+<header class="topbar">
+  <div class="brand"><div class="logo">P</div><div><b>Pochtachi</b><span>Kontent paneli</span></div></div>
+  <div class="stats" id="stats"></div>
+  <div class="actions">
+    <span class="job" id="job" aria-live="polite"><span class="spin"></span><span id="jobText">GitHub ishlamoqda…</span></span>
+    <button class="btn" id="btnPlan" type="button">☰ Reja</button>
+    <select class="btn" id="filter" aria-label="Filtr">
+      <option value="all">Hammasi</option>
+      <option value="noimg">Rasm kerak</option>
+      <option value="todo">Tasdiqlanmagan</option>
+      <option value="approved">Tasdiqlangan</option>
+      <option value="published">Joylangan</option>
+    </select>
+    <button class="btn" id="btnHealth" type="button" title="Ulanishni tekshirish">🔌 <span class="lbl">Ulanishni tekshirish</span></button>
+    <button class="btn ghost" id="btnTheme" type="button" title="Kun / tun">🌓</button>
+    <button class="btn ghost" id="btnLogout" type="button" title="Chiqish (tokenni shu brauzerdan o'chirish)">🚪</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="plan" id="plan" aria-label="Hafta rejasi"></aside>
+  <main class="chat">
+    <div class="chat-head">
+      <div class="av">P</div>
+      <div><b>Pochtachi</b><span id="chanName">kanal</span></div>
+    </div>
+    <div class="feed" id="feed"></div>
+  </main>
+</div>
+
+<div id="toast" aria-live="polite"></div>
+<input type="file" id="fileInput" accept="image/png,image/jpeg,image/webp" hidden>
+
+<script>
+"use strict";
+/* sync_ui.py joylashda o'rniga ma'lumotlar repo nomini qo'yadi */
+const DEFAULT_REPO = "__DATA_REPO__";
+const WORKFLOW = "publish.yml";
+const BRANCH = "main";
+const ARCHIVE_DAYS = 14;          // shundan eski postlar «Arxiv» tugmasi bilan yuklanadi
+const LS_AUTH = "pochtachi-gh", THEME_KEY = "pochtachi-theme";
+
+const $ = (s, r=document) => r.querySelector(s);
+const el = (tag, attrs={}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k,v] of Object.entries(attrs)) {
+    if (k === "class") n.className = v;
+    else if (k === "text") n.textContent = v;
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+    else if (v !== null && v !== undefined && v !== false) n.setAttribute(k, v === true ? "" : v);
+  }
+  for (const k of kids.flat()) if (k !== null && k !== undefined && k !== false) n.append(k instanceof Node ? k : document.createTextNode(k));
+  return n;
+};
+
+const MONTHS = ["yanvar","fevral","mart","aprel","may","iyun","iyul","avgust","sentabr","oktabr","noyabr","dekabr"];
+const DAYS = ["yakshanba","dushanba","seshanba","chorshanba","payshanba","juma","shanba"];
+const STATUS = {
+  draft:["Qoralama","draft"], needs_input:["Material kerak","needs_input"], approved:["Tasdiqlangan · vaqtida chiqadi","approved"],
+  published:["Kanalga chiqdi","published"], failed:["Xato","failed"], overdue:["Vaqti o'tdi","overdue"]
+};
+
+let S = { posts: [], settings: {}, tree: {}, head: null, active: null, editing: null, filter: "all", archive: false, hiddenOld: 0, busy: 0 };
+
+/* ================================================================ GitHub API */
+let AUTH = null;   // {repo, token, api}
+function loadAuth(){
+  try { AUTH = JSON.parse(localStorage.getItem(LS_AUTH) || "null"); } catch { AUTH = null; }
+  // API manzilini almashtirish faqat mahalliy sinov uchun (tokenni begona serverga yuborib qo'ymaslik uchun)
+  const local = ["localhost","127.0.0.1"].includes(location.hostname);
+  const q = new URLSearchParams(location.search).get("api");
+  if (AUTH) AUTH.api = (local && q) ? q.replace(/\/$/,"") : "https://api.github.com";
+}
+function saveAuth(a){ try { localStorage.setItem(LS_AUTH, JSON.stringify({repo:a.repo, token:a.token})); } catch {} }
+
+class GhError extends Error { constructor(msg, status){ super(msg); this.status = status; } }
+
+async function gh(path, opts={}){
+  const headers = { "Authorization": `Bearer ${AUTH.token}`, "Accept": "application/vnd.github+json",
+                    "X-GitHub-Api-Version": "2022-11-28", ...(opts.headers || {}) };
+  let body = opts.body;
+  if (body && typeof body !== "string") { body = JSON.stringify(body); headers["Content-Type"] = "application/json"; }
+  let r;
+  try { r = await fetch(AUTH.api + path, { method: opts.method || "GET", headers, body, cache: "no-store" }); }
+  catch { throw new GhError("GitHub'ga ulanib bo'lmadi — internetni tekshiring", 0); }
+  if (opts.raw && r.ok) return r;
+  let j = null; try { j = r.status === 204 ? {} : await r.json(); } catch {}
+  if (!r.ok) {
+    const m = (j && j.message) || "";
+    if (r.status === 401) { throw new GhError("Token yaroqsiz yoki muddati tugagan — qayta kiring", 401); }
+    if (r.status === 403 && /rate limit/i.test(m)) throw new GhError("GitHub so'rovlar chegarasi — bir oz kuting", 403);
+    if (r.status === 403) throw new GhError("Tokenga ruxsat yetmaydi (Contents va Actions — Read and write kerak)", 403);
+    if (r.status === 404 && opts.allow404) return null;
+    if (r.status === 404) throw new GhError("Repo yoki fayl topilmadi (token shu repoga berilganmi?)", 404);
+    throw new GhError(m || `GitHub xatosi (${r.status})`, r.status);
+  }
+  return j;
+}
+const R = () => `/repos/${AUTH.repo}`;
+
+const enc = new TextEncoder(), dec = new TextDecoder();
+function b64ToText(b64){ const bin = atob(b64.replace(/\s/g,"")); const u = new Uint8Array(bin.length); for (let i=0;i<bin.length;i++) u[i]=bin.charCodeAt(i); return dec.decode(u); }
+function bytesToB64(buf){ const u = new Uint8Array(buf); let s = ""; for (let i=0;i<u.length;i+=0x8000) s += String.fromCharCode.apply(null, u.subarray(i, i+0x8000)); return btoa(s); }
+
+async function headSha(){ return (await gh(`${R()}/git/ref/heads/${BRANCH}`)).object.sha; }
+async function readAt(sha, path){
+  const j = await gh(`${R()}/contents/${path}?ref=${sha}`, {allow404: true});
+  return j ? JSON.parse(b64ToText(j.content)) : null;
+}
+
+/** Bitta atomik commit. build(head, read) => [{path, text}|{path, b64}|{path, del:true}] — xato tashlasa bekor qilinadi. */
+async function transact(message, build){
+  for (let attempt = 0; attempt < 4; attempt++) {
+    const head = await headSha();
+    const files = await build(head, p => readAt(head, p));
+    if (!files || !files.length) return null;
+    const base = await gh(`${R()}/git/commits/${head}`);
+    const tree = [];
+    for (const f of files) {
+      if (f.del) { tree.push({path: f.path, mode: "100644", type: "blob", sha: null}); continue; }
+      const blob = await gh(`${R()}/git/blobs`, {method:"POST", body: f.b64 !== undefined ? {content: f.b64, encoding: "base64"} : {content: f.text, encoding: "utf-8"}});
+      tree.push({path: f.path, mode: "100644", type: "blob", sha: blob.sha});
+    }
+    const nt = await gh(`${R()}/git/trees`, {method:"POST", body: {base_tree: base.tree.sha, tree}});
+    const nc = await gh(`${R()}/git/commits`, {method:"POST", body: {message: "panel: " + message, tree: nt.sha, parents: [head]}});
+    try {
+      await gh(`${R()}/git/refs/heads/${BRANCH}`, {method:"PATCH", body: {sha: nc.sha, force: false}});
+      return nc.sha;
+    } catch (e) {
+      if (e.status !== 422 && e.status !== 409) throw e;   // shu orada bot commit qildi — qayta urinamiz
+      await new Promise(r => setTimeout(r, 600 + attempt * 700));
+    }
+  }
+  throw new Error("Saqlab bo'lmadi — bir necha soniyadan keyin qayta urinib ko'ring");
+}
+
+const postPath = id => `posts/${id}.json`;
+const toJson = o => JSON.stringify(o, null, 2) + "\n";
+
+/** Postni eng so'nggi holatida o'qib o'zgartiradi. fn(post) — xato tashlasa saqlanmaydi. */
+async function mutatePost(id, message, fn, extra){
+  return transact(message, async (head, read) => {
+    const post = await read(postPath(id));
+    if (!post) throw new Error("Post topilmadi");
+    const files = (await fn(post, read)) || [];
+    return [{path: postPath(id), text: toJson(post)}, ...files];
+  });
+}
+function notPublished(p){ if (p.status === "published") throw new Error("Post allaqachon kanalga chiqqan"); }
+
+/* ================================================================ ma'lumot yuklash */
+const blobCache = new Map();   // sha -> parsed post
+const imgCache = new Map();    // sha -> objectURL
+async function blobJson(sha){
+  if (blobCache.has(sha)) return blobCache.get(sha);
+  const j = await gh(`${R()}/git/blobs/${sha}`);
+  const v = JSON.parse(b64ToText(j.content));
+  blobCache.set(sha, v); return v;
+}
+async function pool(items, n, fn){
+  const out = new Array(items.length); let i = 0;
+  await Promise.all(Array.from({length: Math.min(n, items.length)}, async () => { while (i < items.length) { const k = i++; out[k] = await fn(items[k]); } }));
+  return out;
+}
+function cutoffKey(){
+  const d = new Date(Date.now() + 5*3600e3 - ARCHIVE_DAYS*86400e3);
+  return d.toISOString().slice(0,10);
+}
+
+async function load(keepScroll=true){
+  const y = window.scrollY;
+  const head = await headSha();
+  const t = await gh(`${R()}/git/trees/${head}?recursive=1`);
+  const tree = {}; for (const e of t.tree) if (e.type === "blob") tree[e.path] = e.sha;
+  const postFiles = Object.keys(tree).filter(p => /^posts\/[A-Za-z0-9_\-]+\.json$/.test(p)).sort();
+  const cut = cutoffKey();
+  const wanted = S.archive ? postFiles : postFiles.filter(p => p.slice(6, 16) >= cut);
+  S.hiddenOld = postFiles.length - wanted.length;
+  const [posts, settings] = await Promise.all([
+    pool(wanted, 8, p => blobJson(tree[p]).catch(() => null)),
+    tree["settings.json"] ? blobJson(tree["settings.json"]) : {}
+  ]);
+  S.head = head; S.tree = tree; S.settings = settings || {};
+  S.posts = posts.filter(Boolean).sort((a,b) => (a.scheduled_at||"").localeCompare(b.scheduled_at||""));
+  $("#chanName").textContent = (S.settings.channel_id || "kanal sozlanmagan") + " · " + S.posts.length + " ta post";
+  render();
+  if (keepScroll) window.scrollTo(0, y);
+}
+
+function imageUrl(name){
+  const sha = S.tree["images/" + name];
+  if (!sha) return Promise.resolve(null);
+  if (imgCache.has(sha)) return imgCache.get(sha);
+  const pr = gh(`${R()}/git/blobs/${sha}`, {raw: true, headers: {Accept: "application/vnd.github.raw+json"}})
+    .then(r => r.blob()).then(b => URL.createObjectURL(b))
+    .catch(e => { imgCache.delete(sha); throw e; });
+  imgCache.set(sha, pr); return pr;
+}
+
+/* ================================================================ caption (bot bilan bir xil qoidalar) */
+const escHtml = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#x27;");
+function renderCaption(caption){
+  const tokens = {"{{APP_URL}}": (S.settings.app_url||"").trim(), "{{CONSULT_URL}}": (S.settings.consult_url||"").trim()};
+  const lines = [];
+  for (let line of (caption||"").split("\n")) {
+    let drop = false;
+    for (const [tok, val] of Object.entries(tokens)) if (line.includes(tok)) { if (!val) { drop = true; break; } line = line.split(tok).join(escHtml(val)); }
+    if (!drop) lines.push(line);
+  }
+  const ch = (S.settings.channel_id||"").trim(), uname = ch.startsWith("@") ? ch.slice(1) : "";
+  const byId = Object.fromEntries(S.posts.map(p => [p.id, p]));
+  return lines.join("\n").replace(/<a href="\{\{LINK:([A-Za-z0-9_\-]+)\}\}">([\s\S]*?)<\/a>/g, (m, pid, text) => {
+    const t = byId[pid];
+    return (t && t.message_id && uname) ? `<a href="https://t.me/${uname}/${t.message_id}">${text}</a>` : text;
+  });
+}
+function vislen(h){
+  const d = document.createElement("textarea"); d.innerHTML = h.replace(/<[^>]+>/g, "");
+  return d.value.length;   // JS satr uzunligi = UTF-16 birliklar (Telegram ham shunday sanaydi)
+}
+
+/* ================================================================ GitHub Actions */
+function setJob(text, url){
+  const j = $("#job");
+  if (!text) { j.classList.remove("on"); return; }
+  $("#jobText").replaceChildren(text, url ? el("a",{href:url, target:"_blank", rel:"noopener", text:" ↗"}) : "");
+  j.classList.add("on");
+}
+async function dispatch(mode, postId=""){
+  const req = Math.random().toString(36).slice(2, 10);
+  await gh(`${R()}/actions/workflows/${WORKFLOW}/dispatches`, {method:"POST", body: {ref: BRANCH, inputs: {mode, post_id: postId, req}}});
+  return req;
+}
+/** Ishga tushgan workflow tugashini kutadi. done() — natija tayyor bo'lsa qiymat qaytaradi. */
+async function waitRun(req, label, done, timeoutMs=6*60e3){
+  const t0 = Date.now(); let run = null;
+  S.busy++; setJob(label + " — navbatda…");
+  try {
+    while (Date.now() - t0 < timeoutMs) {
+      await new Promise(r => setTimeout(r, 4000));
+      try {
+        const runs = await gh(`${R()}/actions/workflows/${WORKFLOW}/runs?event=workflow_dispatch&per_page=15`);
+        run = (runs.workflow_runs || []).find(x => (x.display_title || x.name || "").includes(req)) || run;
+      } catch {}
+      if (run) setJob(label + (run.status === "in_progress" ? " — bajarilmoqda…" : " — navbatda…"), run.html_url);
+      if (run && run.status === "completed") {
+        const v = await done().catch(() => null);
+        if (v) return v;
+        if (run.conclusion !== "success") throw new Error(`GitHub ishi ${run.conclusion === "cancelled" ? "bekor qilindi" : "xato bilan tugadi"} — loglarni ko'ring: ${run.html_url}`);
+        // muvaffaqiyatli, lekin natija hali ko'rinmayapti — yana bir oz kutamiz
+        await new Promise(r => setTimeout(r, 2500));
+        const v2 = await done().catch(() => null);
+        if (v2) return v2;
+        throw new Error("GitHub ishi tugadi, lekin natija topilmadi — sahifani yangilang");
+      }
+    }
+    throw new Error("GitHub javobi kechikmoqda. Natija keyinroq panelda ko'rinadi." + (run ? " " + run.html_url : ""));
+  } finally { S.busy--; if (!S.busy) setJob(null); }
+}
+
+/* ================================================================ ko'rinish */
+function tParts(iso){
+  const m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(iso || "");
+  if (!m) return null;
+  const [_, y, mo, d, h, mi] = m;
+  const dow = new Date(Date.UTC(+y, +mo-1, +d)).getUTCDay();
+  return { y:+y, mo:+mo, d:+d, hh:h, mi, dow, key:`${y}-${mo}-${d}` };
+}
+const dayLabel = p => `${p.d}-${MONTHS[p.mo-1]}, ${DAYS[p.dow]}`;
+
+const ALLOWED = new Set(["B","STRONG","I","EM","U","INS","S","STRIKE","DEL","A","CODE","PRE","BLOCKQUOTE","TG-SPOILER"]);
+function tgRender(htmlStr){
+  const doc = new DOMParser().parseFromString("<div>" + htmlStr + "</div>", "text/html");
+  const walk = node => {
+    const frag = document.createDocumentFragment();
+    node.childNodes.forEach(ch => {
+      if (ch.nodeType === 3) {
+        ch.textContent.split("\n").forEach((part, i) => { if (i) frag.append(document.createElement("br")); frag.append(part); });
+      } else if (ch.nodeType === 1) {
+        if (ALLOWED.has(ch.tagName)) {
+          const tag = ch.tagName === "TG-SPOILER" ? "span" : ch.tagName.toLowerCase();
+          const n = document.createElement(tag);
+          if (ch.tagName === "A") {
+            const h = ch.getAttribute("href") || "";
+            if (/^https?:\/\//i.test(h)) { n.href = h; n.target = "_blank"; n.rel = "noopener"; }
+          }
+          if (ch.tagName === "TG-SPOILER") n.className = "spoiler";
+          n.append(walk(ch));
+          frag.append(n);
+        } else frag.append(walk(ch));
+      }
+    });
+    return frag;
+  };
+  return walk(doc.body.firstChild);
+}
+
+function toast(msg, kind=""){
+  const t = el("div", {class:"t " + kind});
+  const m = /(https:\/\/\S+)$/.exec(msg);
+  if (m) t.append(msg.slice(0, m.index), el("a", {href: m[1], target:"_blank", rel:"noopener", style:"color:inherit;text-decoration:underline", text:"GitHub'da ochish"}));
+  else t.textContent = msg;
+  $("#toast").append(t);
+  setTimeout(() => t.remove(), kind === "bad" ? 9000 : 3200);
+}
+async function copyText(text){
+  try { await navigator.clipboard.writeText(text); return true; }
+  catch {
+    const ta = el("textarea", {style:"position:fixed;left:-9999px"}); ta.value = text;
+    document.body.append(ta); ta.select();
+    const ok = document.execCommand("copy"); ta.remove(); return ok;
+  }
+}
+
+function visible(p){
+  switch (S.filter) {
+    case "noimg": return !p.image && p.status !== "published";
+    case "todo": return ["draft","needs_input","failed","overdue"].includes(p.status);
+    case "approved": return p.status === "approved";
+    case "published": return p.status === "published";
+    default: return true;
+  }
+}
+
+function render(){
+  const ps = S.posts;
+  const c = s => ps.filter(p => p.status === s).length;
+  const withImg = ps.filter(p => p.image).length;
+  $("#stats").replaceChildren(
+    el("span",{class:"stat"}, el("b",{text:ps.length}), " post"),
+    el("span",{class:"stat"}, "🖼 ", el("b",{text:withImg}), " / " + ps.length),
+    el("span",{class:"stat"}, "✅ ", el("b",{text:c("approved")}), " tasdiqlangan"),
+    el("span",{class:"stat"}, "📢 ", el("b",{text:c("published")}), " joylangan"),
+    c("needs_input") ? el("span",{class:"stat"}, "⚠️ ", el("b",{text:c("needs_input")}), " material kerak") : null
+  );
+  renderPlan(); renderFeed();
+}
+
+function renderPlan(){
+  const plan = $("#plan"); plan.replaceChildren(
+    el("button",{class:"btn plan-close", type:"button", text:"✕ Rejani yopish", onclick: () => document.body.classList.remove("show-plan")}));
+  let last = "";
+  S.posts.forEach(p => {
+    const t = tParts(p.scheduled_at); if (!t) return;
+    if (t.key !== last) { plan.append(el("h3", {text: dayLabel(t)})); last = t.key; }
+    plan.append(el("div", {class:"row" + (S.active === p.id ? " active" : ""), role:"button", tabindex:"0",
+      onclick: () => focusPost(p.id), onkeydown: e => { if (e.key === "Enter") focusPost(p.id); }},
+      el("span",{class:"tm", text:`${t.hh}:${t.mi}`}),
+      el("span",{class:"ttl"}, el("small",{text:p.rubric || ""}), p.title || p.id),
+      el("span",{}, p.image ? el("span",{class:"img-ok", title:"Rasm bor", text:"🖼"}) : null, el("span",{class:"dot " + (p.status||"draft"), title:(STATUS[p.status]||STATUS.draft)[0]}))
+    ));
+  });
+}
+
+function focusPost(id){
+  S.active = id;
+  document.body.classList.remove("show-plan");
+  const n = document.getElementById("p-" + id);
+  if (n) { n.scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block:"start"});
+    n.classList.remove("flash"); void n.offsetWidth; n.classList.add("flash"); }
+  renderPlan();
+}
+
+function renderFeed(){
+  const feed = $("#feed"); feed.replaceChildren();
+  if (S.hiddenOld && !S.archive) feed.append(el("div",{class:"more"},
+    el("button",{class:"btn", type:"button", text:`🗂 Arxiv: yana ${S.hiddenOld} ta eski post`, onclick: async () => { S.archive = true; await safeLoad(false); }})));
+  const list = S.posts.filter(visible);
+  if (!list.length) { feed.append(el("div",{class:"empty", text:"Bu filtr bo'yicha post yo'q."})); return; }
+  let last = "";
+  list.forEach(p => {
+    const t = tParts(p.scheduled_at);
+    if (t && t.key !== last) { feed.append(el("div",{class:"date-pill"}, el("span",{text: dayLabel(t)}))); last = t.key; }
+    feed.append(postNode(p, t));
+  });
+}
+
+function postNode(p, t){
+  const published = p.status === "published";
+  const rendered = renderCaption(p.caption);
+  const vl = vislen(rendered);
+  const wrap = el("section", {class:"msg", id:"p-" + p.id, "data-id": p.id, onpointerdown: () => { S.active = p.id; }});
+
+  const media = el("div", {class:"media"});
+  if (p.image) {
+    const img = el("img", {alt: "Post rasmi", class: "loading"});
+    imageUrl(p.image).then(u => { if (u) { img.src = u; img.classList.remove("loading"); } else img.alt = "Rasm fayli topilmadi"; })
+      .catch(() => { img.alt = "Rasm yuklanmadi"; });
+    media.append(img);
+    if (!published) media.append(el("button", {class:"rm", type:"button", text:"✕ Rasm", title:"Rasmni olib tashlash", "aria-label":"Rasmni olib tashlash",
+      onclick: async e => { e.stopPropagation(); if (!confirm("Rasm olib tashlansinmi?")) return; await removeImage(p.id); }}));
+  } else if (!published) {
+    const drop = el("div", {class:"drop", tabindex:"0", role:"button", "aria-label":"Rasm yuklash",
+      onclick: () => pickFile(p.id), onkeydown: e => { if (e.key === "Enter") pickFile(p.id); }},
+      el("div",{class:"ic", text:"🖼"}), el("b",{text:"Rasm hali yo'q"}), el("div",{text:"Bosing, faylni tashlang yoki Ctrl+V"}));
+    ["dragenter","dragover"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.add("over"); }));
+    ["dragleave","drop"].forEach(ev => drop.addEventListener(ev, e => { e.preventDefault(); drop.classList.remove("over"); }));
+    drop.addEventListener("drop", e => { const f = e.dataTransfer.files[0]; if (f) uploadImage(p.id, f); });
+    media.append(drop);
+  }
+  const cap = el("div", {class:"cap"}); cap.append(tgRender(rendered));
+  const meta = el("div", {class:"meta"},
+    published ? el("span",{text:"✓✓ kanalda"}) : (p.publish_now ? el("span",{text:"🚀 yuborilmoqda"}) : (p.status === "approved" ? el("span",{text:"🕓 navbatda"}) : null)),
+    el("span",{text: t ? `${t.hh}:${t.mi}` : ""}));
+  const bubble = el("div", {class:"bubble"}, media, cap, meta);
+
+  const [stLabel, stCls] = STATUS[p.status] || STATUS.draft;
+  const over = vl > 1024;
+  const ctrl = el("div", {class:"ctrl"},
+    el("div", {class:"ctrl-top"},
+      el("span", {class:"badge s-" + stCls, text: p.publish_now && !published ? "Kanalga yuborilmoqda…" : stLabel}),
+      el("span", {class:"tag", text: p.rubric || ""}),
+      el("span", {class:"count" + (over ? " over" : ""), title:"Rasm bilan matn chegarasi 1024 belgi",
+        text: `${vl}/1024` + (over ? " — rasm va matn alohida chiqadi" : "")})
+    ),
+    p.notes ? el("div",{class:"note"}, el("b",{text:"Eslatma: "}), p.notes) : null,
+    p.error && p.status === "failed" ? el("div",{class:"err", text:"Telegram xatosi: " + p.error}) : null,
+    promptBox(p),
+    el("div", {class:"btns"}, ...buttons(p)),
+    S.editing === p.id ? editBox(p, cap) : null,
+    sourcesBox(p)
+  );
+  wrap.append(bubble, ctrl);
+  return wrap;
+}
+
+function promptBox(p){
+  if (!p.prompt) return null;
+  const isDeal = /attached product photo/i.test(p.prompt);
+  return el("details", {},
+    el("summary", {}, "🎨 Rasm prompti (GPT Image 2)"),
+    el("div", {class:"prompt-body"},
+      el("ol", {class:"steps"},
+        isDeal && p.product_url ? el("li", {}, "Tovar suratini saqlang: ", el("a",{href:p.product_url, target:"_blank", rel:"noopener", text:"do'kon sahifasi"})) : null,
+        el("li", {text: isDeal ? "ChatGPT'da suratni biriktiring va promptni yuboring" : "ChatGPT'ga promptni yuboring"}),
+        el("li", {text:"Tayyor rasmni shu postga yuklang (Ctrl+V ham ishlaydi)"})
+      ),
+      el("pre", {text: p.prompt}),
+      el("button", {class:"btn", type:"button", text:"📋 Promptni nusxalash",
+        onclick: async () => toast(await copyText(p.prompt) ? "Prompt nusxalandi" : "Nusxalab bo'lmadi", "ok")})
+    ));
+}
+
+function sourcesBox(p){
+  if (!p.sources || !p.sources.length) return null;
+  return el("details", {},
+    el("summary", {}, `📎 Manbalar (${p.sources.length})`),
+    el("ul", {class:"src"}, ...p.sources.map(s => el("li", {},
+      /^https?:\/\//.test(s.url||"") ? el("a",{href:s.url, target:"_blank", rel:"noopener", text:s.label || s.url}) : (s.label || ""))))
+  );
+}
+
+function buttons(p){
+  const b = [];
+  if (p.status === "published") {
+    const ch = (S.settings.channel_id||"").replace(/^@/,"");
+    if (p.message_id && ch) b.push(el("a",{class:"btn", href:`https://t.me/${ch}/${p.message_id}`, target:"_blank", rel:"noopener", text:"Kanalda ochish ↗"}));
+    return b;
+  }
+  if (p.prompt) b.push(el("button",{class:"btn", type:"button", text:"📋 Prompt",
+    onclick: async () => toast(await copyText(p.prompt) ? "Prompt nusxalandi" : "Nusxalab bo'lmadi", "ok")}));
+  b.push(el("button",{class:"btn", type:"button", text: p.image ? "🔁 Rasmni almashtirish" : "⬆ Rasm yuklash", onclick: () => pickFile(p.id)}));
+  b.push(el("button",{class:"btn", type:"button", text: S.editing === p.id ? "✕ Yopish" : "✏ Tahrirlash",
+    onclick: () => { S.editing = S.editing === p.id ? null : p.id; render(); }}));
+  b.push(el("button",{class:"btn", type:"button", text:"📨 Menga sinov", title:"Postni kanalga emas, sizning shaxsiy chatingizga yuboradi",
+    onclick: () => testSend(p)}));
+  b.push(el("span",{class:"spacer"}));
+  if (p.status === "approved") {
+    b.push(el("button",{class:"btn", type:"button", text:"↩ Tasdiqni bekor qilish",
+      onclick: () => run(() => mutatePost(p.id, `tasdiq bekor ${p.id}`, x => { notPublished(x); x.status = "draft"; delete x.publish_now; }), "Tasdiq bekor qilindi")}));
+  } else {
+    b.push(el("button",{class:"btn ok", type:"button", text:"✅ Tasdiqlash", title:"Belgilangan vaqtda avtomatik chiqadi",
+      onclick: () => {
+        if (!p.image && !confirm("Bu postda rasm yo'q. Rasmsiz tasdiqlansinmi?")) return;
+        if (p.status === "needs_input" && !confirm("Bu post material talab qiladi. Baribir tasdiqlansinmi?")) return;
+        run(() => mutatePost(p.id, `tasdiq ${p.id}`, x => { notPublished(x); x.status = "approved"; x.error = null; }),
+            "Tasdiqlandi — vaqtida kanalga chiqadi");
+      }}));
+  }
+  b.push(el("button",{class:"btn primary", type:"button", text:"🚀 Hozir joylash", disabled: p.publish_now ? true : null,
+    onclick: () => {
+      const warn = p.image ? "" : "\n\nDiqqat: rasm yo'q — faqat matn chiqadi.";
+      if (!confirm(`«${p.title}» hozir kanalga joylansinmi?${warn}`)) return;
+      publishNow(p);
+    }}));
+  return b;
+}
+
+async function run(fn, okMsg){
+  try { await fn(); if (okMsg) toast(okMsg, "ok"); }
+  catch (e) { handleErr(e); }
+  await safeLoad();
+}
+function handleErr(e){
+  toast(e.message || String(e), "bad");
+  if (e.status === 401) { S.posts = []; document.body.classList.add("need-setup"); $("#setupErr").textContent = e.message; }
+}
+
+/* ---------- joylash, sinov, tekshiruv ---------- */
+async function publishNow(p){
+  try {
+    await mutatePost(p.id, `hozir joylash ${p.id}`, x => { notPublished(x); x.publish_now = true; x.error = null; });
+    await safeLoad();
+    const req = await dispatch("due");
+    const res = await waitRun(req, "Kanalga joylanmoqda", async () => {
+      const x = await readAt(await headSha(), postPath(p.id));
+      return x && (x.status === "published" || x.status === "failed") ? x : null;
+    });
+    if (res.status === "published") toast("Kanalga joylandi ✓", "ok");
+    else toast("Joylanmadi: " + (res.error || "noma'lum xato"), "bad");
+  } catch (e) { handleErr(e); }
+  await safeLoad();
+}
+
+async function testSend(p){
+  try {
+    const req = await dispatch("test", p.id);
+    toast("Sinov so'rovi GitHub'ga yuborildi — odatda 20–60 soniya", "");
+    const res = await waitRun(req, "Sinov yuborilmoqda", async () => {
+      const r = await readAt(await headSha(), "state/last_test.json");
+      return r && r.req === req ? r : null;
+    });
+    if (res.ok) toast("Sinov xabari Telegram'da sizga yuborildi", "ok");
+    else toast("Sinov yuborilmadi: " + res.error, "bad");
+  } catch (e) { handleErr(e); }
+  safeLoad();
+}
+
+$("#btnHealth").addEventListener("click", async () => {
+  document.querySelector(".health")?.remove();
+  const box = el("div", {class:"health", role:"dialog"}, el("h4",{text:"Tekshirilmoqda… (GitHub orqali, ~30 soniya)"}));
+  document.body.append(box);
+  const close = el("div",{style:"display:flex;justify-content:flex-end;margin-top:10px"}, el("button",{class:"btn", type:"button", text:"Yopish", onclick: () => box.remove()}));
+  try {
+    const req = await dispatch("health");
+    const h = await waitRun(req, "Ulanish tekshirilmoqda", async () => {
+      const r = await readAt(await headSha(), "state/health.json");
+      return r && r.req === req ? r : null;
+    });
+    const row = (ok, text) => el("li", {}, el("span",{class: ok ? "y" : "n", text: ok ? "✓" : "✗"}), text);
+    box.replaceChildren(
+      el("h4",{text:"Telegram ulanishi"}),
+      el("ul",{},
+        row(true, "GitHub: repo va token ishlayapti"),
+        row(!!h.token, h.token ? "Bot tokeni GitHub secret'da bor" : "TELEGRAM_BOT_TOKEN secret o'rnatilmagan"),
+        row(!!h.bot, h.bot ? `Bot: ${h.bot}` : "Bot ulanmadi"),
+        row(!!h.channel_title, h.channel_title ? `Kanal: ${h.channel_title}` : `Kanal topilmadi (${h.channel_id || "—"})`),
+        row(!!h.can_post, h.can_post ? "Bot kanalga post qo'ya oladi" : "Bot kanalda admin emas yoki post huquqi yo'q"),
+        row(!!h.admin_known, h.admin_known ? "Sizning ID'ingiz aniqlangan — sinov xabarlari ishlaydi" : "Sizning ID'ingiz noma'lum — botga /start yozing va qayta tekshiring")
+      ),
+      h.error ? el("p",{text: h.error}) : null, close);
+    safeLoad();
+  } catch (e) {
+    if (e.status === 401) { box.remove(); handleErr(e); return; }
+    box.replaceChildren(el("h4",{text:"Xato"}), el("p",{text:e.message}), close);
+  }
+});
+
+/* ---------- tahrirlash ---------- */
+function editBox(p, capNode){
+  const ta = el("textarea", {spellcheck:"false"}); ta.value = p.caption;
+  const dt = el("input", {type:"datetime-local"}); dt.value = (p.scheduled_at||"").slice(0,16);
+  const ttl = el("input", {type:"text", size:"28"}); ttl.value = p.title || "";
+  const cnt = el("span", {class:"count"});
+  const preview = () => {
+    const r = renderCaption(ta.value), n = vislen(r);
+    capNode.replaceChildren(tgRender(r));
+    cnt.textContent = `${n}/1024`; cnt.classList.toggle("over", n > 1024);
+  };
+  ta.addEventListener("input", preview);
+  setTimeout(preview, 0);
+  return el("div", {class:"edit"},
+    el("div",{class:"r"}, el("label",{text:"Sarlavha (faqat panel uchun)"}), ttl),
+    ta,
+    el("div",{class:"r"},
+      el("label",{text:"Chiqish vaqti (Toshkent)"}), dt, cnt,
+      el("span",{class:"spacer", style:"flex:1"}),
+      el("button",{class:"btn", type:"button", text:"Bekor", onclick: () => { S.editing = null; render(); }}),
+      el("button",{class:"btn primary", type:"button", text:"Saqlash", onclick: async e => {
+        e.target.disabled = true;
+        const caption = ta.value, title = ttl.value, when = dt.value ? dt.value.slice(0,16) + ":00+05:00" : null;
+        try {
+          await mutatePost(p.id, `tahrir ${p.id}`, x => {
+            notPublished(x);
+            x.caption = caption; x.title = title;
+            if (when) { x.scheduled_at = when; if (x.status === "overdue") x.status = "approved"; }
+          });
+          S.editing = null; toast("Saqlandi", "ok");
+        } catch (err) { handleErr(err); e.target.disabled = false; return; }
+        await safeLoad();
+      }})
+    ),
+    el("div",{style:"font-size:12px;color:var(--muted)"}, "Telegram teglari: <b> <i> <u> <s> <a href=\"\"> <code> <blockquote>. {{APP_URL}} / {{CONSULT_URL}} — settings.json da bo'sh bo'lsa qator yashiriladi.")
+  );
+}
+
+/* ---------- rasm ---------- */
+let pickTarget = null;
+function pickFile(id){ pickTarget = id; S.active = id; $("#fileInput").value = ""; $("#fileInput").click(); }
+$("#fileInput").addEventListener("change", e => { const f = e.target.files[0]; if (f && pickTarget) uploadImage(pickTarget, f); });
+
+/** PNG/WEBP yoki katta JPG -> JPEG (eng uzun tomoni ≤ 2048, sifat 0.9). Repo hajmi kichik bo'ladi, Telegram baribir siqadi. */
+async function prepareImage(file){
+  if (file.type === "image/jpeg" && file.size <= 1.5*1024*1024) return {blob: file, ext: "jpg"};
+  const bmp = await createImageBitmap(file);
+  const k = Math.min(1, 2048 / Math.max(bmp.width, bmp.height));
+  const c = document.createElement("canvas"); c.width = Math.round(bmp.width*k); c.height = Math.round(bmp.height*k);
+  const g = c.getContext("2d"); g.fillStyle = "#fff"; g.fillRect(0,0,c.width,c.height); g.drawImage(bmp, 0, 0, c.width, c.height);
+  const blob = await new Promise(r => c.toBlob(r, "image/jpeg", 0.9));
+  if (file.type === "image/jpeg" && blob.size >= file.size) return {blob: file, ext: "jpg"};
+  return {blob, ext: "jpg"};
+}
+
+async function uploadImage(id, file){
+  if (!/^image\/(png|jpeg|webp)$/.test(file.type)) { toast("Faqat PNG, JPG yoki WEBP", "bad"); return; }
+  if (file.size > 25*1024*1024) { toast("Rasm juda katta (25 MB dan ortiq)", "bad"); return; }
+  const p = S.posts.find(x => x.id === id);
+  setJob("Rasm yuklanmoqda…"); S.busy++;
+  try {
+    const {blob, ext} = await prepareImage(file);
+    if (blob.size > 10*1024*1024) throw new Error("Rasm 10 MB dan katta — Telegram qabul qilmaydi");
+    const b64 = bytesToB64(await blob.arrayBuffer());
+    const name = `${id}-${Math.random().toString(16).slice(2, 10)}.${ext}`;
+    await mutatePost(id, `rasm ${id}`, (x) => {
+      notPublished(x);
+      const old = x.image; x.image = name;
+      const files = [{path: "images/" + name, b64}];
+      if (old && old !== name && S.tree["images/" + old]) files.push({path: "images/" + old, del: true});
+      return files;
+    });
+    toast(`Rasm yuklandi: ${p ? p.title : id}`, "ok");
+  } catch (e) { handleErr(e); }
+  finally { S.busy--; if (!S.busy) setJob(null); }
+  await safeLoad();
+}
+
+async function removeImage(id){
+  await run(() => mutatePost(id, `rasm o'chirildi ${id}`, x => {
+    notPublished(x);
+    const old = x.image; delete x.image;
+    return old && S.tree["images/" + old] ? [{path: "images/" + old, del: true}] : [];
+  }), "Rasm olib tashlandi");
+}
+
+document.addEventListener("paste", e => {
+  if (e.target.closest && e.target.closest("textarea, input")) return;
+  const item = [...(e.clipboardData?.items || [])].find(i => i.type.startsWith("image/"));
+  if (!item) return;
+  e.preventDefault();
+  if (!S.active) { toast("Avval postni bosing, keyin Ctrl+V", "bad"); return; }
+  const p = S.posts.find(x => x.id === S.active);
+  if (p && p.status === "published") { toast("Bu post allaqachon joylangan", "bad"); return; }
+  uploadImage(S.active, item.getAsFile());
+});
+
+/* ---------- kirish ---------- */
+async function safeLoad(keepScroll=true){
+  try { await load(keepScroll); }
+  catch (e) {
+    handleErr(e);
+    if (!S.posts.length) $("#feed").replaceChildren(el("div",{class:"empty", text:"Panel yuklanmadi: " + e.message}));
+  }
+}
+
+$("#setupForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const repo = $("#inRepo").value.trim().replace(/^https:\/\/github\.com\//,"").replace(/\/$/,"");
+  const token = $("#inToken").value.trim();
+  $("#setupErr").textContent = "";
+  if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) { $("#setupErr").textContent = "Repo «egasi/nomi» ko'rinishida bo'lsin"; return; }
+  $("#setupBtn").disabled = true;
+  saveAuth({repo, token}); loadAuth();
+  try {
+    await gh(R());
+    await load(false);
+    document.body.classList.remove("need-setup");
+    $("#inToken").value = "";
+  } catch (err) {
+    $("#setupErr").textContent = err.message;
+    try { localStorage.removeItem(LS_AUTH); } catch {}
+    AUTH = null;
+  } finally { $("#setupBtn").disabled = false; }
+});
+
+$("#btnLogout").addEventListener("click", () => {
+  if (!confirm("Token shu brauzerdan o'chirilsinmi? Keyin qayta kiritishingiz kerak bo'ladi.")) return;
+  try { localStorage.removeItem(LS_AUTH); } catch {}
+  location.reload();
+});
+
+$("#filter").addEventListener("change", e => { S.filter = e.target.value; renderFeed(); });
+$("#btnPlan").addEventListener("click", () => document.body.classList.toggle("show-plan"));
+function applyTheme(t){ document.documentElement.dataset.theme = t; }
+try { applyTheme(localStorage.getItem(THEME_KEY) || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light")); } catch { applyTheme("light"); }
+$("#btnTheme").addEventListener("click", () => {
+  const t = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  applyTheme(t); try { localStorage.setItem(THEME_KEY, t); } catch {}
+});
+
+(function start(){
+  loadAuth();
+  $("#inRepo").value = (AUTH && AUTH.repo) || (DEFAULT_REPO.startsWith("__") ? "" : DEFAULT_REPO);
+  setInterval(() => { if (AUTH && !S.editing && !S.busy && !document.hidden && !document.body.classList.contains("need-setup")) load().catch(() => {}); }, 60000);
+  if (!AUTH || !AUTH.token) return;
+  document.body.classList.remove("need-setup");
+  safeLoad(false);
+})();
+</script>
+</body>
+</html>

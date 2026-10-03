@@ -1,0 +1,21 @@
+{
+  "rubric": "#savol",
+  "title": "Bir oyda ikkita posilka",
+  "caption": "❓ <b>Savol: «Bir oyda ikkita posilka keldi, ikkalasi ham 200 $ dan arzon. Nega boj so'rashyapti?»</b>\n\nChunki bojsiz norma <b>bitta posilkaga emas, butun oyga</b> beriladi.\n\n📌 Kuryer orqali — oyiga <b>200 $</b>, pochta orqali — oyiga <b>100 $</b>. Kalendar oy davomidagi barcha jo'natmalar qo'shib hisoblanadi — <b>rasmiylashtirilgan sana</b> bo'yicha, buyurtma sanasi emas.\n\n🧮 <b>Misol (kuryer):</b>\n• 1-posilka — 150 $ → norma ichida\n• 2-posilka — 120 $ → normadan qolgani 50 $, ortiqcha <b>70 $</b>\n• Yagona bojxona to'lovi: 70 × 30 % = <b>21 $</b> (≈ 248 000 so'm)\n\n💡 <b>Qanday tejash mumkin:</b> katta xaridni ikkiga bo'ling — posilkalar turli kalendar oylarida rasmiylashtirilsin.\n\n📄 Asos: VM 244-son qarori, 19.04.2025; PQ-4508, 3-band — lex.uz\n📲 <a href=\"{{APP_URL}}\">Oylik normangizni ilovada hisoblang</a>\n\n➖➖➖\n@Pochtachi_shopo  #savol",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Clean, modern 3D-minimal style, calm and trustworthy. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper half.\n\n1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#savol\".\n2) Center: two matte cardboard parcel boxes side by side, one slightly bigger, with a small desk calendar between them and a soft indigo plus sign hovering above. Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of amber (#F59E0B); soft studio lighting, gentle shadows, generous space around it.\n3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: \"Bir oyda 2 ta posilka\"\n4) Under the headline, a smaller medium-grey line: \"Norma oyga beriladi\"\n5) Bottom, above a thin light divider: left bold near-black \"@Pochtachi_shopo\".\n\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
+  "sources": [
+    {
+      "label": "VM 244-son qarori, 19.04.2025 (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-7484114"
+    },
+    {
+      "label": "PQ-4508, 07.11.2019 — 3-band, 2019-yil tahriri: 30 %, 3 $/kg (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-4585742?ONDATE=07.11.2019%2000"
+    }
+  ],
+  "notes": "Norma rasmiylashtirilgan sana bo'yicha hisoblanadi (muallif tasdiqladi).",
+  "id": "2026-10-07-0900",
+  "scheduled_at": "2026-10-07T09:00:00+05:00",
+  "status": "draft",
+  "product_url": null
+}

@@ -1,0 +1,17 @@
+{
+  "rubric": "#kuryer",
+  "title": "Qaysi kuryer qancha — 2026",
+  "caption": "🚚 <b>Chetdan tovar keltirish: qaysi xizmat qancha?</b>\n<i>1 kg uchun narxlar, 2026-yil iyul holatiga</i>\n\n🇺🇸 <b>AQShdan</b>\n• Meest — 7,70–9,50 $\n• Turon Express — 10 $\n• Boxette — 11 $ (ekspress 3–9 kun, ekonom 9–16 kun)\n• Globbing — 12 $ dan\n\n🇨🇳 <b>Xitoydan</b>\n• Green Post — 5,50 $ dan (3–30 kun)\n• Jana Post — 0,61 $ / 100 g (≈ 6,10 $/kg)\n\n🌍 <b>Ko'p yo'nalishli</b>\n• Yumecs — 4,40–20 $ (Rossiya, Turkiya, Xitoy, Koreya, Dubay, AQSh, Malayziya)\n\n💡 <b>Tanlashdan oldin</b>\n1. Toshkent bo'ylab yetkazish ko'pincha alohida — 2–6,70 $\n2. Hajmli, lekin yengil tovarga hajmiy og'irlik qo'llanadi — narx oshadi\n3. Bir nechta buyurtmani omborda birlashtiring (konsolidatsiya)\n\n📄 Manba: Spot.uz, 16.07.2026. Buyurtmadan oldin narxni xizmatning o'zidan tekshiring.\n📲 <a href=\"{{APP_URL}}\">Kuryerlarni ilovada solishtiring</a>\n\n➖➖➖\n@Pochtachi_shopo  #kuryer",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Clean, modern 3D-minimal style, calm and trustworthy. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper half.\n\n1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#kuryer\".\n2) Center: a stylized matte white globe with indigo continents; three glowing indigo arcs curve from different sides and converge on one point, with tiny parcel boxes travelling along the arcs, plus a small delivery van and a paper airplane below. Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of sky blue (#38BDF8); soft studio lighting, gentle shadows, generous space around it.\n3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: \"Qaysi kuryer arzon?\"\n4) Under the headline, a smaller medium-grey line: \"1 kg narxlari, 2026\"\n5) Bottom, above a thin light divider: left bold near-black \"@Pochtachi_shopo\".\n\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
+  "sources": [
+    {
+      "label": "Yetkazib beruvchilar narxi, 16.07.2026 (spot.uz)",
+      "url": "https://www.spot.uz/oz/2026/07/16/delivery"
+    }
+  ],
+  "notes": "Iyul narxlari — kuryerlardan yangilangan narx olsangiz, almashtiring.",
+  "id": "2026-10-08-1400",
+  "scheduled_at": "2026-10-08T14:00:00+05:00",
+  "status": "draft",
+  "product_url": null
+}

@@ -1,0 +1,21 @@
+{
+  "rubric": "#boj",
+  "title": "Boj 2027-yildan 20 % ga tushadi",
+  "caption": "🛃 <b>Boj 2027-yildan arzonlashadi: 30 % → 20 %</b>\n\nPrezident Farmoni bilan jismoniy shaxslar uchun yagona bojxona to'lovi pasaytirildi. Bu bojsiz normadan oshgan tovarlarga tegishli.\n\n📌 <b>Nima o'zgaradi</b>\n• Hozir: <b>30 %</b>, lekin 1 kg uchun kamida <b>3 $</b>\n• <b>2027-yil 1-yanvardan:</b> <b>20 %</b>, lekin 1 kg uchun kamida <b>2 $</b>\n• <b>2027-yil 1-iyundan:</b> yagona to'lov bojxona yig'imlaridan kam bo'lsa, yig'im undirilmaydi\n\n🧮 <b>Misol:</b> kuryer orqali 500 $ lik tovar. Oylik norma — 200 $, ortiqcha qism — 300 $.\n• Hozir: 300 × 30 % = <b>90 $</b>\n• Yanvardan: 300 × 20 % = <b>60 $</b>\n\n💡 Qimmat xaridni (telefon, noutbuk) shoshilmasangiz yanvargacha kutish mantiqli.\n\n📄 Asos: PF-174, 27.08.2026 (V bo'lim 8-band, 3-band «g»); PQ-4508, 07.11.2019, 3-band — lex.uz\n📲 <a href=\"{{APP_URL}}\">Bojingizni ilovada hisoblang</a>\n\n➖➖➖\n@Pochtachi_shopo  #boj",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Clean, modern 3D-minimal style, calm and trustworthy. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper half.\n\n1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#boj\".\n2) Center: a matte cardboard parcel box with an indigo shipping label, and next to it a large 3D percent sign with a soft downward arrow; a small desk calendar page shows the number 1. Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of emerald green (#059669); soft studio lighting, gentle shadows, generous space around it.\n3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: \"Boj 2027-yildan arzonlashadi\"\n4) Under the headline, a smaller medium-grey line: \"30 % → 20 %\"\n5) Bottom, above a thin light divider: left bold near-black \"@Pochtachi_shopo\".\n\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
+  "sources": [
+    {
+      "label": "PF-174, 27.08.2026 (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-8444993"
+    },
+    {
+      "label": "PQ-4508, 07.11.2019 — 3-band, 2019-yil tahriri: 30 %, 3 $/kg (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-4585742?ONDATE=07.11.2019%2000"
+    }
+  ],
+  "notes": "Matn PF-174 asl matni bilan solishtirilgan (lex.uz). 30 %/3 $ — PQ-4508 ning 2019-yil tahriri.",
+  "id": "2026-10-05-0900",
+  "scheduled_at": "2026-10-05T09:00:00+05:00",
+  "status": "draft",
+  "product_url": null
+}

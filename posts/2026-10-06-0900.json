@@ -1,0 +1,45 @@
+{
+  "rubric": "#taqiq",
+  "title": "Buni buyurtma qilmang — 7 ta taqiq",
+  "caption": "🚫 <b>Buni chetdan buyurtma qilmang — posilka qaytadi</b>\n\nKo'pchilik bilmay oladi, keyin bojxonada ushlanib qoladi:\n\n1️⃣ <b>Elektron sigaret, vape va suyuqliklari</b> — olib kirish taqiqlangan (O'RQ-844, 37-modda)\n2️⃣ <b>Lazer ko'rsatkich</b> — taqiqlangan (VM 50-son, 20.02.2013)\n3️⃣ <b>Dron</b> — ruxsatnomasiz taqiqlangan (VM 658-son, 2-band; VM 801-son)\n4️⃣ <b>Ratsiya</b> — EMMM ruxsatnomasi kerak (VM 801-son, Nizom 98-band)\n5️⃣ <b>Elektroshok</b> — pochtada taqiqlangan; olib kirish faqat IIV ruxsati bilan (O'RQ-550, 15-modda)\n6️⃣ <b>Urug', ko'chat, meva va sabzavot</b> — xalqaro pochtada taqiqlangan\n7️⃣ <b>Alkogol va tamaki</b> — pochta va kuryer orqali taqiqlangan (VM 244-son, 1-ilova)\n\n💡 Alohida qadoqlangan litiy batareyalar ham pochtada qabul qilinmaydi — batareya qurilma ichida bo'lishi kerak.\n\n📄 6-band va batareya — Pochta aloqasi xizmatlarini ko'rsatish qoidalari, 3-ilova. Barcha hujjatlar lex.uz'da.\n📲 <a href=\"{{APP_URL}}\">Tovaringizni ilovada tekshiring</a>\n\n➖➖➖\n@Pochtachi_shopo  #taqiq",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Clean, modern 3D-minimal style, calm and trustworthy. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper half.\n\n1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#taqiq\".\n2) Center: an open matte cardboard parcel box; floating above it a small vape pen, a laser pointer, a mini drone and a walkie-talkie, all in matte grey, with a bold crimson prohibition circle (circle with a diagonal bar) in front of them. Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of crimson (#E11D48); soft studio lighting, gentle shadows, generous space around it.\n3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: \"Buni buyurtma qilmang\"\n4) Under the headline, a smaller medium-grey line: \"Posilka bojxonada qaytadi\"\n5) Bottom, above a thin light divider: left bold near-black \"@Pochtachi_shopo\".\n\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
+  "sources": [
+    {
+      "label": "O'RQ-844, 24.05.2023 — 37-modda (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-6472100"
+    },
+    {
+      "label": "VM 50-son, 20.02.2013 — lazer ko'rsatkichlar (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-2135969"
+    },
+    {
+      "label": "VM 658-son, 15.11.2022 — dronlar (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-6284990"
+    },
+    {
+      "label": "VM 801-son, 22.12.2020 — Nizom 98-band, 4-ilova (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-5179158"
+    },
+    {
+      "label": "O'RQ-550, 29.07.2019 — Qurol to'g'risida, 15-modda (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-4445288"
+    },
+    {
+      "label": "Pochta aloqasi xizmatlarini ko'rsatish qoidalari, 3-ilova (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-1772402"
+    },
+    {
+      "label": "VM 244-son, 1-ilova «a» izohi (VM 154-son, 09.04.2026 tahriri) (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-7484114"
+    },
+    {
+      "label": "aeroinfo.uz — pochta bo'limi",
+      "url": "https://aeroinfo.uz/#/post/4"
+    }
+  ],
+  "notes": "Ratsiya istisnosi (5 Vt gacha, 26965–27860 kGs) joy yetmagani uchun yozilmadi — kerak bo'lsa izohda javob bering.",
+  "id": "2026-10-06-0900",
+  "scheduled_at": "2026-10-06T09:00:00+05:00",
+  "status": "draft",
+  "product_url": null
+}

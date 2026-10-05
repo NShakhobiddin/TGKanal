@@ -93,20 +93,24 @@ def cover_prompt(tag, headline, illustration, sub=None, accent="crimson (#E11D48
 {STYLE_TAIL}"""
 
 
-def outfit_prompt(headline, items, palette, footer):
+def outfit_prompt(headline, items, palette, footer, person="a young woman, natural look, neat hair"):
+    """#obraz rasmi: odam AYNAN shu 5 ta tovarni kiyib turibdi (BRIEF.md → #obraz).
+    items — har bir tovar sahifadagidek aniq: rang, mato, bichim, tafsilotlar (masalan
+    "camel-beige single-breasted wool-blend car coat, notch lapels, hip-length")."""
     lines = "\n".join(f"{i}) {t}" for i, t in enumerate(items, 1))
-    return f"""Create a vertical 4:5 flat-lay outfit card for a Telegram channel, e-commerce catalog style. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper area.
+    return f"""Create a vertical 4:5 fashion lookbook photo for a Telegram channel. Photorealistic, editorial e-commerce style.
 
-Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text "#obraz", and next to it a bold near-black headline: "{headline}".
-
-Arrange five clothing items neatly with generous spacing, each cleanly cut out with a soft realistic shadow:
+One person — {person} — standing full-body (head to shoes visible), relaxed natural pose, in front of a clean light warm-grey studio wall with a soft lavender (#EEEEFC) tint. She/he is wearing EXACTLY these five items, all clearly visible, nothing else added:
 {lines}
 
-Next to each item place a small solid indigo (#4F46E5) circle with a white number — 1, 2, 3, 4, 5 — matching the list order.
+Each item must match its description precisely: same colour, material, cut and details. No extra clothing, jewellery or accessories beyond the list. If reference product photos are attached, copy the items from them exactly.
 
+Next to each item place a small solid indigo (#4F46E5) circle with a white number — 1, 2, 3, 4, 5 — matching the list order, with a thin line pointing to the item.
+
+Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text "#obraz", and next to it a bold near-black headline: "{headline}".
 Bottom strip, above a thin divider: left bold near-black "@Pochtam_shopo", right grey "{footer}".
 
-Clean studio product photography, soft even lighting, muted palette ({palette}). No people, no mannequins, no price tags.
+Soft even studio lighting, realistic fabric texture, muted palette ({palette}). No price tags.
 {STYLE_TAIL}"""
 
 

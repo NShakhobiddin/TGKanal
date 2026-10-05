@@ -15,7 +15,8 @@ Pochtachi kanali uchun keyingi haftaning 21 ta postini tayyorla. Boshlanish sana
 - **Kurs:** https://www.spot.uz/oz/currency/ (Markaziy bank) — sanasi bilan.
 - **#narx (7 ta):** amaldagi chegirmalar (9to5toys, macrumors, tomsguide, techradar, slickdeals va h.k.) + O'zbekistondagi xuddi shu model narxi (texnomart.uz, olcha.uz `/ru/` sahifalari, asaxiy.uz, ispace.uz, uzum.uz). Yengil (≈1 kg gacha) va oylik normaga sig'adigan tovarlarni afzal ko'r; bittasi normadan oshib, boj bilan ham foydali bo'lishi mumkin. Chetdan olish arzimasa — buni ochiq yozadigan halol post ham yaxshi. AQSh 120V maishiy texnikasini tanlama.
 - **Qonunchilik:** faqat lex.uz (hujjat turi, raqami, sanasi, bandi) yoki aeroinfo.uz. Yangilik saytlari faqat xabarni topish uchun.
-- **#keys:** muallifdan real holat so'ra. Javob bo'lmasa — `status: "needs_input"` bilan shablon.
+- **#keys:** keysni o'zing tuz — bojxona amaliyotidagi tipik vaziyat (BRIEF.md → Aniqlik qoidalari): realistik tovar va qiymat, muammo, yechim qadamlari, lex.uz asosi. Ism, raqam, sana yo'q; oxirida «tipik vaziyatlar asosida tuzilgan» izohi. Status — `draft`.
+- **#obraz:** har 5 element — aniq tovar sahifasi (kategoriya emas): nomi, rangi, narxi sahifadan tekshirilgan. Rasm prompti — `outfit_prompt()`: odam aynan shu kiyimlarni kiyib turibdi; har kiyimni sahifadagidek aniq tasvirla.
 - Topa olmagan yoki tasdiqlay olmagan narsangni yozib bor — postga qo'yma.
 
 Ko'p manbali izlanishni tezlashtirish uchun parallel subagentlardan foydalanishing mumkin (elektronika chegirmalari, maishiy/bolalar chegirmalari, lex.uz faktlari, obraz va topilma).

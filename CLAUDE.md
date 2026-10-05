@@ -35,7 +35,7 @@ Maxfiylar faqat GitHub secrets'da: `TELEGRAM_BOT_TOKEN`. Panel tokeni (fine-grai
 3. **Joylangan (`published`) postni o'zgartirmang.** Mavjud postni qayta generatsiya qilmang — generator faqat yangi fayllarni yozadi.
 4. **Qonunchilik faqat lex.uz dan** (qo'shimcha manba — aeroinfo.uz). Hujjat turi, raqami, sanasi, bandi bilan. Tasdiqlanmagan norma postga qo'yilmaydi.
 5. **Raqamlar qo'lda yozilmaydi** — generator skriptida hisoblanadi. Kurs har safar CBU'dan (spot.uz/oz/currency) yangilanadi.
-6. **`#keys` keyslarini o'ylab topmang** — material muallifdan keladi. Bo'lmasa `status: "needs_input"` bilan shablon.
+6. **`#keys` keyslarini Claude o'zi tuzadi** — amaliyotdagi tipik vaziyatlar asosida, normalar lex.uz dan, ism/raqam/sanasiz; postda «tipik vaziyatlar asosida tuzilgan» deb yoziladi (BRIEF.md → Aniqlik qoidalari). Muallif real holat yuborsa — o'sha ustun.
 7. Rasm bilan caption **≤ 1024** ko'rinadigan belgi.
 8. Commit xabarini `panel:` yoki `bot:` bilan boshlamang (ular tekshiruvdan o'tkazib yuboriladi).
 9. Kanalga faqat GitHub Actions joylaydi. Eski kompyuter paneli (`..\panel`, `..\pochtachi-panel`) ishlatilmaydi — ishga tushirmang.

@@ -22,7 +22,7 @@ Pullik taklif faqat `#keys` yoki `#boj` postidan keyin. **Chegirma postidan keyi
 | `#narx` | Chetdanmi yoki Uzumdanmi? — narx solishtiruvi | har kuni 20:00 |
 | `#obraz` | Tayyor obraz — 5 element, turli do'konlardan | chor, shan 14:00 |
 | `#topilma` | Noyob va yangi tovarlar — «bunday narsa borligini bilmagansiz» | juma 14:00 |
-| `#keys` | Real keys — jo'natma nega ushlanib qoldi | payshanba 09:00 |
+| `#keys` | Keys — jo'natma nega ushlanib qoldi (amaliyotdagi tipik holat) | payshanba 09:00 |
 | `#boj` | Boj hisobi — qadamma-qadam misol | haftada 2 |
 | `#taqiq` | Olib kirib bo'lmaydigan tovarlar | haftada 1 |
 | `#dokon` | Do'kon sharhi | haftada 1 |
@@ -56,6 +56,13 @@ Majburiy 5 element:
 5 element (ustki kiyim · ko'ylak/futbolka · shim · poyabzal · aksessuar), har biri: do'kon, narx $, havola.
 Jami summa + Toshkentga yetkazilgan so'mdagi narx + O'zbekistondagi shunga o'xshash to'plam narxi.
 **Kalit fishka: har bir obraz 200 $ bojsiz limitiga sig'diriladi** — bu bojxona bilimini ko'rsatadi va formatni takrorlanmas qiladi.
+
+**Aniq tovarlar (muallif talabi):**
+- Har bir element — **aniq bitta tovar**: do'konning tovar sahifasi havolasi (kategoriya sahifasi emas), tovarning to'liq nomi, rangi, artikuli (bo'lsa) va shu sahifadagi narx. Fetch qilib tekshirilgan tovarlar afzal (H&M, Uniqlo).
+- Tovar sahifasini ochib tasdiqlay olmasang — o'sha tovarni qo'yma, boshqasini top.
+- `sources` da har 5 tovarning sahifasi bo'lsin; `notes` da har biri uchun rang va o'lcham eslatmasi.
+
+**Rasm — kiyib turgan odam:** bitta tayyor rasm: odam (model) **aynan shu 5 ta tovarni** kiyib turibdi — to'liq bo'y, tabiiy poza, toza fon. Promptda har bir kiyim do'kon sahifasidagidek aniq tasvirlanadi (rang, mato, bichim, tafsilotlar), yonida 1–5 raqamli kichik belgilar. `notes` ga yoz: «ChatGPT'ga 5 ta tovar suratini (do'kon sahifasidan) ham biriktiring — kiyimlar aynan o'xshash chiqadi».
 
 ## `#topilma` formati — noyob va yangi tovarlar
 Maqsad: qiziqish uyg'otish va ulashilish. Bu rubrika sotmaydi — kanalga yangi odam olib keladi.
@@ -98,6 +105,7 @@ Tovar topish manbalari: Yanko Design, Stuff.tv, TechRadar, Tom's Guide, Dezeen, 
 - Har bir raqam manbadan olinishi kerak. Taxminiy hisob bo'lsa — "taxminan" deb yozing.
 - Valyuta kursini har safar yangilang (spot.uz/oz/currency yoki cbu.uz) va postda sanasini ko'rsating.
 - `#keys` postlarida **ism, jo'natma raqami, aniq sana yoki tanib olish mumkin bo'lgan tafsilot bo'lmasin** — faqat mexanika. Bu kasbiy va huquqiy talab.
+- `#keys` keyslarini Claude **o'zi tuzadi** (muallif talabi, 2026-10): bojxona amaliyotida tez-tez uchraydigan vaziyatlar asosida — realistik tovar, qiymat, kanal (pochta/kuryer), muammo va yechim. Har norma lex.uz dan (hujjat, raqam, sana, band), raqamlar generator skriptida hisoblanadi. Muayyan odam yoki voqea deb ko'rsatilmaydi — post oxirida: `<i>Holat bojxona amaliyotidagi tipik vaziyatlar asosida tuzilgan.</i>` Mavzular takrorlanmasin (oxirgi postlarni ko'r). Muallif real holat yuborsa — o'sha ustun.
 - Natijani va'da qilmang ("bojni albatta kamaytiraman" deb yozmang).
 
 ## Tekshirilgan bojxona faktlari (2026-oktabr holatiga)

@@ -16,9 +16,11 @@
   "notes": "Matn PF-174 asl matni bilan solishtirilgan (lex.uz). 30 %/3 $ — PQ-4508 ning 2019-yil tahriri.",
   "id": "2026-10-05-0900",
   "scheduled_at": "2026-10-05T09:00:00+05:00",
-  "status": "approved",
+  "status": "published",
   "product_url": null,
   "image": "2026-10-05-0900-2d1de9c2.jpg",
   "error": null,
-  "publish_now": true
+  "message_id": 6,
+  "published_at": "2026-10-05T11:38:38+05:00",
+  "published_by": "qo'lda"
 }

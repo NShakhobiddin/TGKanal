@@ -100,7 +100,7 @@ def outfit_prompt(headline, items, palette, footer, person="a young woman, natur
     lines = "\n".join(f"{i}) {t}" for i, t in enumerate(items, 1))
     return f"""Create a vertical 4:5 fashion lookbook photo for a Telegram channel. Photorealistic, editorial e-commerce style.
 
-One person — {person} — standing full-body (head to shoes visible), relaxed natural pose, in front of a clean light warm-grey studio wall with a soft lavender (#EEEEFC) tint. She/he is wearing EXACTLY these five items, all clearly visible, nothing else added:
+One person — {person} — standing full-body (head to shoes visible), relaxed natural pose, in front of a clean light warm-grey studio wall with a soft lavender (#EEEEFC) tint. The person is wearing EXACTLY these five items, all clearly visible, nothing else added:
 {lines}
 
 Each item must match its description precisely: same colour, material, cut and details. No extra clothing, jewellery or accessories beyond the list. If reference product photos are attached, copy the items from them exactly.
@@ -587,46 +587,55 @@ Ikki xil to'lov bo'lishi mumkin:
              {"label": "PF-115, 23.06.2026 — BHM 440 000 so'm (lex.uz)", "url": "https://lex.uz/uz/docs/-8283656"}],
     notes="UzIMEI: BHM 440 000 × 20 % = 88 000; × 25 % = 110 000 (01.09.2026 dan).")
 
+# #obraz — aniq tovarlar (BRIEF.md → #obraz). (do'kon, nom uz, rang uz, narx, eski narx, url, og'irlik kg, rasm uchun tavsif)
+OUTFIT_MEN = [
+    ("Uniqlo", "PUFFTECH yengil kurtka", "zaytun", 79.90, None, "https://www.uniqlo.com/us/en/products/E479755-000/00", 0.45,
+     "a lightweight olive-green quilted puffer jacket with a matte nylon shell, horizontal baffles, stand collar and a hidden front zip under a snap placket, regular hip-length cut, worn open"),
+    ("H&M", "Yupqa trikotaj sviter", "bej melanj", 27.99, 42.99, "https://www2.hm.com/en_us/productpage.1172256004.html", 0.35,
+     "a soft beige melange fine-knit crew-neck sweater with long sleeves and ribbed neckline, cuffs and hem, regular fit"),
+    ("H&M", "Slim-fit paxta chinos", "to'q kulrang", 29.99, None, "https://www2.hm.com/en_us/productpage.1248348007.html", 0.50,
+     "dark charcoal-grey slim-fit stretch cotton twill chinos with a tapered leg, diagonal side pockets and a clean flat front"),
+    ("H&M", "Chelsi etik", "to'q jigarrang", 29.99, 59.99, "https://www2.hm.com/en_us/productpage.1308844002.html", 1.30,
+     "dark chocolate-brown suede-look Chelsea boots with elasticated side panels, a pull loop at the back, rounded toe and a low dark rubber sole"),
+    ("Uniqlo", "HEATTECH to'qima shapka", "to'q kulrang", 14.90, None, "https://www.uniqlo.com/us/en/products/E478303-000/00", 0.08,
+     "a dark charcoal-grey rib-knit beanie with a snug fold-over cuff"),
+]
+om_total = round(sum(x[3] for x in OUTFIT_MEN), 2)
+om_full = round(sum(x[4] or x[3] for x in OUTFIT_MEN), 2)
+om_kg = round(sum(x[6] for x in OUTFIT_MEN), 2)
+om_ship = ship(om_kg)
+om_local = 3.0
+NUM = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"]
 add("2026-10-10-1400", rubric="#obraz", title="Erkaklar: sovuq kunlar obrazi",
     caption="""🧥 <b>Tayyor obraz: sovuq kunlar uchun</b>
-<i>Erkaklar uchun · 5 element · bitta do'kondan (H&amp;M, AQSh)</i>
+<i>Erkaklar uchun · 5 element · Uniqlo + H&amp;M (AQSh)</i>
 
-1️⃣ Paxtali bomber kurtka — <b>$59.99</b>
-2️⃣ Yumshoq sviter — <b>$24.99</b> <s>$34.99</s>
-3️⃣ Jinsi shim — <b>$34.99</b> <s>$49.99</s>
-4️⃣ Chelsi etik — <b>$49.99</b>
-5️⃣ To'qima shapka — <b>$12.99</b>
+""" + "\n".join(f'{NUM[i]} <a href="{x[5]}">{x[0].replace("&", "&amp;")} — {x[1]}</a>, {x[2]} — <b>{usd(x[3])}</b>'
+                 + (f" <s>{usd(x[4])}</s>" if x[4] else "") for i, x in enumerate(OUTFIT_MEN)) + """
 
-🛒 <b>Tovarlar: $182.95</b> (aksiyasiz $207.95)
+🛒 <b>Tovarlar: """ + usd(om_total) + """</b> (aksiyasiz """ + usd(om_full) + """) — 200 $ normaga sig'adi, boj yo'q
 
 📦 <b>Toshkentgacha</b>
-• Yetkazish — ~$37 (≈3,9 kg)
+• Yetkazish — ~""" + usd(om_ship) + """ (≈""" + f"{om_kg:.1f}".replace(".", ",") + """ kg)
 • Toshkent bo'ylab — ~$3
-• Bojxona — <b>0 so'm</b>
-• <b>Jami ≈ """ + fmt(som(182.95 + 37.05 + 3)) + """ so'm</b>
+• <b>Jami ≈ """ + fmt(som(om_total + om_ship + om_local)) + """ so'm</b>
 
-⚠️ $182.95 — 200 $ normaga yaqin. Shu oyda boshqa posilka kutayotgan bo'lsangiz, birini keyingi oyga qoldiring.
+⚠️ Aksiya tugasa summa normadan oshishi mumkin — to'lashdan oldin savatni tekshiring.
 
-💡 Etik eng og'ir element (~1,6 kg). Byudjet tor bo'lsa, etikni Toshkentdan oling — yetkazish ~15 $ ga arzonlashadi.
+💡 Ikkala do'kon ham faqat AQSh ichiga yetkazadi — ekspeditorning AQShdagi manzilidan foydalaning.
 
-🔗 <a href="https://www2.hm.com/en_us/men/products/jackets-coats.html">Kurtka</a> · <a href="https://www2.hm.com/en_us/men/products/cardigans-sweaters.html">Sviter</a> · <a href="https://www2.hm.com/en_us/men/products/jeans.html">Jinsi</a> · <a href="https://www2.hm.com/en_us/men/products/shoes.html">Etik</a> · <a href="https://www2.hm.com/en_us/men/products/accessories.html">Shapka</a>
-
-<i>Narxlar 03.10.2026 holatiga.</i>
+<i>Narxlar 05.10.2026 holatiga.</i>
 """ + FOOT + "#obraz",
-    prompt=outfit_prompt("Sovuq kunlar uchun", [
-        "a dark olive padded bomber jacket, laid flat",
-        "a heather-grey brushed knit sweater, neatly folded",
-        "mid-blue regular-fit jeans, folded",
-        "a pair of dark brown suede chelsea boots, three-quarter angle",
-        "a charcoal rib-knit beanie"],
-        "olive, grey, denim blue, brown", "5 element · 1 do'kon · $182.95"),
-    sources=[{"label": "H&M US — men's jackets & coats", "url": "https://www2.hm.com/en_us/men/products/jackets-coats.html"},
-             {"label": "H&M US — sweaters", "url": "https://www2.hm.com/en_us/men/products/cardigans-sweaters.html"},
-             {"label": "H&M US — jeans", "url": "https://www2.hm.com/en_us/men/products/jeans.html"},
-             {"label": "H&M US — shoes", "url": "https://www2.hm.com/en_us/men/products/shoes.html"},
-             {"label": "H&M US — accessories", "url": "https://www2.hm.com/en_us/men/products/accessories.html"},
-             SPOT_COURIER],
-    notes="Og'irliklar taxminiy (jami ≈3,9 kg). Hisob: 182.95 + 37.05 + 3 = 223.00 $. Etik 1,6 kg × 9,50 ≈ 15,20 $.")
+    prompt=outfit_prompt("Sovuq kunlar uchun", [x[7] for x in OUTFIT_MEN],
+        "olive, beige, charcoal, dark brown", "5 element · 2 do'kon · " + usd(om_total),
+        person="a young man in his late twenties, short dark hair, neat light stubble, calm confident expression"),
+    product_url=OUTFIT_MEN[0][5],
+    sources=[{"label": f"{x[0]} US — {x[1]}", "url": x[5]} for x in OUTFIT_MEN] + [SPOT_COURIER, SPOT_RATE],
+    notes="TASDIQLASHDAN OLDIN: 5 ta havolani brauzerda oching — narx, rang va o'lcham bor-yo'qligini tekshiring "
+          "(Uniqlo va H&M saytlari Claude muhitidan ochilmadi, narxlar qidiruv natijalaridan olingan). "
+          "Shapka narxi ($14.90) va kurtkaning zaytun rangi AQSh saytida tasdiqlanmagan. Sviter va etik — aksiya narxida. "
+          "RASM: ChatGPT'ga 5 ta tovar suratini (do'kon sahifasidan) ham biriktiring — kiyimlar aynan o'xshash chiqadi. "
+          f"Og'irliklar taxminiy (jami ≈{om_kg} kg). Hisob: {om_total} + {om_ship} + {om_local} = {round(om_total + om_ship + om_local, 2)} $.")
 
 posts.append(deal("2026-10-10-2000", title="AirTag 2 — 4 talik to'plam", emoji="📍",
     headline="AirTag 2 to'rt talik to'plam — $89", hook="Kalit, sumka va chamadon uchun yangi avlod AirTag:",

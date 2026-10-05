@@ -1,7 +1,7 @@
 {
   "rubric": "#boj",
   "title": "Boj qanday hisoblanadi — 5 qadam",
-  "caption": "🧮 <b>Boj qanday hisoblanadi: 5 qadam</b>\n\nMisol: kuryer orqali <b>700 $</b> lik noutbuk, og'irligi 2,5 kg. Shu oyda boshqa posilka yo'q. Yetkazish narxi hisobga kirmaydi — faqat tovar narxi olinadi.\n\n1️⃣ <b>Normani ayiring.</b> Kuryer uchun oylik norma — 200 $. Ortiqcha qism: 700 − 200 = <b>500 $</b>\n2️⃣ <b>Foizni qo'llang.</b> Yagona bojxona to'lovi — 30 %: 500 × 30 % = <b>150 $</b>\n3️⃣ <b>Minimalni tekshiring.</b> 1 kg uchun kamida 3 $: 2,5 × 3 = 7,5 $. Foiz bo'yicha summa katta — <b>150 $</b> to'lanadi\n4️⃣ <b>So'mga o'giring:</b> 150 × 11 808,76 ≈ <b>1 771 000 so'm</b>\n5️⃣ <b>Bojxona yig'imi.</b> Kuryerlik jo'natmasi uchun 1 kg ga BHM ning 2 % i: 2,5 × 8 800 = <b>22 000 so'm</b>. Uni kuryer kompaniyasi to'laydi — xizmat narxiga qo'shishi mumkin\n\n📅 2027-yil 1-yanvardan stavka 20 %: 500 × 20 % = <b>100 $</b> — 50 $ tejaladi.\n\n⚠️ Hisob taxminiy: yakuniy summani bojxona organi tovarning bojxona qiymati asosida belgilaydi.\n\n📄 Asos: PQ-4508, 3-band; PF-174, V bo'lim 8-band; VM 244-son; VM 55-son, 31.01.2025 — lex.uz\n💬 <a href=\"{{CONSULT_URL}}\">Murakkab holat bo'lsa — maslahat oling</a>\n\n➖➖➖\n@Pochtam_shopo  #boj",
+  "caption": "🧮 <b>Boj qanday hisoblanadi: 5 qadam</b>\n\nMisol: kuryer orqali <b>700 $</b> lik noutbuk, og'irligi 2,5 kg. Shu oyda boshqa posilka yo'q. Yetkazish narxi hisobga kirmaydi — faqat tovar narxi olinadi.\n\n1️⃣ <b>Normani ayiring.</b> Kuryer uchun oylik norma — 200 $. Ortiqcha qism: 700 − 200 = <b>500 $</b>\n2️⃣ <b>Foizni qo'llang.</b> Yagona bojxona to'lovi — 30 %: 500 × 30 % = <b>150 $</b>\n3️⃣ <b>Minimalni tekshiring.</b> 1 kg uchun kamida 3 $: 2,5 × 3 = 7,5 $. Foiz bo'yicha summa katta — <b>150 $</b> to'lanadi\n4️⃣ <b>So'mga o'giring:</b> 150 × 11 808,76 ≈ <b>1 771 000 so'm</b>\n5️⃣ <b>Yig'imni qo'shing.</b> 1 ta BKO (bojxona kirim orderi) uchun — BHM ning 25 %: 440 000 × 25 % = <b>110 000 so'm</b>\n\n💰 <b>Jami: ≈ 1 881 000 so'm</b>\n\n📅 2027-yil 1-yanvardan stavka 20 %: 500 × 20 % = <b>100 $</b> — 50 $ tejaladi.\n\n⚠️ Hisob taxminiy: yakuniy summani bojxona organi tovarning bojxona qiymati asosida belgilaydi.\n\n📄 Asos: PQ-4508, 3-band; PF-174, V bo'lim 8-band; VM 244-son; VM 55-son, 31.01.2025 — lex.uz\n💬 <a href=\"{{CONSULT_URL}}\">Murakkab holat bo'lsa — maslahat oling</a>\n\n➖➖➖\n@Pochtam_shopo  #boj",
   "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Clean, modern 3D-minimal style, calm and trustworthy. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper half.\n\n1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#boj\".\n2) Center: a matte white calculator next to a closed laptop resting on a cardboard parcel; five small numbered indigo steps (1, 2, 3, 4, 5) rise like a staircase beside them. Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of emerald green (#059669); soft studio lighting, gentle shadows, generous space around it.\n3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: \"Boj qanday hisoblanadi\"\n4) Under the headline, a smaller medium-grey line: \"5 qadamda\"\n5) Bottom, above a thin light divider: left bold near-black \"@Pochtam_shopo\".\n\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
   "sources": [
     {
@@ -21,8 +21,8 @@
       "url": "https://lex.uz/uz/docs/-7357270"
     },
     {
-      "label": "Kuryerlik jo'natmalari uchun yig'im — gazeta.uz, 04.02.2025 (yangilik)",
-      "url": "https://www.gazeta.uz/oz/2025/02/04/parcels/"
+      "label": "Bojxona yig'imlari stavkalari — gazeta.uz, 03.02.2025 (yangilik)",
+      "url": "https://www.gazeta.uz/oz/2025/02/03/customs-duties/"
     },
     {
       "label": "BHM 440 000 so'm, 01.09.2026 dan — gazeta.uz, 23.06.2026 (yangilik)",
@@ -33,7 +33,7 @@
       "url": "https://www.spot.uz/oz/currency/"
     }
   ],
-  "notes": "Yetkazish narxi bojxona qiymatiga kirmaydi — hisob tovar narxi bo'yicha (muallif tasdiqladi). 5-QADAM LEX.UZ DA TASDIQLANMADI (lex.uz Claude muhitidan ochilmadi): yig'im stavkasi (1 kg ga BHM 2 %, kuryer kompaniyasi to'laydi) va BHM 440 000 so'm — yangilik saytlari va qidiruv natijalaridan. Tasdiqlashdan oldin VM 55-son qarorida tekshiring. Agar siz jismoniy shaxs to'laydigan rasmiylashtirish yig'imini nazarda tutgan bo'lsangiz — stavkasini ayting, qo'shamiz.",
+  "notes": "Yetkazish narxi bojxona qiymatiga kirmaydi — hisob tovar narxi bo'yicha (muallif tasdiqladi). 5-QADAM LEX.UZ DA TASDIQLANMADI (lex.uz Claude muhitidan ochilmadi): 1 ta BKO uchun yig'im — BHM ning 25 % (muallif so'rovi, stavka qidiruv natijalaridan) va BHM 440 000 so'm — yangilik saytlaridan. Tasdiqlashdan oldin VM 55-son qarorida tekshiring.",
   "id": "2026-10-09-0900",
   "scheduled_at": "2026-10-09T09:00:00+05:00",
   "status": "draft",

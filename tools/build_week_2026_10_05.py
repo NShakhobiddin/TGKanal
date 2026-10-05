@@ -572,35 +572,61 @@ posts.append(deal("2026-10-09-2000", title="🏆 Braun Series 9 PRO+ (boj bilan 
              LEX_PQ4508, SPOT_RATE]))
 
 # ============ SHANBA 10-oktabr ============
-add("2026-10-10-0900", rubric="#savol", title="Telefonni posilkada olsam?",
-    caption="""❓ <b>Savol: «Telefonni chetdan posilkada olsam, nima to'layman?»</b>
+# #savol — iPhone 17 Pro Max 256 GB, aniq hisob (muallif so'rovi: bojxona qiymatiga 10 $ yo'l harajati + 1 BKO yig'imi)
+def uzn(x, dec=2):
+    """O'zbekcha son: 1 009; 302,70"""
+    s = f"{x:,.{dec}f}".replace(",", " ").replace(".", ",")
+    return s[:-3] if dec and s.endswith(",00") else s
+IP_PRICE = 1199.00          # Apple AQSh, 256 GB, savdo solig'isiz
+IP_ROAD = 10.00             # yo'l harajati — bojxona qiymatiga qo'shiladi
+IP_KG = 0.5                 # qadoq bilan, taxminan
+IP_UZIMEI = round(BHM * 0.20)
+ip_value = IP_PRICE + IP_ROAD
+ip_over = ip_value - LIMIT
+ip_duty = round(ip_over * DUTY, 2)
+ip_min = round(IP_KG * 3, 2)
+ip_duty_som = round(ip_duty * RATE)
+ip_state = ip_duty_som + _boj_fee + IP_UZIMEI
+ip_full = round((IP_PRICE + IP_ROAD) * RATE) + ip_state
+ip_duty27 = round(ip_over * 0.20, 2)
+add("2026-10-10-0900", rubric="#savol", title="iPhone 17 Pro Max — aniq hisob",
+    caption=f"""❓ <b>Savol: «iPhone 17 Pro Max'ni AQShdan posilkada olsam, qancha to'layman?»</b>
 
-Ikki xil to'lov bo'lishi mumkin:
+Misol: <b>iPhone 17 Pro Max, 256 GB</b> — Apple AQSh narxi <b>{uzn(IP_PRICE)} $</b>. Kuryer orqali, shu oyda boshqa posilka yo'q.
 
-1️⃣ <b>Bojxona to'lovi</b> — telefon narxi oylik normadan oshsa
-• Kuryer orqali norma — oyiga <b>200 $</b>
-• Masalan, 350 $ lik telefon: (350 − 200) × 30 % = <b>45 $</b> (≈ """ + fmt(som(45)) + """ so'm)
-• 200 $ gacha bo'lsa va shu oyda boshqa posilka bo'lmasa — to'lov yo'q
+1️⃣ <b>Bojxona qiymati</b> (telefon + yo'l harajati): {uzn(IP_PRICE)} + {uzn(IP_ROAD)} = <b>{uzn(ip_value)} $</b>
+2️⃣ <b>Normadan ortig'i:</b> {uzn(ip_value)} − {uzn(LIMIT)} = <b>{uzn(ip_over)} $</b>
+3️⃣ <b>Yagona bojxona to'lovi 30 %:</b> {uzn(ip_over)} × 30 % = <b>{uzn(ip_duty)} $</b>
+(kamida 3 $/kg: {uzn(IP_KG)} × 3 = {uzn(ip_min)} $ — foiz bo'yicha summa katta)
+→ {uzn(ip_duty)} × {uzn(RATE)} = <b>{fmt(ip_duty_som)} so'm</b>
+4️⃣ <b>1 ta BKO uchun yig'im</b> (BHM ning 25 %): <b>{fmt(_boj_fee)} so'm</b>
+5️⃣ <b>UzIMEI</b> (30 kun ichida): <b>{fmt(IP_UZIMEI)} so'm</b>
 
-2️⃣ <b>UzIMEI ro'yxatdan o'tkazish</b> — har qanday holatda
-• Tarmoqqa ulangandan keyin <b>30 kun ichida</b> — <b>88 000 so'm</b>
-• 30 kundan keyin — <b>110 000 so'm</b>
+💰 <b>To'lovlar jami: {fmt(ip_state)} so'm</b>
+📱 <b>Hammasi (telefon + yo'l + to'lovlar): ≈ {fmt(round(ip_full, -3))} so'm</b>
 
-💡 30 kun ichida ro'yxatdan o'tkazsangiz, 22 000 so'm arzonroq tushadi.
+📅 2027-yil 1-yanvardan stavka 20 %: {uzn(ip_over)} × 20 % = {uzn(ip_duty27)} $ — ≈ {fmt(som(ip_duty - ip_duty27))} so'm kam.
 
-📅 2027-yil yanvaridan boj stavkasi 20 % — o'sha telefon uchun 30 $.
+⚠️ AQSh savdo solig'i (shtatga qarab 0–10 %) hisobga olinmagan. Yakuniy summani bojxona organi belgilaydi.
 
-📄 Asos: PQ-4508, 3-band; VM 778-son, 17.09.2019, 6-ilova; BHM — PF-115, 23.06.2026 — lex.uz
-📲 <a href="{{APP_URL}}">Telefon bojini ilovada hisoblang</a>
+📄 Asos: PQ-4508, 3-band; VM 244-son; VM 55-son, 31.01.2025; VM 778-son, 6-ilova — lex.uz
+📲 <a href="{{{{APP_URL}}}}">Telefon bojini ilovada hisoblang</a>
 
 """ + FOOT + "#savol",
-    prompt=cover_prompt("#savol", "Telefon posilkada",
-        "a modern smartphone lying in an open matte cardboard parcel box, a small indigo tag reading IMEI hanging from the box, and a tiny shield with a checkmark floating beside it.",
-        sub="Boj va UzIMEI", accent="sky blue (#38BDF8)"),
-    sources=[LEX_PQ4508,
+    prompt=cover_prompt("#savol", "iPhone 17 Pro Max: qancha to'laysiz?",
+        "a premium smartphone with a large triple-camera block lying in an open matte cardboard parcel box, a small receipt slip with a few calculation lines next to it, and a tiny indigo tag reading IMEI hanging from the box.",
+        sub="Boj + yig'im + UzIMEI — aniq hisob", accent="sky blue (#38BDF8)"),
+    sources=[{"label": "iPhone 17 Pro Max 256 GB — $1,199 (AQSh, soliqsiz)", "url": "https://applepricehunt.com/us/iphone-17-pro-max-256gb-silver"},
+             LEX_PQ4508, LEX_VM244,
+             {"label": "VM 55-son qarori, 31.01.2025 — bojxona yig'imlari stavkalari (lex.uz)", "url": "https://lex.uz/uz/docs/-7357270"},
              {"label": "VM 778-son, 17.09.2019 — 6-ilova (lex.uz)", "url": "https://lex.uz/uz/docs/-4517458"},
-             {"label": "PF-115, 23.06.2026 — BHM 440 000 so'm (lex.uz)", "url": "https://lex.uz/uz/docs/-8283656"}],
-    notes="UzIMEI: BHM 440 000 × 20 % = 88 000; × 25 % = 110 000 (01.09.2026 dan).")
+             {"label": "PF-115, 23.06.2026 — BHM 440 000 so'm (lex.uz)", "url": "https://lex.uz/uz/docs/-8283656"},
+             SPOT_RATE],
+    notes="Muallif so'rovi: bojxona qiymatiga 10 $ yo'l harajati qo'shildi va 1 ta BKO yig'imi (BHM 25 % = 110 000) hisoblandi. "
+          f"Hisob: ({uzn(IP_PRICE)} + {uzn(IP_ROAD)} − 200) × 30 % = {uzn(ip_duty)} $ × {RATE} = {ip_duty_som} so'm; + {_boj_fee} BKO + {IP_UZIMEI} UzIMEI = {ip_state} so'm. "
+          f"Telefon bilan: ({uzn(IP_PRICE)} + {uzn(IP_ROAD)}) × kurs + to'lovlar = {ip_full} so'm. "
+          "Apple narxi ($1 199) qidiruv natijalaridan — apple.com da tekshiring. Og'irlik qadoq bilan ≈0,5 kg (minimal to'lov tekshiruvi uchun). "
+          "UzIMEI: BHM 440 000 × 20 % = 88 000; 30 kundan keyin × 25 % = 110 000.")
 
 # #obraz — aniq tovarlar (BRIEF.md → #obraz). (do'kon, nom uz, rang uz, narx, eski narx, url, og'irlik kg, rasm uchun tavsif)
 OUTFIT_MEN = [

@@ -298,8 +298,15 @@ body.need-setup .topbar, body.need-setup .layout{visibility:hidden}
 
 <script>
 "use strict";
-/* sync_ui.py joylashda o'rniga ma'lumotlar repo nomini qo'yadi */
+/* pages.yml / sync_ui.py joylashda o'rniga ma'lumotlar repo nomini qo'yadi */
 const DEFAULT_REPO = "__DATA_REPO__";
+/* Almashtirilmagan bo'lsa (masalan Pages «Deploy from a branch») — manzildan: <login>.github.io/<repo>/ */
+function defaultRepo(){
+  if (!DEFAULT_REPO.startsWith("__")) return DEFAULT_REPO;
+  const m = location.hostname.match(/^([\w-]+)\.github\.io$/);
+  const seg = location.pathname.split("/").filter(Boolean)[0];
+  return m && seg ? `${m[1]}/${seg}` : "";
+}
 const WORKFLOW = "publish.yml";
 const BRANCH = "main";
 const ARCHIVE_DAYS = 14;          // shundan eski postlar «Arxiv» tugmasi bilan yuklanadi
@@ -964,7 +971,7 @@ $("#btnTheme").addEventListener("click", () => {
 
 (function start(){
   loadAuth();
-  $("#inRepo").value = (AUTH && AUTH.repo) || (DEFAULT_REPO.startsWith("__") ? "" : DEFAULT_REPO);
+  $("#inRepo").value = (AUTH && AUTH.repo) || defaultRepo();
   setInterval(() => { if (AUTH && !S.editing && !S.busy && !document.hidden && !document.body.classList.contains("need-setup")) load().catch(() => {}); }, 60000);
   if (!AUTH || !AUTH.token) return;
   document.body.classList.remove("need-setup");

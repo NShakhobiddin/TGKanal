@@ -12,7 +12,7 @@ Pochtachi kanali uchun keyingi haftaning 21 ta postini tayyorla. Boshlanish sana
 `BRIEF.md` ni to'liq o'qi: rubrikalar, haftalik jadval (har kun 09:00 / 14:00 / 20:00), har rubrika formati, uslub, aniqlik qoidalari va tekshirilgan bojxona faktlari. `CLAUDE.md` dagi oltin qoidalarga amal qil. Oxirgi 2 haftaning postlarini (`posts/`) ko'r — tovar va mavzular takrorlanmasin.
 
 ## 2. Izlan
-- **Kurs:** https://www.spot.uz/oz/currency/ (Markaziy bank) — sanasi bilan.
+- **Kurs:** `state/rate.json` — Markaziy bank (cbu.uz), `rate.yml` avtomatik yangilaydi. Eskirgan bo'lsa: `gh workflow run rate.yml`, so'ng `git pull`.
 - **#narx (7 ta):** amaldagi chegirmalar (9to5toys, macrumors, tomsguide, techradar, slickdeals va h.k.) + O'zbekistondagi xuddi shu model narxi (texnomart.uz, olcha.uz `/ru/` sahifalari, asaxiy.uz, ispace.uz, uzum.uz). Yengil (≈1 kg gacha) va oylik normaga sig'adigan tovarlarni afzal ko'r; bittasi normadan oshib, boj bilan ham foydali bo'lishi mumkin. Chetdan olish arzimasa — buni ochiq yozadigan halol post ham yaxshi. AQSh 120V maishiy texnikasini tanlama.
 - **Qonunchilik:** faqat lex.uz (hujjat turi, raqami, sanasi, bandi) yoki aeroinfo.uz. Yangilik saytlari faqat xabarni topish uchun.
 - **#keys:** keysni o'zing tuz — bojxona amaliyotidagi tipik vaziyat (BRIEF.md → Aniqlik qoidalari): realistik tovar va qiymat, muammo, yechim qadamlari, lex.uz asosi. Ism, raqam, sana yo'q; oxirida «tipik vaziyatlar asosida tuzilgan» izohi. Status — `draft`.

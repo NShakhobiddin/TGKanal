@@ -103,7 +103,7 @@ Tovar topish manbalari: Yanko Design, Stuff.tv, TechRadar, Tom's Guide, Dezeen, 
 
 ## Aniqlik qoidalari
 - Har bir raqam manbadan olinishi kerak. Taxminiy hisob bo'lsa — "taxminan" deb yozing.
-- Valyuta kursini har safar yangilang (spot.uz/oz/currency yoki cbu.uz) va postda sanasini ko'rsating.
+- Valyuta kursi — Markaziy bank (cbu.uz), `state/rate.json` dan avtomatik (GitHub Actions `rate.yml`, 6 soatda bir). Postda sanasini ko'rsating.
 - `#keys` postlarida **ism, jo'natma raqami, aniq sana yoki tanib olish mumkin bo'lgan tafsilot bo'lmasin** — faqat mexanika. Bu kasbiy va huquqiy talab.
 - `#keys` keyslarini Claude **o'zi tuzadi** (muallif talabi, 2026-10): bojxona amaliyotida tez-tez uchraydigan vaziyatlar asosida — realistik tovar, qiymat, kanal (pochta/kuryer), muammo va yechim. Har norma lex.uz dan (hujjat, raqam, sana, band), raqamlar generator skriptida hisoblanadi. Muayyan odam yoki voqea deb ko'rsatilmaydi — post oxirida: `<i>Holat bojxona amaliyotidagi tipik vaziyatlar asosida tuzilgan.</i>` Mavzular takrorlanmasin (oxirgi postlarni ko'r). Muallif real holat yuborsa — o'sha ustun.
 - Natijani va'da qilmang ("bojni albatta kamaytiraman" deb yozmang).
@@ -137,7 +137,7 @@ Tovar topish manbalari: Yanko Design, Stuff.tv, TechRadar, Tom's Guide, Dezeen, 
 ### Boshqa
 - 2025-yil 6-noyabrdagi 700-son VM qarori bilan pochta/kuryerlik jo'natmalari uchun "qizil–sariq–yashil" yo'laklar joriy etilgan — postga qo'yishdan oldin lex.uz da tekshiring
 - Telefon: UzIMEI ro'yxatdan o'tkazish — ulanishdan keyin 30 kun ichida 88 000 so'm, keyin 110 000 so'm — lex.uz da tekshirilmagan, postga qo'yishdan oldin tasdiqlang
-- Kurs: 1 $ = 11 795,00 so'm (2026-09-06, Markaziy bank) — **har safar qayta tekshiring**
+- Kurs: `state/rate.json` (cbu.uz dan avtomatik) — qo'lda yozilmaydi
 
 ## Yetkazib beruvchilar narxi (2026-iyul, Spot.uz)
 AQSh: Meest 7,70–9,50 $/kg · Turon Express 10 $ · Boxette 11 $ (eks. 3–9 kun, ekonom 9–16) · Globbing 12 $ dan

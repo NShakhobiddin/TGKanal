@@ -12,8 +12,12 @@ from pathlib import Path
 OUT = Path(__file__).resolve().parent.parent / "posts"
 OUT.mkdir(parents=True, exist_ok=True)
 
-RATE = 11772.95            # CBU, 03.10.2026 (05.10.2026 gacha amalda)
-RATE_TXT = "1 $ = 11 772,95 so'm (03.10.2026)"
+# Kurs — Markaziy bank (cbu.uz), state/rate.json dan: GitHub Actions (rate.yml) 6 soatda bir yangilaydi.
+_RATE_FILE = Path(__file__).resolve().parent.parent / "state" / "rate.json"
+_rate = json.loads(_RATE_FILE.read_text(encoding="utf-8")) if _RATE_FILE.exists() else {"usd": 11772.95, "date": "03.10.2026"}
+RATE = float(_rate["usd"])
+RATE_DATE = _rate["date"]
+RATE_TXT = "1 $ = " + f"{RATE:,.2f}".replace(",", " ").replace(".", ",") + f" so'm ({RATE_DATE}, Markaziy bank)"
 SHIP_PER_KG = 9.50         # Meest AQSh, yuqori chegara (Spot.uz, 16.07.2026)
 LIMIT = 200.0              # kuryer, oylik
 DUTY = 0.30                # PQ-4508 3-band (2026-yil oxirigacha)
@@ -205,7 +209,7 @@ LEX_PF174 = {"label": "PF-174, 27.08.2026 (lex.uz)", "url": "https://lex.uz/uz/d
 LEX_PQ4508 = {"label": "PQ-4508, 07.11.2019 — 3-band, 2019-yil tahriri: 30 %, 3 $/kg (lex.uz)",
               "url": "https://lex.uz/uz/docs/-4585742?ONDATE=07.11.2019%2000"}
 LEX_VM244 = {"label": "VM 244-son qarori, 19.04.2025 (lex.uz)", "url": "https://lex.uz/uz/docs/-7484114"}
-SPOT_RATE = {"label": "Markaziy bank kursi, 03.10.2026 (spot.uz)", "url": "https://www.spot.uz/oz/currency/"}
+SPOT_RATE = {"label": f"Markaziy bank kursi, {RATE_DATE} (cbu.uz)", "url": "https://cbu.uz/uz/arkhiv-kursov-valyut/"}
 SPOT_COURIER = {"label": "Yetkazib beruvchilar narxi, 16.07.2026 (spot.uz)", "url": "https://www.spot.uz/oz/2026/07/16/delivery"}
 
 # ============ DUSHANBA 5-oktabr ============

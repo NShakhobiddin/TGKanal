@@ -17,12 +17,13 @@ Claude Code ──git push──▶ repo «TGKanal» (postlar, rasmlar, settings
 | `posts/<id>.json` | Postlar. Panel ham, bot ham, Claude Code ham shu fayllarni o'zgartiradi |
 | `images/` | Panelda yuklangan rasmlar (JPEG'ga siqiladi) |
 | `settings.json` | `channel_id`, `admin_username`, `admin_id` (bot o'zi topadi), `app_url`, `consult_url`, `late_grace_hours`, `ui_repo`, `panel_url`. **Maxfiy narsa yo'q** |
-| `state/` | Bot natijalari: `health.json`, `last_test.json`, `reminder.json` |
+| `state/` | Bot natijalari: `health.json`, `last_test.json`, `reminder.json`, `rate.json` (Markaziy bank USD kursi) |
 | `ui/index.html` | Panel sahifasi. Push qilinsa `.github/workflows/pages.yml` uni GitHub Pages'ga o'zi joylaydi |
 | `tools/publish.py` | Telegram'ga joylovchi (Actions ichida; faqat standart kutubxona) |
 | `tools/check_posts.py` | Post fayllarini tekshirish |
 | `tools/build_week_*.py` | Haftalik postlar generatori (raqamlar skriptda hisoblanadi) |
 | `.github/workflows/publish.yml` | Jadval (`5,35 3-18 * * *` UTC = Toshkent 08:05–23:35) + paneldan chaqiriladigan `test` / `health` |
+| `.github/workflows/rate.yml` | Markaziy bank kursi (cbu.uz) → `state/rate.json`, 6 soatda bir (`tools/update_rate.py`) |
 | `.github/workflows/pages.yml` | Panelni GitHub Pages'ga joylaydi (`ui/**` o'zgarganda) |
 | `.github/workflows/check.yml` | Claude Code yuborgan postlarni tekshiradi (`panel:` / `bot:` commitlari o'tkazib yuboriladi) |
 | `BRIEF.md` | **Kontent qoidalari** — rubrikalar, jadval, uslub, tekshirilgan bojxona faktlari. Post yozishdan oldin albatta o'qing |
@@ -34,7 +35,7 @@ Maxfiylar faqat GitHub secrets'da: `TELEGRAM_BOT_TOKEN`. Panel tokeni (fine-grai
 2. **Maxfiylar git'ga tushmaydi:** `config.json`, `.env`, kalitlar, tokenlar. Bot tokeni chatga, log'ga yoki faylga chiqarilmasin.
 3. **Joylangan (`published`) postni o'zgartirmang.** Mavjud postni qayta generatsiya qilmang — generator faqat yangi fayllarni yozadi.
 4. **Qonunchilik faqat lex.uz dan** (qo'shimcha manba — aeroinfo.uz). Hujjat turi, raqami, sanasi, bandi bilan. Tasdiqlanmagan norma postga qo'yilmaydi.
-5. **Raqamlar qo'lda yozilmaydi** — generator skriptida hisoblanadi. Kurs har safar CBU'dan (spot.uz/oz/currency) yangilanadi.
+5. **Raqamlar qo'lda yozilmaydi** — generator skriptida hisoblanadi. Kurs — `state/rate.json` dan: `rate.yml` uni Markaziy bankdan (cbu.uz) 6 soatda bir avtomatik oladi. Generatordan oldin `git pull`.
 6. **`#keys` keyslarini Claude o'zi tuzadi** — amaliyotdagi tipik vaziyatlar asosida, normalar lex.uz dan, ism/raqam/sanasiz; postda «tipik vaziyatlar asosida tuzilgan» deb yoziladi (BRIEF.md → Aniqlik qoidalari). Muallif real holat yuborsa — o'sha ustun.
 7. Rasm bilan caption **≤ 1024** ko'rinadigan belgi.
 8. Commit xabarini `panel:` yoki `bot:` bilan boshlamang (ular tekshiruvdan o'tkazib yuboriladi).

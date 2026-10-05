@@ -1,0 +1,38 @@
+name: Markaziy bank kursi
+
+# cbu.uz dan USD kursini oladi → state/rate.json (6 soatda bir, «Pochtam» ilovasidagi kabi).
+# Generator (tools/build_week_*.py) kursni shu fayldan oladi.
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: rate
+  cancel-in-progress: false
+
+jobs:
+  rate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Kursni olish
+        run: python3 tools/update_rate.py
+      - name: Saqlash
+        run: |
+          git add state/rate.json
+          if git diff --cached --quiet; then echo "o'zgarish yo'q"; exit 0; fi
+          git config user.name "pochtachi-bot"
+          git config user.email "pochtachi-bot@users.noreply.github.com"
+          git commit -m "bot: Markaziy bank kursi"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && exit 0
+            sleep 5
+          done
+          exit 1

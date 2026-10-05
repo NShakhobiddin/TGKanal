@@ -19,5 +19,6 @@
   "status": "approved",
   "product_url": null,
   "image": "2026-10-05-0900-2d1de9c2.jpg",
-  "error": null
+  "error": null,
+  "publish_now": true
 }

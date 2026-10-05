@@ -55,12 +55,14 @@ def r2(x: float) -> float:
     return math.floor(x * 100 + 0.5 + 1e-9) / 100
 
 
-def duty_usd(value: float, kg: float) -> float:
+def duty_usd(value: float, kg: float, per_kg_min: bool = True) -> float:
     """Yagona bojxona to'lovi. value — bojxona qiymati (tovar + yetkazish), kg — posilka og'irligi.
-    Normadan ortig'ining 30 % i, lekin 1 kg uchun kamida 3 $ (#boj postidagi usul)."""
+    Normadan ortig'ining 30 % i, lekin 1 kg uchun kamida 3 $ (#boj postidagi usul).
+    #obraz da minimal hisoblanmaydi (muallif ko'rsatmasi, 05.10.2026) — per_kg_min=False."""
     if value <= LIMIT:
         return 0.0
-    return r2(max((value - LIMIT) * DUTY, kg * 3))
+    pct = (value - LIMIT) * DUTY
+    return r2(max(pct, kg * 3) if per_kg_min else pct)
 
 
 def ship(weight_kg: float) -> float:
@@ -388,9 +390,9 @@ add("2026-10-07-1400", rubric="#obraz", title="Ayollar: kuzgi ofis obrazi",
 
 📦 <b>Toshkentgacha</b>
 • Yetkazish — ~$34 (≈3,6 kg)
-• Boj — """ + money(duty_usd(208.15, 3.6)) + """ (kamida 3 $/kg) + BKO yig'imi """ + fmt(BKO_FEE) + """ so'm
+• Boj — ($208.15 − 200) × 30 % = """ + money(duty_usd(208.15, 3.6, False)) + """ + BKO yig'imi """ + fmt(BKO_FEE) + """ so'm
 • Toshkent bo'ylab — ~$3
-• <b>Jami ≈ """ + fmt(som(173.95 + 34.20 + duty_usd(208.15, 3.6) + 3) + BKO_FEE) + """ so'm</b>
+• <b>Jami ≈ """ + fmt(som(173.95 + 34.20 + duty_usd(208.15, 3.6, False) + 3) + BKO_FEE) + """ so'm</b>
 
 ✂️ Sumkani keyingi oyda oling: qiymat ≈ $179 bo'ladi — boj ham, yig'im ham yo'q.
 
@@ -415,7 +417,7 @@ add("2026-10-07-1400", rubric="#obraz", title="Ayollar: kuzgi ofis obrazi",
              {"label": "H&M US — shipping (faqat AQSh)", "url": "https://www2.hm.com/en_us/customer-service/shipping-and-delivery.html"},
              SPOT_COURIER],
     notes="Og'irliklar taxminiy (jami ≈3,6 kg), yetkazish 9,50 $/kg. Narx rang va o'lchamga qarab o'zgarishi mumkin. "
-          "Bojxona qiymati = tovar + yetkazish = 208.15 $ (muallif qoidasi, 05.10.2026). Boj: (208.15 − 200) × 30 % = 2.45 $ < 3,6 kg × 3 $ = 10.80 $ → 10.80 $. "
+          "Bojxona qiymati = tovar + yetkazish = 208.15 $ (muallif qoidasi, 05.10.2026). Boj: (208.15 − 200) × 30 % = 2.45 $ (obrazda 3 $/kg minimal hisoblanmaydi — muallif). "
           "BKO yig'imi 110 000 so'm. Sumkasiz: 148.96 $ + ~3,2 kg × 9,50 = 30.40 $ → 179.36 $ (norma ichida).")
 
 posts.append(deal("2026-10-07-2000", title="LEGO 31134 — 4 ta to'plam", emoji="🚀",
@@ -675,7 +677,7 @@ om_kg = round(sum(x[6] for x in OUTFIT_MEN), 2)
 om_ship = ship(om_kg)
 om_local = 3.0
 om_value = round(om_total + om_ship, 2)        # bojxona qiymati = tovar + yetkazish
-om_duty = duty_usd(om_value, om_kg)
+om_duty = duty_usd(om_value, om_kg, per_kg_min=False)
 om_fee = BKO_FEE if om_duty else 0
 om_cut = OUTFIT_MEN[4]                         # norma uchun keyingi oyga qoldiriladigan element (shapka)
 om_value_cut = round(om_total - om_cut[3] + ship(om_kg - om_cut[6]), 2)
@@ -691,7 +693,7 @@ add("2026-10-10-1400", rubric="#obraz", title="Erkaklar: sovuq kunlar obrazi",
 
 📦 <b>Toshkentgacha</b>
 • Yetkazish — ~""" + usd(om_ship) + """ (≈""" + f"{om_kg:.1f}".replace(".", ",") + """ kg)
-""" + (("• Boj — " + usd(om_duty) + " (kamida 3 $/kg) + BKO yig'imi " + fmt(om_fee) + " so'm\n") if om_duty else "• Boj — yo'q (norma ichida)\n") + """• Toshkent bo'ylab — ~$3
+""" + (("• Boj — (" + usd(om_value) + " − 200) × 30 % = " + usd(om_duty) + " + BKO yig'imi " + fmt(om_fee) + " so'm\n") if om_duty else "• Boj — yo'q (norma ichida)\n") + """• Toshkent bo'ylab — ~$3
 • <b>Jami ≈ """ + fmt(som(om_total + om_ship + om_duty + om_local) + om_fee) + """ so'm</b>
 """ + ((f"\n✂️ Shapkani keyingi oyda oling: qiymat {usd(om_value_cut)} bo'ladi — boj ham, yig'im ham yo'q.\n") if om_duty else "") + """
 ⚠️ Aksiya tugasa summa oshadi — to'lashdan oldin savatni tekshiring.
@@ -709,7 +711,7 @@ add("2026-10-10-1400", rubric="#obraz", title="Erkaklar: sovuq kunlar obrazi",
           "(Uniqlo va H&M saytlari Claude muhitidan ochilmadi, narxlar qidiruv natijalaridan olingan). "
           "Shapka narxi ($14.90) va kurtkaning zaytun rangi AQSh saytida tasdiqlanmagan. Sviter va etik — aksiya narxida. "
           "RASM: ChatGPT'ga 5 ta tovar suratini (do'kon sahifasidan) ham biriktiring — kiyimlar aynan o'xshash chiqadi. "
-          f"Og'irliklar taxminiy (jami ≈{om_kg} kg). Bojxona qiymati = tovar + yetkazish = {om_value} $. Boj = max(30 % × ortig'i, 3 $ × {om_kg} kg) = {om_duty} $, BKO yig'imi {om_fee} so'm. "
+          f"Og'irliklar taxminiy (jami ≈{om_kg} kg). Bojxona qiymati = tovar + yetkazish = {om_value} $. Boj = 30 % × ortig'i = {om_duty} $ (obrazda 3 $/kg minimal hisoblanmaydi), BKO yig'imi {om_fee} so'm. "
           f"Shapkasiz: {om_value_cut} $.")
 
 posts.append(deal("2026-10-10-2000", title="AirTag 2 — 4 talik to'plam", emoji="📍",

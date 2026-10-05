@@ -172,18 +172,25 @@ def tg(method: str, data: dict | None = None, files: dict | None = None) -> dict
         raise TgError("TELEGRAM_BOT_TOKEN secret o'rnatilmagan")
     base = os.environ.get("TG_API_BASE", "https://api.telegram.org")
     fields = {k: (v if isinstance(v, str) else json.dumps(v)) for k, v in (data or {}).items() if v is not None}
-    body, ctype = _multipart(fields, files or {})
-    req = urllib.request.Request(f"{base}/bot{token}/{method}", data=body, headers={"Content-Type": ctype})
+    if fields or files:
+        body, ctype = _multipart(fields, files or {})
+        req = urllib.request.Request(f"{base}/bot{token}/{method}", data=body, headers={"Content-Type": ctype})
+    else:
+        # Parametrsiz so'rov (getMe) — bo'sh multipart yubormaymiz, oddiy GET
+        req = urllib.request.Request(f"{base}/bot{token}/{method}")
     for attempt in range(3):
         try:
             with urllib.request.urlopen(req, timeout=90) as r:
                 j = json.loads(r.read().decode())
             break
         except urllib.error.HTTPError as e:
+            raw = e.read().decode("utf-8", "replace")
             try:
-                j = json.loads(e.read().decode())
+                j = json.loads(raw)
             except Exception:
-                raise TgError(f"Telegram HTTP {e.code}")
+                snippet = re.sub(r"<[^>]+>", " ", raw.replace(token, "***"))
+                snippet = " ".join(snippet.split())[:120]
+                raise TgError(f"Telegram HTTP {e.code}" + (f" — {snippet}" if snippet else ""))
             retry = (j.get("parameters") or {}).get("retry_after")
             if e.code == 429 and retry and attempt < 2:
                 time.sleep(min(int(retry), 30))

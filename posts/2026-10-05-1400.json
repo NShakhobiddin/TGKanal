@@ -16,8 +16,11 @@
   "notes": "iHerb sahifasida boj matni noaniq yozilgan («month calendar quarter») — biz VM 244 dagi oylik 200 $ normaga tayandik. Uzcard/Humo bilan to'lov tekshirilmagan — postda faqat Visa/Mastercard yozildi.",
   "id": "2026-10-05-1400",
   "scheduled_at": "2026-10-05T14:00:00+05:00",
-  "status": "approved",
+  "status": "published",
   "product_url": null,
   "image": "2026-10-05-1400-5c634a73.jpg",
-  "error": null
+  "error": null,
+  "message_id": 7,
+  "published_at": "2026-10-05T15:17:53+05:00",
+  "published_by": "jadval"
 }

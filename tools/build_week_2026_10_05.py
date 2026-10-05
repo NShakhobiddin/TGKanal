@@ -484,8 +484,12 @@ posts.append(deal("2026-10-08-2000", title="Belkin Qi2 25W zaryadlovchi", emoji=
              SPOT_RATE]))
 
 # ============ JUMA 9-oktabr ============
-add("2026-10-09-0900", rubric="#boj", title="Boj qanday hisoblanadi — 4 qadam",
-    caption="""🧮 <b>Boj qanday hisoblanadi: 4 qadam</b>
+# Kuryerlik jo'natmasi yig'imi: 1 kg uchun BHM ning 2 % i (VM 55-son, 31.01.2025); BHM 01.09.2026 dan 440 000 so'm
+BHM = 440000
+COURIER_FEE_KG = round(BHM * 0.02)
+_boj_fee = round(2.5 * COURIER_FEE_KG)
+add("2026-10-09-0900", rubric="#boj", title="Boj qanday hisoblanadi — 5 qadam",
+    caption="""🧮 <b>Boj qanday hisoblanadi: 5 qadam</b>
 
 Misol: kuryer orqali <b>700 $</b> lik noutbuk, og'irligi 2,5 kg. Shu oyda boshqa posilka yo'q. Yetkazish narxi hisobga kirmaydi — faqat tovar narxi olinadi.
 
@@ -493,20 +497,28 @@ Misol: kuryer orqali <b>700 $</b> lik noutbuk, og'irligi 2,5 kg. Shu oyda boshqa
 2️⃣ <b>Foizni qo'llang.</b> Yagona bojxona to'lovi — 30 %: 500 × 30 % = <b>150 $</b>
 3️⃣ <b>Minimalni tekshiring.</b> 1 kg uchun kamida 3 $: 2,5 × 3 = 7,5 $. Foiz bo'yicha summa katta — <b>150 $</b> to'lanadi
 4️⃣ <b>So'mga o'giring:</b> 150 × 11 808,76 ≈ <b>""" + fmt(som(150)) + """ so'm</b>
+5️⃣ <b>Bojxona yig'imi.</b> Kuryerlik jo'natmasi uchun 1 kg ga BHM ning 2 % i: 2,5 × """ + fmt(COURIER_FEE_KG) + """ = <b>""" + fmt(_boj_fee) + """ so'm</b>. Uni kuryer kompaniyasi to'laydi — xizmat narxiga qo'shishi mumkin
 
 📅 2027-yil 1-yanvardan stavka 20 %: 500 × 20 % = <b>100 $</b> — 50 $ tejaladi.
 
 ⚠️ Hisob taxminiy: yakuniy summani bojxona organi tovarning bojxona qiymati asosida belgilaydi.
 
-📄 Asos: PQ-4508, 3-band; PF-174, V bo'lim 8-band; VM 244-son — lex.uz
+📄 Asos: PQ-4508, 3-band; PF-174, V bo'lim 8-band; VM 244-son; VM 55-son, 31.01.2025 — lex.uz
 💬 <a href="{{CONSULT_URL}}">Murakkab holat bo'lsa — maslahat oling</a>
 
 """ + FOOT + "#boj",
     prompt=cover_prompt("#boj", "Boj qanday hisoblanadi",
-        "a matte white calculator next to a closed laptop resting on a cardboard parcel; four small numbered indigo steps (1, 2, 3, 4) rise like a staircase beside them.",
-        sub="4 qadamda", accent="emerald green (#059669)"),
-    sources=[LEX_PQ4508, LEX_PF174, LEX_VM244, SPOT_RATE],
-    notes="Yetkazish narxi bojxona qiymatiga kirmaydi — hisob tovar narxi bo'yicha (muallif tasdiqladi).")
+        "a matte white calculator next to a closed laptop resting on a cardboard parcel; five small numbered indigo steps (1, 2, 3, 4, 5) rise like a staircase beside them.",
+        sub="5 qadamda", accent="emerald green (#059669)"),
+    sources=[LEX_PQ4508, LEX_PF174, LEX_VM244,
+             {"label": "VM 55-son qarori, 31.01.2025 — bojxona yig'imlari stavkalari (lex.uz)", "url": "https://lex.uz/uz/docs/-7357270"},
+             {"label": "Kuryerlik jo'natmalari uchun yig'im — gazeta.uz, 04.02.2025 (yangilik)", "url": "https://www.gazeta.uz/oz/2025/02/04/parcels/"},
+             {"label": "BHM 440 000 so'm, 01.09.2026 dan — gazeta.uz, 23.06.2026 (yangilik)", "url": "https://www.gazeta.uz/oz/2026/06/23/ish-haqi-nafaqalar/"},
+             SPOT_RATE],
+    notes="Yetkazish narxi bojxona qiymatiga kirmaydi — hisob tovar narxi bo'yicha (muallif tasdiqladi). "
+          "5-QADAM LEX.UZ DA TASDIQLANMADI (lex.uz Claude muhitidan ochilmadi): yig'im stavkasi (1 kg ga BHM 2 %, kuryer kompaniyasi to'laydi) "
+          "va BHM 440 000 so'm — yangilik saytlari va qidiruv natijalaridan. Tasdiqlashdan oldin VM 55-son qarorida tekshiring. "
+          "Agar siz jismoniy shaxs to'laydigan rasmiylashtirish yig'imini nazarda tutgan bo'lsangiz — stavkasini ayting, qo'shamiz.")
 
 _dy_ship = ship(0.8)
 _dy_duty = round((499 - LIMIT) * DUTY, 2)

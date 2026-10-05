@@ -404,28 +404,38 @@ posts.append(deal("2026-10-07-2000", title="LEGO 31134 — 4 ta to'plam", emoji=
              SPOT_RATE]))
 
 # ============ PAYSHANBA 8-oktabr ============
-add("2026-10-08-0900", rubric="#keys", title="Real keys — MATERIAL KERAK", status="needs_input",
-    caption="""🔍 <b>Real keys: [jo'natma nega ushlanib qoldi — bir jumlada]</b>
+# #keys — Claude tuzgan tipik holat (BRIEF.md → Aniqlik qoidalari). Narxlar — misol uchun.
+KEYS_ITEMS = [("Omega-3, 120 kapsula", 2, 21.50), ("D3 vitamini, 5000 IU", 1, 9.90), ("Magniy glitsinat", 1, 16.40)]
+keys_packs = sum(n for _, n, _ in KEYS_ITEMS)
+keys_total = round(sum(n * pr for _, n, pr in KEYS_ITEMS), 2)
+add("2026-10-08-0900", rubric="#keys", title="Keys: iHerb — 2 ta bir xil BAD",
+    caption="""🔍 <b>Keys: «2 ta oling — arzonroq» aksiyasi posilkani to'xtatdi</b>
 
-📦 <b>Nima keldi:</b> [tovar, taxminiy qiymati, qaysi kanal — pochta yoki kuryer]
+📦 <b>Nima keldi:</b> kuryer orqali iHerb buyurtmasi — """ + str(keys_packs) + """ qadoq BAD, jami <b>""" + usd(keys_total) + """</b>:
+""" + "\n".join(f"• {name} — {n} ta" for name, n, _ in KEYS_ITEMS) + """
 
-⛔ <b>Muammo:</b> [nima sabab bo'ldi — masalan, tovar nomi noaniq, qiymati ko'rsatilmagan, ruxsatnoma talab qilingan]
+Summa 200 $ normadan ancha kam, lekin posilka to'xtadi.
 
-🛠 <b>Qanday hal qilindi:</b> [qadamlar: qaysi hujjat, qayerga murojaat, necha kunda]
+⛔ <b>Muammo:</b> BAD uchun miqdoriy norma bor — <b>10 xil nomgacha, jami 3 kg gacha, har nomdan 1 qadoq</b>. Omega-3 dan 2 ta — ikkinchisi normadan tashqarida. Bu yerda pul emas, <b>dona</b> hisoblanadi.
 
-✅ <b>Xulosa:</b> [boshqalar bu xatoning oldini qanday oladi — 1–2 jumla]
+🛠 <b>Qanday hal qilindi:</b> xaridor kuryer kompaniyasi orqali bojxona talabini aniqladi. Ortiqcha qadoq bo'yicha alohida qaror kutildi — jo'natma bir necha kun kechikdi.
 
-📄 Asos: [hujjat, raqam, sana, band — lex.uz]
+✅ <b>Xulosa:</b> BAD'da «2 ta oling» aksiyalariga aldanmang — bir nomdan bitta qadoq. To'lashdan oldin savatni sanang.
 
-Shunga o'xshash holatga tushdingizmi? Vaziyatingizni ko'rib chiqib, yo'l ko'rsataman 👇
+📄 Asos: VM 244-son qarori, 19.04.2025, 1-ilova — lex.uz
+
+Posilkangiz to'xtab qoldimi? Vaziyatingizni ko'rib chiqib, yo'l ko'rsataman 👇
 💬 <a href="{{CONSULT_URL}}">Maslahat olish</a>
 
+<i>Holat bojxona amaliyotidagi tipik vaziyatlar asosida tuzilgan.</i>
 """ + FOOT + "#keys",
-    prompt=cover_prompt("#keys", "Real keys",
-        "a matte cardboard parcel on a customs inspection counter, a large indigo magnifying glass hovering over its label, and a small checklist clipboard beside it.",
-        sub="Jo'natma nega ushlanib qoldi", accent="amber (#F59E0B)"),
-    notes="MATERIAL KERAK: kvadrat qavslarni o'zingizning real holatingiz bilan to'ldiring. Ism, jo'natma raqami, aniq sana va tanib olinadigan tafsilot yozmang — faqat mexanika. "
-          "Pullik maslahat havolasi config.json dagi consult_url dan olinadi.")
+    prompt=cover_prompt("#keys", "«2 ta oling» aksiyasi posilkani to'xtatdi",
+        "a matte cardboard parcel opened on a customs inspection counter, showing several supplement bottles inside; two identical bottles stand side by side outside the box, one of them marked with a small amber warning tag, and a large indigo magnifying glass hovers over them.",
+        sub="BAD: har nomdan 1 qadoq", accent="amber (#F59E0B)"),
+    sources=[LEX_VM244],
+    notes="Keysni Claude tuzdi (tipik holat, real voqea emas). Narxlar misol uchun. "
+          "Tekshiring: «Qanday hal qilindi» qatoridagi amaliyot (ortiqcha qadoq bo'yicha qaror va kechikish) sizning tajribangizga mos kelsinmi — kerak bo'lsa tahrir qiling. "
+          "Norma: BAD 10 xil nomgacha, jami 3 kg, har nomdan 1 qadoq (VM 244, 1-ilova — BRIEF.md).")
 
 add("2026-10-08-1400", rubric="#kuryer", title="Qaysi kuryer qancha — 2026",
     caption="""🚚 <b>Chetdan tovar keltirish: qaysi xizmat qancha?</b>
@@ -699,6 +709,8 @@ for p in posts:
         p["product_url"] = "https://www.amazon.com/dp/B0BS1QCFHX"
 
 # ------------------------------------------------------------------ yozish va tekshirish
+# --rework=ID,ID — faqat shu qoralamalarni (draft / needs_input) qayta yozadi
+REWORK = {x for arg in sys.argv if arg.startswith("--rework=") for x in arg.split("=", 1)[1].split(",") if x}
 problems = []
 for p in posts:
     p.setdefault("scheduled_at", f"{p['id'][:10]}T{p['id'][11:13]}:{p['id'][13:15]}:00+05:00")
@@ -708,7 +720,12 @@ for p in posts:
     if n > 1024:
         problems.append((p["id"], n))
     target = OUT / f"{p['id']}.json"
-    if target.exists() and "--force" not in sys.argv:
+    if REWORK and p["id"] not in REWORK:
+        continue
+    if REWORK and target.exists() and json.loads(target.read_text(encoding="utf-8")).get("status") not in ("draft", "needs_input"):
+        print(f"{p['id']}  tasdiqlangan/joylangan — qayta yozilmadi")
+        continue
+    if target.exists() and "--force" not in sys.argv and not REWORK:
         print(f"{p['id']}  mavjud — tegilmadi (panelda tasdiqlangan bo'lishi mumkin)")
         continue
     target.write_text(json.dumps(p, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

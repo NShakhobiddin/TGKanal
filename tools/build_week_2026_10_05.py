@@ -12,8 +12,8 @@ from pathlib import Path
 OUT = Path(__file__).resolve().parent.parent / "posts"
 OUT.mkdir(parents=True, exist_ok=True)
 
-RATE = 11808.76            # CBU, 02.10.2026
-RATE_TXT = "1 $ = 11 808,76 so'm (02.10.2026)"
+RATE = 11772.95            # CBU, 03.10.2026 (05.10.2026 gacha amalda)
+RATE_TXT = "1 $ = 11 772,95 so'm (03.10.2026)"
 SHIP_PER_KG = 9.50         # Meest AQSh, yuqori chegara (Spot.uz, 16.07.2026)
 LIMIT = 200.0              # kuryer, oylik
 DUTY = 0.30                # PQ-4508 3-band (2026-yil oxirigacha)
@@ -179,7 +179,7 @@ LEX_PF174 = {"label": "PF-174, 27.08.2026 (lex.uz)", "url": "https://lex.uz/uz/d
 LEX_PQ4508 = {"label": "PQ-4508, 07.11.2019 — 3-band, 2019-yil tahriri: 30 %, 3 $/kg (lex.uz)",
               "url": "https://lex.uz/uz/docs/-4585742?ONDATE=07.11.2019%2000"}
 LEX_VM244 = {"label": "VM 244-son qarori, 19.04.2025 (lex.uz)", "url": "https://lex.uz/uz/docs/-7484114"}
-SPOT_RATE = {"label": "Markaziy bank kursi, 02.10.2026 (spot.uz)", "url": "https://www.spot.uz/oz/currency/"}
+SPOT_RATE = {"label": "Markaziy bank kursi, 03.10.2026 (spot.uz)", "url": "https://www.spot.uz/oz/currency/"}
 SPOT_COURIER = {"label": "Yetkazib beruvchilar narxi, 16.07.2026 (spot.uz)", "url": "https://www.spot.uz/oz/2026/07/16/delivery"}
 
 # ============ DUSHANBA 5-oktabr ============
@@ -495,7 +495,7 @@ Misol: kuryer orqali <b>700 $</b> lik noutbuk, og'irligi 2,5 kg. Shu oyda boshqa
 1️⃣ <b>Normani ayiring.</b> Kuryer uchun oylik norma — 200 $. Ortiqcha qism: 700 − 200 = <b>500 $</b>
 2️⃣ <b>Foizni qo'llang.</b> Yagona bojxona to'lovi — 30 %: 500 × 30 % = <b>150 $</b>
 3️⃣ <b>Minimalni tekshiring.</b> 1 kg uchun kamida 3 $: 2,5 × 3 = 7,5 $. Foiz bo'yicha summa katta — <b>150 $</b> to'lanadi
-4️⃣ <b>So'mga o'giring:</b> 150 × 11 808,76 ≈ <b>""" + fmt(som(150)) + """ so'm</b>
+4️⃣ <b>So'mga o'giring:</b> 150 × """ + f"{RATE:,.2f}".replace(",", " ").replace(".", ",") + """ ≈ <b>""" + fmt(som(150)) + """ so'm</b>
 5️⃣ <b>Yig'imni qo'shing.</b> 1 ta BKO (bojxona kirim orderi) uchun — BHM ning 25 %: """ + fmt(BHM) + """ × 25 % = <b>""" + fmt(_boj_fee) + """ so'm</b>
 
 💰 <b>Jami: ≈ """ + fmt(som(150) + _boj_fee) + """ so'm</b>

@@ -347,6 +347,9 @@ def mode_test(cfg: dict, pid: str, req: str) -> None:
 def mode_health(cfg: dict, req: str) -> None:
     out = {"req": req, "at": now().isoformat(timespec="seconds"), "channel_id": cfg.get("channel_id"),
            "token": bool(os.environ.get("TELEGRAM_BOT_TOKEN"))}
+    # Tokenning o'zi chiqarilmaydi — faqat ko'rinishi to'g'rimi (123456789:AAH…)
+    tok = (os.environ.get("TELEGRAM_BOT_TOKEN") or "").strip()
+    out["token_format_ok"] = bool(re.fullmatch(r"\d{5,}:[A-Za-z0-9_-]{30,}", tok))
     try:
         me = tg("getMe")
         out["bot"] = "@" + me.get("username", "")

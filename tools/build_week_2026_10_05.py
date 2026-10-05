@@ -606,8 +606,8 @@ posts.append(deal("2026-10-09-2000", title="🏆 Braun Series 9 PRO+ (boj bilan 
              LEX_PQ4508, SPOT_RATE]))
 
 # ============ SHANBA 10-oktabr ============
-# #savol — iPhone 17 Pro Max 256 GB, aniq hisob (muallif so'rovi: bojxona qiymatiga 10 $ yo'l harajati + 1 BKO yig'imi)
-IP_PRICE = 1199.00          # Apple AQSh, 256 GB, savdo solig'isiz
+# #savol — iPhone 18 Pro Max 256 GB (Burgundy), aniq hisob (muallif so'rovi: bojxona qiymatiga 10 $ yo'l harajati + 1 BKO yig'imi)
+IP_PRICE = 1299.00          # Apple AQSh, iPhone 18 Pro Max 256 GB, savdo solig'isiz
 IP_ROAD = 10.00             # yo'l harajati — bojxona qiymatiga qo'shiladi
 IP_KG = 0.5                 # qadoq bilan, taxminan
 IP_UZIMEI = round(BHM * 0.20)
@@ -619,10 +619,10 @@ ip_duty_som = round(ip_duty * RATE)
 ip_state = ip_duty_som + _boj_fee + IP_UZIMEI
 ip_full = round((IP_PRICE + IP_ROAD) * RATE) + ip_state
 ip_duty27 = round(ip_over * 0.20, 2)
-add("2026-10-10-0900", rubric="#savol", title="iPhone 17 Pro Max — aniq hisob",
-    caption=f"""❓ <b>Savol: «iPhone 17 Pro Max'ni AQShdan posilkada olsam, qancha to'layman?»</b>
+add("2026-10-10-0900", rubric="#savol", title="iPhone 18 Pro Max — aniq hisob",
+    caption=f"""❓ <b>Savol: «iPhone 18 Pro Max'ni AQShdan posilkada olsam, qancha to'layman?»</b>
 
-Misol: <b>iPhone 17 Pro Max, 256 GB</b> — Apple AQSh narxi <b>{uzn(IP_PRICE)} $</b>. Kuryer orqali, shu oyda boshqa posilka yo'q.
+Misol: <b>iPhone 18 Pro Max, 256 GB</b> (Burgundy — to'q qizil) — Apple AQSh narxi <b>{uzn(IP_PRICE)} $</b>. Kuryer orqali, shu oyda boshqa posilka yo'q.
 
 1️⃣ <b>Bojxona qiymati</b> (telefon + yo'l harajati): {uzn(IP_PRICE)} + {uzn(IP_ROAD)} = <b>{uzn(ip_value)} $</b>
 2️⃣ <b>Normadan ortig'i:</b> {uzn(ip_value)} − {uzn(LIMIT)} = <b>{uzn(ip_over)} $</b>
@@ -643,10 +643,12 @@ Misol: <b>iPhone 17 Pro Max, 256 GB</b> — Apple AQSh narxi <b>{uzn(IP_PRICE)} 
 📲 <a href="{{{{APP_URL}}}}">Telefon bojini ilovada hisoblang</a>
 
 """ + FOOT + "#savol",
-    prompt=cover_prompt("#savol", "iPhone 17 Pro Max: qancha to'laysiz?",
-        "a premium smartphone with a large triple-camera block lying in an open matte cardboard parcel box, a small receipt slip with a few calculation lines next to it, and a tiny indigo tag reading IMEI hanging from the box.",
-        sub="Boj + yig'im + UzIMEI — aniq hisob", accent="sky blue (#38BDF8)"),
-    sources=[{"label": "iPhone 17 Pro Max 256 GB — $1,199 (AQSh, soliqsiz)", "url": "https://applepricehunt.com/us/iphone-17-pro-max-256gb-silver"},
+    prompt=cover_prompt("#savol", "iPhone 18 Pro Max: qancha to'laysiz?",
+        "a photorealistic iPhone 18 Pro Max smartphone in a rich deep burgundy red finish (glossy-matte aluminium frame, large rectangular triple-camera plateau across the top of the back), standing upright at a slight angle, back side facing the viewer, next to an open matte cardboard parcel box; a small receipt slip with a few calculation lines and a tiny indigo tag reading IMEI beside it. Keep the phone itself photorealistic, not clay; no logo on the phone.",
+        sub="Boj + yig'im + UzIMEI — aniq hisob", accent="burgundy red (#8B1E3F)").replace(
+        "Render it as a soft 3D clay illustration", "Render the box and props as a soft 3D clay illustration (the phone stays photorealistic)"),
+    sources=[{"label": "Apple — iPhone 18 Pro Max 256 GB (AQSh, soliqsiz)", "url": "https://www.apple.com/shop/buy-iphone/iphone-18-pro/6.9-inch-display-256gb-black-unlocked"},
+             {"label": "MacRumors — iPhone 18 Pro: narx $1,299, ranglar", "url": "https://www.macrumors.com/roundup/iphone-18-pro/"},
              LEX_PQ4508, LEX_VM244,
              {"label": "VM 55-son qarori, 31.01.2025 — bojxona yig'imlari stavkalari (lex.uz)", "url": "https://lex.uz/uz/docs/-7357270"},
              {"label": "VM 778-son, 17.09.2019 — 6-ilova (lex.uz)", "url": "https://lex.uz/uz/docs/-4517458"},
@@ -655,7 +657,7 @@ Misol: <b>iPhone 17 Pro Max, 256 GB</b> — Apple AQSh narxi <b>{uzn(IP_PRICE)} 
     notes="Muallif so'rovi: bojxona qiymatiga 10 $ yo'l harajati qo'shildi va 1 ta BKO yig'imi (BHM 25 % = 110 000) hisoblandi. "
           f"Hisob: ({uzn(IP_PRICE)} + {uzn(IP_ROAD)} − 200) × 30 % = {uzn(ip_duty)} $ × {RATE} = {ip_duty_som} so'm; + {_boj_fee} BKO + {IP_UZIMEI} UzIMEI = {ip_state} so'm. "
           f"Telefon bilan: ({uzn(IP_PRICE)} + {uzn(IP_ROAD)}) × kurs + to'lovlar = {ip_full} so'm. "
-          "Apple narxi ($1 199) qidiruv natijalaridan — apple.com da tekshiring. Og'irlik qadoq bilan ≈0,5 kg (minimal to'lov tekshiruvi uchun). "
+          "Apple narxi ($1 299) va rang (Burgundy) qidiruv natijalaridan — apple.com da tekshiring (Claude muhitidan ochilmadi). Rasm: telefon to'q qizil (Burgundy); ChatGPT'ga Apple sahifasidagi Burgundy surati biriktirilsa — aniqroq chiqadi. Og'irlik qadoq bilan ≈0,5 kg (minimal to'lov tekshiruvi uchun). "
           "UzIMEI: BHM 440 000 × 20 % = 88 000; 30 kundan keyin × 25 % = 110 000.")
 
 # #obraz — aniq tovarlar (BRIEF.md → #obraz). (do'kon, nom uz, rang uz, narx, eski narx, url, og'irlik kg, rasm uchun tavsif)

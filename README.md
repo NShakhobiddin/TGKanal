@@ -3,7 +3,7 @@
 @Pochtam_shopo kanali uchun kontent tizimi. **Server va domen kerak emas** — hammasi bepul GitHub'da ishlaydi:
 
 - **Panel** — `https://nshakhobiddin.github.io/TGKanal/` (shu repo'dan, GitHub Pages): postlar Telegramdagidek ko'rinadi, rasm prompti, rasm yuklash, tasdiqlash. Telefonda ham ochiladi.
-- **Jadval** — GitHub Actions har 30 daqiqada tasdiqlangan postlarni kanalga joylaydi (Toshkent 08:05–23:35).
+- **Jadval** — GitHub Actions har 5 daqiqada tasdiqlangan postlarni kanalga joylaydi (Toshkent 08:00–23:55). GitHub bepul jadvalni kechiktirishi mumkin — aniq vaqt uchun pastdagi «Tashqi jadval» ni sozlang.
 - **Postlar va rasmlar** — `NShakhobiddin/TGKanal` repo'sida; bot tokeni — GitHub secret'da.
 
 ## Claude Code bilan ishlash
@@ -51,3 +51,17 @@ Har kuni ertalab bot sizga shu kuni tayyor bo'lmagan postlar ro'yxatini yuboradi
 | `ui_repo`, `panel_url` | `ui_repo` bo'sh — panel shu repo'dan chiqadi (`pages.yml`); `panel_url` — panel manzili |
 
 Bot tokeni bu yerda **yo'q** — u GitHub → Settings → Secrets → `TELEGRAM_BOT_TOKEN`.
+
+## Tashqi jadval — post aniq vaqtida chiqishi uchun
+GitHub bepul jadvali (`schedule`) yuklama paytida soatlab kechikadi yoki ishga tushmay qoladi. Ishonchli yo'l — tashqi bepul xizmat (cron-job.org) har 5 daqiqada `publish.yml` ni chaqiradi:
+
+1. **Token (faqat jadval uchun):** https://github.com/settings/personal-access-tokens/new → nomi `tgkanal-cron`, muddati 1 yil → Only select repositories → `TGKanal` → Repository permissions → **Actions: Read and write** (boshqa hech narsa) → Generate.
+2. **cron-job.org** → ro'yxatdan o'ting → Create cronjob:
+   - URL: `https://api.github.com/repos/NShakhobiddin/TGKanal/actions/workflows/publish.yml/dispatches`
+   - Schedule: every 5 minutes (Asia/Tashkent, 08:00–23:59)
+   - Advanced → Request method: **POST**
+   - Headers: `Authorization: Bearer <token>`, `Accept: application/vnd.github+json`, `X-GitHub-Api-Version: 2022-11-28`
+   - Request body: `{"ref":"main","inputs":{"mode":"due"}}`
+3. «Test run» → javob **204** bo'lsa — ishlayapti (GitHub → Actions'da yangi «due» ishi paydo bo'ladi).
+
+Ikkala jadval bir vaqtda ishlasa ham post ikki marta chiqmaydi: joylovchi ishlar navbat bilan bajariladi (`concurrency: publish`).

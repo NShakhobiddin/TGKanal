@@ -148,7 +148,7 @@ Toshkent bo'ylab yetkazish alohida: 2–6,70 $
 ## Panel (2026-oktabrdan asosiy usul — serversiz, GitHub'da)
 - Ma'lumotlar repo'si **`NShakhobiddin/TGKanal`** (ochiq) — postlar `posts/<id>.json`, rasmlar `images/`, sozlamalar `settings.json`. Muallif kompyuterida: `C:\Users\Abc\Documents\Pochtachi\TGKanal\` (Claude Code buyruqlari: `/ornat`, `/hafta`, `/yangila`, `/holat`).
 - Panel: **https://nshakhobiddin.github.io/TGKanal/** (TGKanal repo'sidan GitHub Pages; postlarni GitHub tokeni bilan o'qiydi/yozadi).
-- GitHub Actions (`publish.yml`) har 30 daqiqada (Toshkent 08:05–23:35) tasdiqlangan postlarni kanalga joylaydi; «Hozir joylash», «Menga sinov», «Ulanishni tekshirish» ham shu orqali. Bot tokeni — GitHub secret `TELEGRAM_BOT_TOKEN`.
+- GitHub Actions (`publish.yml`) har 5 daqiqada (Toshkent 08:00–23:55; GitHub kechiktirishi mumkin — tashqi jadval: README) tasdiqlangan postlarni kanalga joylaydi; «Hozir joylash», «Menga sinov», «Ulanishni tekshirish» ham shu orqali. Bot tokeni — GitHub secret `TELEGRAM_BOT_TOKEN`.
 - Post maydonlari: id, rubric, title, scheduled_at, caption (Telegram HTML), prompt (GPT Image 2), product_url, notes, sources[{label,url}], status (draft | needs_input | approved | published | failed | overdue), image, message_id.
 - Muallif rasmni ChatGPT'da chizadi, panelga yuklaydi, tasdiqlaydi — jadval bo'yicha chiqadi.
 - Tokenlar: `{{APP_URL}}`, `{{CONSULT_URL}}` (settings.json da bo'sh bo'lsa qator yashiriladi), `<a href="{{LINK:<post_id>}}">` — joylangan postga havola.

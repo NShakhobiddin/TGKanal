@@ -56,6 +56,6 @@ Qadamlarni ber, tokenni chatga yozmasligini ayt:
 ## 8. Yakun
 Muallifga qisqa ayt:
 - Panel manzili (`panel_url`) — telefonda ham ochiladi; token shu brauzerda saqlanadi
-- Postlar jadval bo'yicha **har 30 daqiqada** tekshiriladi (09:00 dagi post odatda 09:05–09:25 oralig'ida chiqadi); aniq vaqt kerak bo'lsa — «🚀 Hozir joylash»
+- Postlar jadval bo'yicha **har 5 daqiqada** tekshiriladi (GitHub kechiktirishi mumkin — README dagi tashqi jadvalni sozlang); aniq vaqt kerak bo'lsa — «🚀 Hozir joylash»
 - **Kompyuterdagi eski panelni yopsin** (`ISHGA_TUSHIRISH.bat` oynasi) — ikkalasi ishlasa post ikki marta chiqadi. Eski `panel` va `pochtachi-panel` papkalari endi kerak emas
 - Keyingi buyruqlar: `/hafta`, `/yangila`, `/holat`

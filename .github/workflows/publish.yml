@@ -4,9 +4,10 @@ run-name: ${{ github.event_name == 'workflow_dispatch' && format('{0} {1} {2}', 
 
 on:
   schedule:
-    # Toshkent 08:05–23:35, har 30 daqiqada (UTC = Toshkent − 5 soat).
-    # GitHub jadvali 5–20 daqiqa kechikishi mumkin; aniq vaqt kerak bo'lsa — panelda «Hozir joylash».
-    - cron: "5,35 3-18 * * *"
+    # Toshkent 08:00–23:55, har 5 daqiqada (UTC = Toshkent − 5 soat).
+    # GitHub bepul jadvalni yuklama paytida kechiktiradi yoki tashlab yuboradi — shuning uchun tez-tez so'raymiz.
+    # Ishonchli vaqt uchun tashqi jadval (cron-job.org) shu workflow'ni workflow_dispatch bilan chaqiradi — README.
+    - cron: "*/5 3-18 * * *"
   workflow_dispatch:
     inputs:
       mode:

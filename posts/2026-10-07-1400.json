@@ -36,7 +36,8 @@
   "notes": "Og'irliklar taxminiy (jami ≈3,6 kg), yetkazish 9,50 $/kg. Narx rang va o'lchamga qarab o'zgarishi mumkin. Hisob: 173.95 + 34.20 + 3 = 211.15 $.",
   "id": "2026-10-07-1400",
   "scheduled_at": "2026-10-07T14:00:00+05:00",
-  "status": "draft",
+  "status": "approved",
   "product_url": null,
-  "image": "2026-10-07-1400-b679bc4f.jpg"
+  "image": "2026-10-07-1400-b679bc4f.jpg",
+  "error": null
 }

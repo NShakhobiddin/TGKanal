@@ -3,7 +3,7 @@ description: Birinchi marta o'rnatish — GitHub repo, bot tokeni, onlayn panel 
 ---
 
 Pochtachi tizimini GitHub'da ishga tushir. Server ham, domen ham kerak emas:
-- **yopiq repo `pochtachi`** — postlar, rasmlar, sozlamalar; GitHub Actions jadval bo'yicha Telegram'ga joylaydi
+- **repo `NShakhobiddin/TGKanal`** (allaqachon bor, ochiq) — postlar, rasmlar, sozlamalar; GitHub Actions jadval bo'yicha Telegram'ga joylaydi
 - **ochiq repo `pochtachi-panel`** — faqat panel sahifasi (GitHub Pages): `https://<login>.github.io/pochtachi-panel/`
 
 Muallif bilan o'zbekcha, qisqa gaplash. Har bosqich oxirida bir qatorda nima qilinganini ayt. Muallif o'zi bajarishi kerak bo'lgan ish bo'lsa (brauzerda kirish, token yaratish) — aniq qadamni ber va kut. **Bot tokeni yoki GitHub tokenini hech qachon ekranga chiqarma va chatda so'rama.**
@@ -21,10 +21,10 @@ Hammasi tayyor bo'lmaguncha davom etma.
 ## 2. Eski paneldan ma'lumot (bo'lsa)
 `..\panel\data\posts` yoki `..\pochtachi-panel\data\posts` mavjud bo'lsa, ulardagi postlarni `posts/` dagilar bilan solishtir: holati `draft` dan farq qiladigan (tasdiqlangan, joylangan) yoki `image` maydoni bor postlarni ko'chir, rasmlarini `..\<papka>\data\images\` dan `images/` ga nusxala. `admin_id` (`data/runtime.json` yoki `config.json` da) bo'lsa — `settings.json` ga yoz. Nimani ko'chirganingni sanab ber.
 
-## 3. Yopiq repo
+## 3. Ma'lumotlar repo'si (TGKanal)
 1. `git status` — `config.json`, `.env`, token yoki kalit fayllari ro'yxatda yo'qligiga ishonch hosil qil (`.gitignore`).
 2. `python tools/check_posts.py posts` — xato bo'lmasin.
-3. Repo yo'q bo'lsa: `git init -b main` → `git add -A` → `git commit -m "Pochtachi — birinchi o'rnatish"` → `gh repo create pochtachi --private --source . --remote origin --push`.
+3. Repo allaqachon yaratilgan va fayllar `main` da: `NShakhobiddin/TGKanal`. Papka hali git repo bo'lmasa: `git clone https://github.com/NShakhobiddin/TGKanal` (masalan `C:\Users\Abc\Documents\Pochtachi\TGKanal\`) va shu papkada ishla. `git remote get-url origin` TGKanal'ni ko'rsatishini tekshir; yangi repo yaratma.
 
 ## 4. Bot tokeni → GitHub secret
 Tokenni `..\config.json`, `..\panel\config.json` yoki `..\pochtachi-panel\config.json` dan (`bot_token`) ekranga chiqarmasdan uzat:
@@ -50,9 +50,9 @@ Hech qaysi faylda bo'lmasa — muallif o'zi terminalda `gh secret set TELEGRAM_B
 Qadamlarni ber, tokenni chatga yozmasligini ayt:
 1. https://github.com/settings/personal-access-tokens/new
 2. Nomi `pochtachi-panel`, muddati 1 yil
-3. Repository access → **Only select repositories** → `pochtachi`
+3. Repository access → **Only select repositories** → `TGKanal`
 4. Permissions → Repository permissions: **Contents — Read and write**, **Actions — Read and write**
-5. Generate → nusxalash → panelni ochish (`panel_url`) → repo `<LOGIN>/pochtachi`, tokenni qo'yib «Kirish»
+5. Generate → nusxalash → panelni ochish (`panel_url`) → repo `NShakhobiddin/TGKanal`, tokenni qo'yib «Kirish»
 
 ## 8. Yakun
 Muallifga qisqa ayt:

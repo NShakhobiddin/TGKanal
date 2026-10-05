@@ -137,14 +137,14 @@ Ko'p yo'nalishli: Yumecs 4,40–20 $/kg (RU, TR, CN, KR, AE, US, MY)
 Toshkent bo'ylab yetkazish alohida: 2–6,70 $
 
 ## Panel (2026-oktabrdan asosiy usul — serversiz, GitHub'da)
-- Yopiq repo **`NShakhobiddin/pochtachi`** — postlar `posts/<id>.json`, rasmlar `images/`, sozlamalar `settings.json`. Muallif kompyuterida: `C:\Users\Abc\Documents\Pochtachi\pochtachi\` (Claude Code buyruqlari: `/ornat`, `/hafta`, `/yangila`, `/holat`).
+- Ma'lumotlar repo'si **`NShakhobiddin/TGKanal`** (ochiq) — postlar `posts/<id>.json`, rasmlar `images/`, sozlamalar `settings.json`. Muallif kompyuterida: `C:\Users\Abc\Documents\Pochtachi\TGKanal\` (Claude Code buyruqlari: `/ornat`, `/hafta`, `/yangila`, `/holat`).
 - Panel: **https://nshakhobiddin.github.io/pochtachi-panel/** (ochiq repo'da faqat sahifa; postlarni GitHub tokeni bilan o'qiydi/yozadi).
 - GitHub Actions (`publish.yml`) har 30 daqiqada (Toshkent 08:05–23:35) tasdiqlangan postlarni kanalga joylaydi; «Hozir joylash», «Menga sinov», «Ulanishni tekshirish» ham shu orqali. Bot tokeni — GitHub secret `TELEGRAM_BOT_TOKEN`.
 - Post maydonlari: id, rubric, title, scheduled_at, caption (Telegram HTML), prompt (GPT Image 2), product_url, notes, sources[{label,url}], status (draft | needs_input | approved | published | failed | overdue), image, message_id.
 - Muallif rasmni ChatGPT'da chizadi, panelga yuklaydi, tasdiqlaydi — jadval bo'yicha chiqadi.
 - Tokenlar: `{{APP_URL}}`, `{{CONSULT_URL}}` (settings.json da bo'sh bo'lsa qator yashiriladi), `<a href="{{LINK:<post_id>}}">` — joylangan postga havola.
 - Caption rasm bilan ≤ 1024 belgi (ko'rinadigan matn).
-- Yangi postlar: Claude Code'da `/hafta` (repo'ga yozadi). Cowork'dan: device_bash bilan `~/mnt/Pochtachi/pochtachi/posts/` ga JSON yozib, muallifga Claude Code'da `/yangila` ni bosishni ayting (Cowork bulutidan GitHub'ga yozib bo'lmaydi). Mavjud postni qayta yozmang.
+- Yangi postlar: Claude Code'da `/hafta` (repo'ga yozadi). Cowork'dan: device_bash bilan `~/mnt/Pochtachi/TGKanal/posts/` ga JSON yozib, muallifga Claude Code'da `/yangila` ni bosishni ayting (Cowork bulutidan GitHub'ga yozib bo'lmaydi). Mavjud postni qayta yozmang.
 - Eski kompyuter paneli (`panel\`, `pochtachi-panel\`) ishlatilmaydi.
 
 ## Texnik: post qanday yetkaziladi (eski usul)

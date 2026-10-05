@@ -4,7 +4,7 @@
 
 - **Panel** — `https://<login>.github.io/pochtachi-panel/`: postlar Telegramdagidek ko'rinadi, rasm prompti, rasm yuklash, tasdiqlash. Telefonda ham ochiladi.
 - **Jadval** — GitHub Actions har 30 daqiqada tasdiqlangan postlarni kanalga joylaydi (Toshkent 08:05–23:35).
-- **Postlar va rasmlar** — yopiq repo'da; bot tokeni — GitHub secret'da.
+- **Postlar va rasmlar** — `NShakhobiddin/TGKanal` repo'sida; bot tokeni — GitHub secret'da.
 
 ## Claude Code bilan ishlash
 
@@ -35,7 +35,7 @@ Har kuni ertalab bot sizga shu kuni tayyor bo'lmagan postlar ro'yxatini yuboradi
 
 ## Bilish kerak
 - **Vaqt aniqligi:** 09:00 dagi post odatda 09:05–09:25 da chiqadi (GitHub jadvali kechikishi mumkin). 2 soatdan ko'p kechiksa — «Vaqti o'tdi» bo'ladi va bot sizga yozadi.
-- **Limit:** yopiq repo uchun oyiga 2000 bepul daqiqa; jadval ~1000 daqiqa ishlatadi.
+- **Limit:** TGKanal ochiq repo — GitHub Actions daqiqalari cheklanmagan. Repo yopiq qilinsa: oyiga 2000 bepul daqiqa, jadval ~1000 daqiqa ishlatadi.
 - **Token muddati:** panel tokeni 1 yil. Tugasa panel «Token yaroqsiz» deydi — yangisini yarating.
 - **Bir vaqtda bitta joylovchi:** kompyuterdagi eski panelni (`ISHGA_TUSHIRISH.bat`) ishga tushirmang.
 

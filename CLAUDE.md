@@ -5,7 +5,7 @@ Bu repo **@Pochtachi_shopo** Telegram kanalining kontent tizimi. Muallif — Sha
 **Server ham, domen ham yo'q.** Hammasi GitHub'da:
 
 ```
-Claude Code ──git push──▶ yopiq repo «pochtachi» (postlar, rasmlar, settings.json)
+Claude Code ──git push──▶ repo «TGKanal» (postlar, rasmlar, settings.json)
                               ▲  ▲                     │ GitHub Actions: har 30 daqiqada
      panel (brauzer) ─GitHub API─┘  └─ bot: commit      ▼ tools/publish.py ──▶ Telegram kanal
      https://<login>.github.io/pochtachi-panel/  ◀── ochiq repo «pochtachi-panel» (faqat index.html)

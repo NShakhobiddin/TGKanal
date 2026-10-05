@@ -21,6 +21,6 @@
     }
   ],
   "scheduled_at": "2026-10-05T20:00:00+05:00",
-  "status": "approved",
+  "status": "draft",
   "error": null
 }

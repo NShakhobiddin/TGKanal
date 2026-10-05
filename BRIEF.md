@@ -138,7 +138,7 @@ Toshkent bo'ylab yetkazish alohida: 2–6,70 $
 
 ## Panel (2026-oktabrdan asosiy usul — serversiz, GitHub'da)
 - Ma'lumotlar repo'si **`NShakhobiddin/TGKanal`** (ochiq) — postlar `posts/<id>.json`, rasmlar `images/`, sozlamalar `settings.json`. Muallif kompyuterida: `C:\Users\Abc\Documents\Pochtachi\TGKanal\` (Claude Code buyruqlari: `/ornat`, `/hafta`, `/yangila`, `/holat`).
-- Panel: **https://nshakhobiddin.github.io/pochtachi-panel/** (ochiq repo'da faqat sahifa; postlarni GitHub tokeni bilan o'qiydi/yozadi).
+- Panel: **https://nshakhobiddin.github.io/TGKanal/** (TGKanal repo'sidan GitHub Pages; postlarni GitHub tokeni bilan o'qiydi/yozadi).
 - GitHub Actions (`publish.yml`) har 30 daqiqada (Toshkent 08:05–23:35) tasdiqlangan postlarni kanalga joylaydi; «Hozir joylash», «Menga sinov», «Ulanishni tekshirish» ham shu orqali. Bot tokeni — GitHub secret `TELEGRAM_BOT_TOKEN`.
 - Post maydonlari: id, rubric, title, scheduled_at, caption (Telegram HTML), prompt (GPT Image 2), product_url, notes, sources[{label,url}], status (draft | needs_input | approved | published | failed | overdue), image, message_id.
 - Muallif rasmni ChatGPT'da chizadi, panelga yuklaydi, tasdiqlaydi — jadval bo'yicha chiqadi.

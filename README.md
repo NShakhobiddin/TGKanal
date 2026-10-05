@@ -2,7 +2,7 @@
 
 @Pochtam_shopo kanali uchun kontent tizimi. **Server va domen kerak emas** — hammasi bepul GitHub'da ishlaydi:
 
-- **Panel** — `https://<login>.github.io/pochtachi-panel/`: postlar Telegramdagidek ko'rinadi, rasm prompti, rasm yuklash, tasdiqlash. Telefonda ham ochiladi.
+- **Panel** — `https://nshakhobiddin.github.io/TGKanal/` (shu repo'dan, GitHub Pages): postlar Telegramdagidek ko'rinadi, rasm prompti, rasm yuklash, tasdiqlash. Telefonda ham ochiladi.
 - **Jadval** — GitHub Actions har 30 daqiqada tasdiqlangan postlarni kanalga joylaydi (Toshkent 08:05–23:35).
 - **Postlar va rasmlar** — `NShakhobiddin/TGKanal` repo'sida; bot tokeni — GitHub secret'da.
 
@@ -48,6 +48,6 @@ Har kuni ertalab bot sizga shu kuni tayyor bo'lmagan postlar ro'yxatini yuboradi
 | `app_url` | Ilova havolasi; bo'sh bo'lsa «ilovada hisoblang» qatori yashiriladi |
 | `consult_url` | Pullik maslahat havolasi; bo'sh bo'lsa yashiriladi |
 | `late_grace_hours` | Necha soat kechikkan postni hali ham joylash (2) |
-| `ui_repo`, `panel_url` | Ochiq panel repo va manzili |
+| `ui_repo`, `panel_url` | `ui_repo` bo'sh — panel shu repo'dan chiqadi (`pages.yml`); `panel_url` — panel manzili |
 
 Bot tokeni bu yerda **yo'q** — u GitHub → Settings → Secrets → `TELEGRAM_BOT_TOKEN`.

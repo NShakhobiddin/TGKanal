@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-"""ui/index.html ni ochiq panel repo'siga (GitHub Pages) yuboradi. `gh` dasturi orqali ishlaydi.
+"""ui/index.html ni alohida ochiq panel repo'siga (GitHub Pages) yuboradi. `gh` dasturi orqali ishlaydi.
 
     python tools/sync_ui.py
 
-Ochiq repo'da faqat sahifa turadi — postlar, rasmlar va tokenlar yo'q.
+settings.json da `ui_repo` bo'sh bo'lsa — panel shu repo'ning o'zidan chiqadi
+(.github/workflows/pages.yml), ui/index.html push qilinsa o'zi yangilanadi.
 """
 import base64
 import json
@@ -25,7 +26,9 @@ def main() -> int:
     settings = json.loads((ROOT / "settings.json").read_text(encoding="utf-8"))
     ui_repo = settings.get("ui_repo")
     if not ui_repo:
-        raise SystemExit("settings.json da ui_repo yo'q (masalan NShakhobiddin/pochtachi-panel)")
+        print("Panel shu repo'dan GitHub Actions (pages.yml) orqali chiqadi — ui/index.html ni push qilish kifoya: "
+              + (settings.get("panel_url") or ""))
+        return 0
     data_repo = gh("repo", "view", "--json", "nameWithOwner", "-q", ".nameWithOwner").stdout.strip()
 
     html = (ROOT / "ui" / "index.html").read_text(encoding="utf-8").replace("__DATA_REPO__", data_repo)

@@ -8,7 +8,7 @@ Bu repo **@Pochtam_shopo** Telegram kanalining kontent tizimi. Muallif — Shakh
 Claude Code ──git push──▶ repo «TGKanal» (postlar, rasmlar, settings.json)
                               ▲  ▲                     │ GitHub Actions: har 30 daqiqada
      panel (brauzer) ─GitHub API─┘  └─ bot: commit      ▼ tools/publish.py ──▶ Telegram kanal
-     https://<login>.github.io/pochtachi-panel/  ◀── ochiq repo «pochtachi-panel» (faqat index.html)
+     https://nshakhobiddin.github.io/TGKanal/  ◀── GitHub Pages (pages.yml: faqat ui/index.html)
 ```
 
 ## Tuzilma
@@ -18,11 +18,12 @@ Claude Code ──git push──▶ repo «TGKanal» (postlar, rasmlar, settings
 | `images/` | Panelda yuklangan rasmlar (JPEG'ga siqiladi) |
 | `settings.json` | `channel_id`, `admin_username`, `admin_id` (bot o'zi topadi), `app_url`, `consult_url`, `late_grace_hours`, `ui_repo`, `panel_url`. **Maxfiy narsa yo'q** |
 | `state/` | Bot natijalari: `health.json`, `last_test.json`, `reminder.json` |
-| `ui/index.html` | Panel sahifasi. O'zgarsa → `python tools/sync_ui.py` (ochiq repo'ga yuboradi) |
+| `ui/index.html` | Panel sahifasi. Push qilinsa `.github/workflows/pages.yml` uni GitHub Pages'ga o'zi joylaydi |
 | `tools/publish.py` | Telegram'ga joylovchi (Actions ichida; faqat standart kutubxona) |
 | `tools/check_posts.py` | Post fayllarini tekshirish |
 | `tools/build_week_*.py` | Haftalik postlar generatori (raqamlar skriptda hisoblanadi) |
 | `.github/workflows/publish.yml` | Jadval (`5,35 3-18 * * *` UTC = Toshkent 08:05–23:35) + paneldan chaqiriladigan `test` / `health` |
+| `.github/workflows/pages.yml` | Panelni GitHub Pages'ga joylaydi (`ui/**` o'zgarganda) |
 | `.github/workflows/check.yml` | Claude Code yuborgan postlarni tekshiradi (`panel:` / `bot:` commitlari o'tkazib yuboriladi) |
 | `BRIEF.md` | **Kontent qoidalari** — rubrikalar, jadval, uslub, tekshirilgan bojxona faktlari. Post yozishdan oldin albatta o'qing |
 

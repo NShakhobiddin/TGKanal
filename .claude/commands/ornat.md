@@ -4,7 +4,7 @@ description: Birinchi marta o'rnatish — GitHub repo, bot tokeni, onlayn panel 
 
 Pochtachi tizimini GitHub'da ishga tushir. Server ham, domen ham kerak emas:
 - **repo `NShakhobiddin/TGKanal`** (allaqachon bor, ochiq) — postlar, rasmlar, sozlamalar; GitHub Actions jadval bo'yicha Telegram'ga joylaydi
-- **ochiq repo `pochtachi-panel`** — faqat panel sahifasi (GitHub Pages): `https://<login>.github.io/pochtachi-panel/`
+- **panel** — shu repo'dan GitHub Pages (`.github/workflows/pages.yml`): `https://nshakhobiddin.github.io/TGKanal/`
 
 Muallif bilan o'zbekcha, qisqa gaplash. Har bosqich oxirida bir qatorda nima qilinganini ayt. Muallif o'zi bajarishi kerak bo'lgan ish bo'lsa (brauzerda kirish, token yaratish) — aniq qadamni ber va kut. **Bot tokeni yoki GitHub tokenini hech qachon ekranga chiqarma va chatda so'rama.**
 
@@ -16,7 +16,7 @@ Tekshir: `git --version`, `gh --version`, `gh auth status`.
 Hammasi tayyor bo'lmaguncha davom etma.
 
 ## 1. Login va sozlamalar
-`LOGIN=$(gh api user -q .login)`. `settings.json` dagi `ui_repo` ni `<LOGIN>/pochtachi-panel`, `panel_url` ni `https://<login kichik harfda>.github.io/pochtachi-panel/` ga moslab qo'y.
+`LOGIN=$(gh api user -q .login)`. `settings.json` da `ui_repo` bo'sh, `panel_url` = `https://<login kichik harfda>.github.io/TGKanal/` bo'lsin.
 
 ## 2. Eski paneldan ma'lumot (bo'lsa)
 `..\panel\data\posts` yoki `..\pochtachi-panel\data\posts` mavjud bo'lsa, ulardagi postlarni `posts/` dagilar bilan solishtir: holati `draft` dan farq qiladigan (tasdiqlangan, joylangan) yoki `image` maydoni bor postlarni ko'chir, rasmlarini `..\<papka>\data\images\` dan `images/` ga nusxala. `admin_id` (`data/runtime.json` yoki `config.json` da) bo'lsa — `settings.json` ga yoz. Nimani ko'chirganingni sanab ber.
@@ -33,13 +33,12 @@ python -c "import json;print(json.load(open(r'..\panel\config.json',encoding='ut
 ```
 Hech qaysi faylda bo'lmasa — muallif o'zi terminalda `gh secret set TELEGRAM_BOT_TOKEN` ni ishga tushirib tokenni kiritsin (ekranda ko'rinmaydi).
 
-## 5. Ochiq panel repo va GitHub Pages
-1. `gh repo view <LOGIN>/pochtachi-panel --json visibility,isEmpty` — repo bor va **yopiq** bo'lsa yoki ichida eski fayllar (`app.py` va h.k.) bo'lsa, to'xta va muallifdan so'ra: o'chirib qayta yaratish yoki boshqa nom (`pochtachi-ui`) tanlash. Nomni o'zgartirsang `settings.json` ni ham yangila.
-2. Yo'q bo'lsa: `gh repo create pochtachi-panel --public --description "Pochtachi kontent paneli — faqat sahifa, ma'lumotlar yo'q"`.
-3. `python tools/sync_ui.py` — sahifani yuboradi.
-4. Pages: `gh api -X POST repos/<LOGIN>/pochtachi-panel/pages -f "source[branch]=main" -f "source[path]=/"` (409 «already enabled» — joyida).
-5. 1–2 daqiqadan keyin `curl -s -o /dev/null -w "%{http_code}" <panel_url>` → `200`.
-6. `settings.json` o'zgargan bo'lsa — commit («sozlamalar») va push.
+## 5. Panel — GitHub Pages (shu repo'dan)
+Alohida panel repo kerak emas: TGKanal ochiq, panelni `.github/workflows/pages.yml` shu repo'dan joylaydi (faqat `ui/index.html`).
+1. Pages manbasi: `gh api repos/<LOGIN>/TGKanal/pages -q .build_type` → `workflow` bo'lishi kerak. Pages yoqilmagan bo'lsa: `gh api -X POST repos/<LOGIN>/TGKanal/pages -f build_type=workflow`; boshqa manbada bo'lsa: `gh api -X PUT repos/<LOGIN>/TGKanal/pages -f build_type=workflow`. (Yoki muallif brauzerda: Settings → Pages → Source: **GitHub Actions**.)
+2. `gh workflow run pages.yml`, keyin `gh run watch --exit-status $(gh run list --workflow pages.yml -L 1 --json databaseId -q '.[0].databaseId')`.
+3. `curl -s -o /dev/null -w "%{http_code}" <panel_url>` → `200`.
+4. `settings.json` o'zgargan bo'lsa — commit («sozlamalar») va push.
 
 ## 6. Telegram ulanishini tekshirish
 1. Muallifga ayt: Telegram'da botga `/start` yozsin (sinov xabarlari sizga kelishi uchun) va bot kanalda admin, «Post joylash» huquqi bilan bo'lsin.

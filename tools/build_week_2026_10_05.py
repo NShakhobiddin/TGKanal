@@ -520,38 +520,41 @@ Misol: kuryer orqali <b>700 $</b> lik noutbuk, og'irligi 2,5 kg. Shu oyda boshqa
           "5-QADAM LEX.UZ DA TASDIQLANMADI (lex.uz Claude muhitidan ochilmadi): 1 ta BKO uchun yig'im — BHM ning 25 % (muallif so'rovi, stavka qidiruv natijalaridan) "
           "va BHM 440 000 so'm — yangilik saytlaridan. Tasdiqlashdan oldin VM 55-son qarorida tekshiring.")
 
-_dy_ship = ship(0.8)
-_dy_duty = round((499 - LIMIT) * DUTY, 2)
-_dy_duty27 = round((499 - LIMIT) * 0.20, 2)
-add("2026-10-09-1400", rubric="#topilma", title="Tish cho'tkasida kamera (Dyson CameraJet)",
-    caption=f"""🔍 <b>Tish cho'tkasi ichida kamera bor. Jiddiy.</b>
+# #topilma — Uni Kuru Toga Dive (unibrands.co, AQSh rasmiy do'koni, $99.99)
+_kt_price = 99.99
+_kt_ship = ship(0.2)
+_kt_local = 3.0
+add("2026-10-09-1400", rubric="#topilma", title="O'zi yozadigan qalam (Kuru Toga Dive)",
+    caption=f"""✏️ <b>Bu qalamni hech qachon bosmaysiz</b>
 
-Dyson yangi <b>CameraJet</b> ni taqdim etdi: tish cho'tkasiga mitti makrokamera o'rnatilgan. U sekundiga 28 ta surat oladi, sun'iy intellekt tishlar orasidagi bo'shliqni topadi va aynan o'sha joyga og'iz chayish suyuqligini ingichka oqim bilan yuboradi. Tasvir telefondagi ilovaga uzatiladi, suratlar saqlanmaydi.
+Yaponiyaning Uni kompaniyasi <b>Kuru Toga Dive</b> mexanik qalamini chiqargan. Qopqog'ini ochishingiz bilan grifel o'zi chiqadi. Yozayotganda u o'zi uzayadi va har chiziqda biroz aylanib, uchi doim o'tkir qoladi. Grifel qancha chiqishini 5 pog'onada sozlaysiz.
 
-💵 E'lon qilingan narxi: <b>$499</b>
+💡 <b>Nega qiziq:</b> batareya ham, elektronika ham yo'q — hammasi mexanika. Qopqoq magnit bilan «chiq» etib yopiladi.
 
-📦 <b>Toshkentgacha qancha</b>
-• Tovar — $499
-• AQShdan yetkazish — ~{money(round(_dy_ship))}
-• Yagona bojxona to'lovi — (499 − 200) × 30 % = <b>{money(_dy_duty)}</b>
-• <b>Jami ≈ {fmt(som(499 + _dy_ship + _dy_duty))} so'm</b>
+🛒 <a href="https://www.unibrands.co/products/kuru-toga-dive">Uni rasmiy do'koni (AQSh)</a> — <b>{money(_kt_price)}</b>
 
-✅ <b>Olib kirish mumkinmi?</b> Ha — taqiqlangan va ruxsatnoma talab qilinadigan ro'yxatlarda yo'q. Faqat normadan ortiq qism uchun to'lanadi.
+📦 <b>Toshkentgacha</b>
+• Tovar — {money(_kt_price)}
+• AQShdan yetkazish — ~{money(_kt_ship)}
+• Toshkent bo'ylab — ~$3
+• <b>Jami ≈ {fmt(som(_kt_price + _kt_ship + _kt_local))} so'm</b>
 
-⏳ 2027-yil yanvaridan stavka 20 %: to'lov {money(_dy_duty27)}, ya'ni ≈ {fmt(som(_dy_duty - _dy_duty27))} so'm arzon.
+✅ <b>Olib kira olasizmi?</b> Ha. Batareyasiz oddiy kantselyariya, cheklangan ro'yxatlarda yo'q. Narxi kuryer normasidan (oyiga 200 $) kam — boj yo'q. Pochta orqali norma 100 $: qalam sig'adi, lekin shu oyda boshqa posilka bo'lmasin.
 
-Sizningcha, tish cho'tkasiga kamera kerakmi? 👇
+Siz shunday qalam bilan yozarmidingiz? 👇
 
-📄 Asos: PF-174, 27.08.2026; PQ-4508, 3-band — lex.uz
+📄 Asos: VM 244-son, 19.04.2025 — lex.uz
 """ + FOOT + "#topilma",
-    prompt=cover_prompt("#topilma", "Tish cho'tkasida kamera",
-        "a sleek futuristic electric toothbrush in matte silver and indigo standing upright, with a tiny glowing camera lens near the brush head and a thin sparkling water jet; a small smartphone beside it shows an abstract close-up view.",
+    prompt=cover_prompt("#topilma", "Bu qalamni hech qachon bosmaysiz",
+        "a sleek glossy deep-blue premium mechanical pencil lying diagonally with its magnetic cap removed beside it; a fine graphite tip writes a thin elegant line on a sheet of paper, with a few subtle motion arcs showing the lead slowly rotating.",
         sub="Bunday narsa borligini bilarmidingiz?", accent="aqua (#22D3EE)"),
-    sources=[{"label": "Stuff.tv — best and weirdest gadgets, 04.09.2026",
-              "url": "https://www.stuff.tv/features/11-of-the-best-and-weirdest-new-gadgets-weve-seen-this-month-including-a-toothbrush-and-dartboard-packed-with-cameras/"},
-             {"label": "Yanko Design — best gadgets of September 2026", "url": "https://www.yankodesign.com/2026/09/03/the-8-best-gadgets-of-september-2026/"},
-             LEX_PF174, LEX_PQ4508, SPOT_RATE],
-    notes="Sotuv sanasi aniq e'lon qilinmagan. Rasmda brend logotipi so'ralmagan — umumiy cho'tka chiziladi.")
+    product_url="https://www.unibrands.co/products/kuru-toga-dive",
+    sources=[{"label": "Uni (unibrands.co) — KURU TOGA DIVE, $99.99", "url": "https://www.unibrands.co/products/kuru-toga-dive"},
+             {"label": "JetPens — Uni Kuru Toga Dive", "url": "https://www.jetpens.com/Uni-Kuru-Toga-Dive-Mechanical-Pencils/ct/6971"},
+             LEX_VM244, SPOT_COURIER, SPOT_RATE],
+    notes="TASDIQLASHDAN OLDIN: unibrands.co sahifasini oching — narx ($99.99) va rang (Abyss Blue, Aurora Purple) Claude muhitidan ochilmadi, qidiruv natijalaridan olingan. "
+          "Do'kon AQSh ichiga yetkazadi — ekspeditor manzili kerak. Og'irlik qadoq bilan taxminan 0,2 kg. "
+          "RASM: ChatGPT'ga do'kon sahifasidagi qalam suratini biriktiring.")
 
 posts.append(deal("2026-10-09-2000", title="🏆 Braun Series 9 PRO+ (boj bilan ham foydali)", emoji="🏆",
     headline="Haftaning eng yaxshi chegirmasi: Braun Series 9 PRO+",

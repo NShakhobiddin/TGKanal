@@ -115,7 +115,8 @@ Tovar topish manbalari: Yanko Design, Stuff.tv, TechRadar, Tom's Guide, Dezeen, 
 - Kuryerlik jo'natmalari: oyiga **200 $** gacha bojsiz (avval choragiga 1000 $ edi)
 - Norma **kalendar oy** bo'yicha hisoblanadi, bitta jo'natmaga emas — oydagi barcha jo'natmalar jamlanadi
 - Oy **rasmiylashtirilgan sana** bo'yicha belgilanadi (buyurtma yoki kelish sanasi emas) — muallif tasdiqlagan
-- **Yetkazish narxi bojxona qiymatiga kirmaydi** — norma va boj faqat tovar narxi bo'yicha hisoblanadi — muallif tasdiqlagan
+- **Bojxona qiymati = tovar narxi + yetkazish (yo'l) harajati** — norma ham, boj ham shu summadan hisoblanadi — muallif tasdiqlagan (05.10.2026). Masalan, $182.77 lik kiyim + $28.50 yetkazish = $211.27 → normadan oshadi
+- **Boj hisobi (kanal usuli):** normadan ortig'i × 30 %, lekin posilkaning 1 kg i uchun kamida 3 $ (`duty_usd()` generatorda). Boj to'lansa — **1 ta BKO (bojxona kirim orderi) uchun yig'im: BHM ning 25 %** = 110 000 so'm (VM 55-son, 31.01.2025; BHM 440 000 so'm, 01.09.2026 dan) — lex.uz da qayta tekshirilmagan, muallif so'rovi bilan qo'shildi
 - **Alkogol va tamaki pochta/kuryer orqali TAQIQLANGAN** (VM 244, 1-ilova «a» izohi, VM 154-son 09.04.2026 tahriri). Miqdoriy normalar (alkogol 2 l, sigaret 200 dona) faqat yo'lovchi bagaji uchun.
 - BAD: 10 xil nomgacha, jami 3 kg, **har nomdan 1 qadoq** (VM 244, 1-ilova)
 - Dori vositalari: 10 xil nomgacha, har biridan 5 qadoqgacha (VM 191-son, 08.06.2016, Nizom 5-band)

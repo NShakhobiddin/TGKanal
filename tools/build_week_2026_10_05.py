@@ -40,6 +40,29 @@ def money(x: float) -> str:
     return "$" + s
 
 
+BHM = 440000               # 01.09.2026 dan
+BKO_FEE = round(BHM * 0.25)  # 1 ta BKO uchun yig'im (VM 55-son, 31.01.2025)
+
+
+def uzn(x, dec=2):
+    """O'zbekcha son: 1 009; 302,70"""
+    s = f"{x:,.{dec}f}".replace(",", " ").replace(".", ",")
+    return s[:-3] if dec and s.endswith(",00") else s
+
+
+def r2(x: float) -> float:
+    """Pul yaxlitlash: 157,125 → 157,13 (yarimdan yuqoriga)."""
+    return math.floor(x * 100 + 0.5 + 1e-9) / 100
+
+
+def duty_usd(value: float, kg: float) -> float:
+    """Yagona bojxona to'lovi. value — bojxona qiymati (tovar + yetkazish), kg — posilka og'irligi.
+    Normadan ortig'ining 30 % i, lekin 1 kg uchun kamida 3 $ (#boj postidagi usul)."""
+    if value <= LIMIT:
+        return 0.0
+    return r2(max((value - LIMIT) * DUTY, kg * 3))
+
+
 def ship(weight_kg: float) -> float:
     """Kichik posilka: taxminan 1 kg tarifi; kattasi — og'irlik × tarif."""
     return round(max(1.0, math.ceil(weight_kg * 2) / 2) * SHIP_PER_KG, 2)
@@ -118,15 +141,16 @@ Soft even studio lighting, realistic fabric texture, muted palette ({palette}). 
 def deal(pid, title, emoji, headline, hook, store, country, pnew, pold, weight, uz_store, uz_price, uz_note,
          url, note_lines, card_title, notes, sources, badge="CHEGIRMA", honest=False, mid_line=None):
     sh = ship(weight)
-    duty = round(max(0.0, pnew - LIMIT) * DUTY, 2)
+    # Bojxona qiymati = tovar + yetkazish (yo'l harajati) — muallif tasdiqladi, 05.10.2026
+    duty = r2(max(0.0, pnew + sh - LIMIT) * DUTY)
     total_usd = pnew + sh + duty
     total = som(total_usd)
     save = int(round((uz_price - total) / 1000.0)) * 1000
     pct = round(save / uz_price * 100)
     disc = round((pold - pnew) / pold * 100)
 
-    duty_line = (f"• Bojxona — <b>0 so'm</b> (200 $ normadan past)" if duty == 0
-                 else f"• Yagona bojxona to'lovi — ({money(pnew)} − 200) × 30 % = <b>{money(duty)}</b>")
+    duty_line = (f"• Bojxona — <b>0 so'm</b> (tovar + yetkazish 200 $ normadan past)" if duty == 0
+                 else f"• Yagona bojxona to'lovi — ({money(pnew)} + {money(sh)} − 200) × 30 % = <b>{money(duty)}</b>")
     w_txt = f"~{str(weight).replace('.', ',')} kg"
     ship_txt = f"~{money(round(sh))}" + (f" ({w_txt})" if weight >= 1 else "")
 
@@ -360,12 +384,15 @@ add("2026-10-07-1400", rubric="#obraz", title="Ayollar: kuzgi ofis obrazi",
 4️⃣ Poshnali botilon — <b>$49.99</b>
 5️⃣ To'rtburchak sumka — <b>$24.99</b>
 
-🛒 <b>Tovarlar: $173.95</b> — 200 $ normaga sig'adi, boj yo'q (yetkazish haqi hisobga kirmaydi)
+🛒 <b>Tovarlar: $173.95</b> + yetkazish $34.20 = bojxona qiymati <b>$208.15</b> — normadan $8.15 oshadi
 
 📦 <b>Toshkentgacha</b>
 • Yetkazish — ~$34 (≈3,6 kg)
+• Boj — """ + money(duty_usd(208.15, 3.6)) + """ (kamida 3 $/kg) + BKO yig'imi """ + fmt(BKO_FEE) + """ so'm
 • Toshkent bo'ylab — ~$3
-• <b>Jami ≈ """ + fmt(som(173.95 + 34.20 + 3)) + """ so'm</b>
+• <b>Jami ≈ """ + fmt(som(173.95 + 34.20 + duty_usd(208.15, 3.6) + 3) + BKO_FEE) + """ so'm</b>
+
+✂️ Sumkani keyingi oyda oling: qiymat ≈ $179 bo'ladi — boj ham, yig'im ham yo'q.
 
 💡 H&amp;M AQSh sayti faqat AQSh ichiga yetkazadi — ekspeditorning AQShdagi manzilidan foydalaning. Ombor savdo solig'i yo'q shtatda (masalan, Delaver) bo'lsa, narxga soliq qo'shilmaydi.
 
@@ -388,7 +415,8 @@ add("2026-10-07-1400", rubric="#obraz", title="Ayollar: kuzgi ofis obrazi",
              {"label": "H&M US — shipping (faqat AQSh)", "url": "https://www2.hm.com/en_us/customer-service/shipping-and-delivery.html"},
              SPOT_COURIER],
     notes="Og'irliklar taxminiy (jami ≈3,6 kg), yetkazish 9,50 $/kg. Narx rang va o'lchamga qarab o'zgarishi mumkin. "
-          "Hisob: 173.95 + 34.20 + 3 = 211.15 $.")
+          "Bojxona qiymati = tovar + yetkazish = 208.15 $ (muallif qoidasi, 05.10.2026). Boj: (208.15 − 200) × 30 % = 2.45 $ < 3,6 kg × 3 $ = 10.80 $ → 10.80 $. "
+          "BKO yig'imi 110 000 so'm. Sumkasiz: 148.96 $ + ~3,2 kg × 9,50 = 30.40 $ → 179.36 $ (norma ichida).")
 
 posts.append(deal("2026-10-07-2000", title="LEGO 31134 — 4 ta to'plam", emoji="🚀",
     headline="LEGO kosmik shattl — 4 ta to'plam $26", hook="LEGO Creator 31134 (3 tasi 1 da) 4 talik to'plamda:",
@@ -484,23 +512,27 @@ posts.append(deal("2026-10-08-2000", title="Belkin Qi2 25W zaryadlovchi", emoji=
              SPOT_RATE]))
 
 # ============ JUMA 9-oktabr ============
-# Bojxona yig'imi: 1 ta BKO (bojxona kirim orderi) uchun BHM ning 25 % i (VM 55-son, 31.01.2025); BHM 01.09.2026 dan 440 000 so'm
-BHM = 440000
-_boj_fee = round(BHM * 0.25)
+_boj_fee = BKO_FEE
+_lp_price, _lp_kg = 700.0, 2.5
+_lp_ship = ship(_lp_kg)                         # yo'l harajati
+_lp_value = round(_lp_price + _lp_ship, 2)
+_lp_over = round(_lp_value - LIMIT, 2)
+_lp_duty = r2(_lp_over * DUTY)
+_lp_duty27 = r2(_lp_over * 0.20)
 add("2026-10-09-0900", rubric="#boj", title="Boj qanday hisoblanadi — 5 qadam",
     caption="""🧮 <b>Boj qanday hisoblanadi: 5 qadam</b>
 
-Misol: kuryer orqali <b>700 $</b> lik noutbuk, og'irligi 2,5 kg. Shu oyda boshqa posilka yo'q. Yetkazish narxi hisobga kirmaydi — faqat tovar narxi olinadi.
+Misol: kuryer orqali <b>700 $</b> lik noutbuk, og'irligi 2,5 kg, yo'l harajati """ + uzn(_lp_ship) + """ $. Shu oyda boshqa posilka yo'q.
 
-1️⃣ <b>Normani ayiring.</b> Kuryer uchun oylik norma — 200 $. Ortiqcha qism: 700 − 200 = <b>500 $</b>
-2️⃣ <b>Foizni qo'llang.</b> Yagona bojxona to'lovi — 30 %: 500 × 30 % = <b>150 $</b>
-3️⃣ <b>Minimalni tekshiring.</b> 1 kg uchun kamida 3 $: 2,5 × 3 = 7,5 $. Foiz bo'yicha summa katta — <b>150 $</b> to'lanadi
-4️⃣ <b>So'mga o'giring:</b> 150 × """ + f"{RATE:,.2f}".replace(",", " ").replace(".", ",") + """ ≈ <b>""" + fmt(som(150)) + """ so'm</b>
+1️⃣ <b>Bojxona qiymati</b> (tovar + yo'l): 700 + """ + uzn(_lp_ship) + """ = <b>""" + uzn(_lp_value) + """ $</b>. Normani ayiring: − 200 = <b>""" + uzn(_lp_over) + """ $</b>
+2️⃣ <b>Foizni qo'llang.</b> Yagona bojxona to'lovi — 30 %: """ + uzn(_lp_over) + """ × 30 % = <b>""" + uzn(_lp_duty) + """ $</b>
+3️⃣ <b>Minimalni tekshiring.</b> 1 kg uchun kamida 3 $: 2,5 × 3 = 7,5 $. Foiz bo'yicha summa katta — <b>""" + uzn(_lp_duty) + """ $</b> to'lanadi
+4️⃣ <b>So'mga o'giring:</b> """ + uzn(_lp_duty) + """ × """ + uzn(RATE) + """ = <b>""" + fmt(round(_lp_duty * RATE)) + """ so'm</b>
 5️⃣ <b>Yig'imni qo'shing.</b> 1 ta BKO (bojxona kirim orderi) uchun — BHM ning 25 %: """ + fmt(BHM) + """ × 25 % = <b>""" + fmt(_boj_fee) + """ so'm</b>
 
-💰 <b>Jami: ≈ """ + fmt(som(150) + _boj_fee) + """ so'm</b>
+💰 <b>Jami: """ + fmt(round(_lp_duty * RATE) + _boj_fee) + """ so'm</b>
 
-📅 2027-yil 1-yanvardan stavka 20 %: 500 × 20 % = <b>100 $</b> — 50 $ tejaladi.
+📅 2027-yil 1-yanvardan stavka 20 %: """ + uzn(_lp_over) + """ × 20 % = <b>""" + uzn(_lp_duty27) + """ $</b> — """ + uzn(round(_lp_duty - _lp_duty27, 2)) + """ $ tejaladi.
 
 ⚠️ Hisob taxminiy: yakuniy summani bojxona organi tovarning bojxona qiymati asosida belgilaydi.
 
@@ -516,7 +548,7 @@ Misol: kuryer orqali <b>700 $</b> lik noutbuk, og'irligi 2,5 kg. Shu oyda boshqa
              {"label": "Bojxona yig'imlari stavkalari — gazeta.uz, 03.02.2025 (yangilik)", "url": "https://www.gazeta.uz/oz/2025/02/03/customs-duties/"},
              {"label": "BHM 440 000 so'm, 01.09.2026 dan — gazeta.uz, 23.06.2026 (yangilik)", "url": "https://www.gazeta.uz/oz/2026/06/23/ish-haqi-nafaqalar/"},
              SPOT_RATE],
-    notes="Yetkazish narxi bojxona qiymatiga kirmaydi — hisob tovar narxi bo'yicha (muallif tasdiqladi). "
+    notes="Bojxona qiymati = tovar + yetkazish (yo'l harajati) — muallif tasdiqladi, 05.10.2026. Yo'l: 2,5 kg × 9,50 $ = 23,75 $. "
           "5-QADAM LEX.UZ DA TASDIQLANMADI (lex.uz Claude muhitidan ochilmadi): 1 ta BKO uchun yig'im — BHM ning 25 % (muallif so'rovi, stavka qidiruv natijalaridan) "
           "va BHM 440 000 so'm — yangilik saytlaridan. Tasdiqlashdan oldin VM 55-son qarorida tekshiring.")
 
@@ -573,10 +605,6 @@ posts.append(deal("2026-10-09-2000", title="🏆 Braun Series 9 PRO+ (boj bilan 
 
 # ============ SHANBA 10-oktabr ============
 # #savol — iPhone 17 Pro Max 256 GB, aniq hisob (muallif so'rovi: bojxona qiymatiga 10 $ yo'l harajati + 1 BKO yig'imi)
-def uzn(x, dec=2):
-    """O'zbekcha son: 1 009; 302,70"""
-    s = f"{x:,.{dec}f}".replace(",", " ").replace(".", ",")
-    return s[:-3] if dec and s.endswith(",00") else s
 IP_PRICE = 1199.00          # Apple AQSh, 256 GB, savdo solig'isiz
 IP_ROAD = 10.00             # yo'l harajati — bojxona qiymatiga qo'shiladi
 IP_KG = 0.5                 # qadoq bilan, taxminan
@@ -646,6 +674,11 @@ om_full = round(sum(x[4] or x[3] for x in OUTFIT_MEN), 2)
 om_kg = round(sum(x[6] for x in OUTFIT_MEN), 2)
 om_ship = ship(om_kg)
 om_local = 3.0
+om_value = round(om_total + om_ship, 2)        # bojxona qiymati = tovar + yetkazish
+om_duty = duty_usd(om_value, om_kg)
+om_fee = BKO_FEE if om_duty else 0
+om_cut = OUTFIT_MEN[4]                         # norma uchun keyingi oyga qoldiriladigan element (shapka)
+om_value_cut = round(om_total - om_cut[3] + ship(om_kg - om_cut[6]), 2)
 NUM = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"]
 add("2026-10-10-1400", rubric="#obraz", title="Erkaklar: sovuq kunlar obrazi",
     caption="""🧥 <b>Tayyor obraz: sovuq kunlar uchun</b>
@@ -654,14 +687,14 @@ add("2026-10-10-1400", rubric="#obraz", title="Erkaklar: sovuq kunlar obrazi",
 """ + "\n".join(f'{NUM[i]} <a href="{x[5]}">{x[0].replace("&", "&amp;")} — {x[1]}</a>, {x[2]} — <b>{usd(x[3])}</b>'
                  + (f" <s>{usd(x[4])}</s>" if x[4] else "") for i, x in enumerate(OUTFIT_MEN)) + """
 
-🛒 <b>Tovarlar: """ + usd(om_total) + """</b> (aksiyasiz """ + usd(om_full) + """) — 200 $ normaga sig'adi, boj yo'q
+🛒 <b>Tovarlar: """ + usd(om_total) + """</b> (aksiyasiz """ + usd(om_full) + """) + yetkazish """ + usd(om_ship) + """ = bojxona qiymati <b>""" + usd(om_value) + """</b>
 
 📦 <b>Toshkentgacha</b>
 • Yetkazish — ~""" + usd(om_ship) + """ (≈""" + f"{om_kg:.1f}".replace(".", ",") + """ kg)
-• Toshkent bo'ylab — ~$3
-• <b>Jami ≈ """ + fmt(som(om_total + om_ship + om_local)) + """ so'm</b>
-
-⚠️ Aksiya tugasa summa normadan oshishi mumkin — to'lashdan oldin savatni tekshiring.
+""" + (("• Boj — " + usd(om_duty) + " (kamida 3 $/kg) + BKO yig'imi " + fmt(om_fee) + " so'm\n") if om_duty else "• Boj — yo'q (norma ichida)\n") + """• Toshkent bo'ylab — ~$3
+• <b>Jami ≈ """ + fmt(som(om_total + om_ship + om_duty + om_local) + om_fee) + """ so'm</b>
+""" + ((f"\n✂️ Shapkani keyingi oyda oling: qiymat {usd(om_value_cut)} bo'ladi — boj ham, yig'im ham yo'q.\n") if om_duty else "") + """
+⚠️ Aksiya tugasa summa oshadi — to'lashdan oldin savatni tekshiring.
 
 💡 Ikkala do'kon ham faqat AQSh ichiga yetkazadi — ekspeditorning AQShdagi manzilidan foydalaning.
 
@@ -676,7 +709,8 @@ add("2026-10-10-1400", rubric="#obraz", title="Erkaklar: sovuq kunlar obrazi",
           "(Uniqlo va H&M saytlari Claude muhitidan ochilmadi, narxlar qidiruv natijalaridan olingan). "
           "Shapka narxi ($14.90) va kurtkaning zaytun rangi AQSh saytida tasdiqlanmagan. Sviter va etik — aksiya narxida. "
           "RASM: ChatGPT'ga 5 ta tovar suratini (do'kon sahifasidan) ham biriktiring — kiyimlar aynan o'xshash chiqadi. "
-          f"Og'irliklar taxminiy (jami ≈{om_kg} kg). Hisob: {om_total} + {om_ship} + {om_local} = {round(om_total + om_ship + om_local, 2)} $.")
+          f"Og'irliklar taxminiy (jami ≈{om_kg} kg). Bojxona qiymati = tovar + yetkazish = {om_value} $. Boj = max(30 % × ortig'i, 3 $ × {om_kg} kg) = {om_duty} $, BKO yig'imi {om_fee} so'm. "
+          f"Shapkasiz: {om_value_cut} $.")
 
 posts.append(deal("2026-10-10-2000", title="AirTag 2 — 4 talik to'plam", emoji="📍",
     headline="AirTag 2 to'rt talik to'plam — $89", hook="Kalit, sumka va chamadon uchun yangi avlod AirTag:",
@@ -772,9 +806,16 @@ for p in posts:
     target = OUT / f"{p['id']}.json"
     if REWORK and p["id"] not in REWORK:
         continue
-    if REWORK and target.exists() and json.loads(target.read_text(encoding="utf-8")).get("status") not in ("draft", "needs_input"):
-        print(f"{p['id']}  tasdiqlangan/joylangan — qayta yozilmadi")
-        continue
+    if REWORK and target.exists():
+        cur = json.loads(target.read_text(encoding="utf-8"))
+        allowed = ("draft", "needs_input") + (("approved",) if "--allow-approved" in sys.argv else ())
+        if cur.get("status") not in allowed:
+            print(f"{p['id']}  {cur.get('status')} — qayta yozilmadi")
+            continue
+        # Panel maydonlari saqlanadi: holat, rasm va h.k. (faqat matn, prompt, manbalar yangilanadi)
+        for k in ("status", "image", "message_id", "published_at", "published_by", "error", "publish_now"):
+            if k in cur:
+                p[k] = cur[k]
     if target.exists() and "--force" not in sys.argv and not REWORK:
         print(f"{p['id']}  mavjud — tegilmadi (panelda tasdiqlangan bo'lishi mumkin)")
         continue

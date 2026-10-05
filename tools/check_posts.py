@@ -60,8 +60,8 @@ def main(folder: str) -> int:
         for target in re.findall(r"\{\{LINK:([A-Za-z0-9_\-]+)\}\}", cap):
             if target not in ids:
                 warns.append(f"{f.name}: havola mavjud bo'lmagan postga — {target}")
-        if "@Pochtachi_shopo" not in cap:
-            warns.append(f"{f.name}: oxirida @Pochtachi_shopo yo'q")
+        if "@Pochtam_shopo" not in cap:
+            warns.append(f"{f.name}: oxirida @Pochtam_shopo yo'q")
         opened = re.findall(r"<(b|i|u|s|code|a)\b", cap)
         closed = re.findall(r"</(b|i|u|s|code|a)>", cap)
         if sorted(opened) != sorted(closed):

@@ -1,6 +1,6 @@
 # Pochtachi
 
-@Pochtachi_shopo kanali uchun kontent tizimi. **Server va domen kerak emas** — hammasi bepul GitHub'da ishlaydi:
+@Pochtam_shopo kanali uchun kontent tizimi. **Server va domen kerak emas** — hammasi bepul GitHub'da ishlaydi:
 
 - **Panel** — `https://<login>.github.io/pochtachi-panel/`: postlar Telegramdagidek ko'rinadi, rasm prompti, rasm yuklash, tasdiqlash. Telefonda ham ochiladi.
 - **Jadval** — GitHub Actions har 30 daqiqada tasdiqlangan postlarni kanalga joylaydi (Toshkent 08:05–23:35).
@@ -42,7 +42,7 @@ Har kuni ertalab bot sizga shu kuni tayyor bo'lmagan postlar ro'yxatini yuboradi
 ## Sozlamalar — `settings.json`
 | Kalit | Nima |
 |---|---|
-| `channel_id` | `@Pochtachi_shopo` |
+| `channel_id` | `@Pochtam_shopo` |
 | `admin_username` | `ShNormamatov` — ID'ni avtomatik topish uchun (botga `/start` yozing) |
 | `admin_id` | Bot o'zi yozadi |
 | `app_url` | Ilova havolasi; bo'sh bo'lsa «ilovada hisoblang» qatori yashiriladi |

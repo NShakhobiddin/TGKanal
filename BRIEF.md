@@ -3,7 +3,7 @@
 Bu hujjat har kuni ishga tushadigan avtomatik seanslar uchun. Post tayyorlashdan oldin shuni o'qing.
 
 ## Kanal haqida
-- Nomi: **Pochtachi** — @Pochtachi_shopo
+- Nomi: **Pochtachi** — @Pochtam_shopo
 - Auditoriya: chet el internet do'konlaridan buyurtma qiladigan o'zbekistonliklar (yangi boshlovchi ham, tajribali xaridor ham)
 - Muallif: Shakhobiddin — 6 yil bojxona postida xalqaro jo'natmalar bo'yicha ishlagan mutaxassis. Kanal uning ekspertligiga tayanadi, shuning uchun **noaniq ma'lumot berish mumkin emas**.
 - Kanalning maqsadi: obunachini Telegram WebApp'ga (ilova) va murakkab holatlarda pullik maslahatga olib borish.
@@ -83,7 +83,7 @@ Tovar topish manbalari: Yanko Design, Stuff.tv, TechRadar, Tom's Guide, Dezeen, 
 ## Uslub
 - O'zbek lotin, do'stona, emoji bilan (lekin ortiqcha emas)
 - Qisqa xatboshilar, Telegram HTML teglari: `<b>`, `<i>`, `<u>`, `<s>`, `<code>`, `<a href="">`
-- Post oxirida: `➖➖➖` va `@Pochtachi_shopo` + rubrika hashtagi
+- Post oxirida: `➖➖➖` va `@Pochtam_shopo` + rubrika hashtagi
 - Affiliate/referal linklar **hozircha yo'q** — toza havolalar
 - Caption cheklovi: `card` bo'lsa ≤ 1024 belgi, bo'lmasa ≤ 4096
 

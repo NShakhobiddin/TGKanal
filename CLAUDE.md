@@ -1,6 +1,6 @@
 # Pochtachi — Claude Code uchun loyiha qo'llanmasi
 
-Bu repo **@Pochtachi_shopo** Telegram kanalining kontent tizimi. Muallif — Shakhobiddin (6 yil bojxona postida xalqaro jo'natmalar bo'yicha ishlagan). Muloqot tili — **o'zbek (lotin)**, qisqa va aniq.
+Bu repo **@Pochtam_shopo** Telegram kanalining kontent tizimi. Muallif — Shakhobiddin (6 yil bojxona postida xalqaro jo'natmalar bo'yicha ishlagan). Muloqot tili — **o'zbek (lotin)**, qisqa va aniq.
 
 **Server ham, domen ham yo'q.** Hammasi GitHub'da:
 

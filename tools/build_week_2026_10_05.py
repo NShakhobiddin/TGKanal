@@ -18,7 +18,7 @@ SHIP_PER_KG = 9.50         # Meest AQSh, yuqori chegara (Spot.uz, 16.07.2026)
 LIMIT = 200.0              # kuryer, oylik
 DUTY = 0.30                # PQ-4508 3-band (2026-yil oxirigacha)
 
-FOOT = "➖➖➖\n@Pochtachi_shopo  "
+FOOT = "➖➖➖\n@Pochtam_shopo  "
 
 
 def som(usd: float) -> int:
@@ -75,7 +75,7 @@ LAYOUT, top to bottom:
    - row: left grey text "{imp_label}", right bold indigo "{imp_price}"
    - a thin divider line
    - row: left bold {bottom_color} uppercase "{bottom_label}", right large bold {bottom_color} "{bottom_value}"
-7) Bottom, above a thin divider: left bold near-black "@Pochtachi_shopo", right smaller grey "Chegirmalar - Kuryerlik - Bojxona"
+7) Bottom, above a thin divider: left bold near-black "@Pochtam_shopo", right smaller grey "Chegirmalar - Kuryerlik - Bojxona"
 
 {STYLE_TAIL}"""
 
@@ -88,7 +88,7 @@ def cover_prompt(tag, headline, illustration, sub=None, accent="crimson (#E11D48
 1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text "{tag}".
 2) Center: {illustration} Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of {accent}; soft studio lighting, gentle shadows, generous space around it.
 3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: "{headline}"{sub_line}
-{n}) Bottom, above a thin light divider: left bold near-black "@Pochtachi_shopo".
+{n}) Bottom, above a thin light divider: left bold near-black "@Pochtam_shopo".
 
 {STYLE_TAIL}"""
 
@@ -104,7 +104,7 @@ Arrange five clothing items neatly with generous spacing, each cleanly cut out w
 
 Next to each item place a small solid indigo (#4F46E5) circle with a white number — 1, 2, 3, 4, 5 — matching the list order.
 
-Bottom strip, above a thin divider: left bold near-black "@Pochtachi_shopo", right grey "{footer}".
+Bottom strip, above a thin divider: left bold near-black "@Pochtam_shopo", right grey "{footer}".
 
 Clean studio product photography, soft even lighting, muted palette ({palette}). No people, no mannequins, no price tags.
 {STYLE_TAIL}"""

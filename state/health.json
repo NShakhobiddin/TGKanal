@@ -1,7 +1,8 @@
 {
-  "req": "ornat",
-  "at": "2026-10-05T10:52:45+05:00",
+  "req": "ornat2",
+  "at": "2026-10-05T10:54:12+05:00",
   "channel_id": "@Pochtachi_shopo",
   "token": true,
+  "token_format_ok": true,
   "error": "Bot: Telegram HTTP 400"
 }

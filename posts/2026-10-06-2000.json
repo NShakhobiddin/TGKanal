@@ -21,7 +21,10 @@
     }
   ],
   "scheduled_at": "2026-10-06T20:00:00+05:00",
-  "status": "approved",
+  "status": "published",
   "image": "2026-10-06-2000-d62ccc7e.jpg",
-  "error": null
+  "error": null,
+  "message_id": 11,
+  "published_at": "2026-10-06T21:15:16+05:00",
+  "published_by": "jadval"
 }

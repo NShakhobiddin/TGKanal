@@ -16,9 +16,11 @@
   "notes": "Norma rasmiylashtirilgan sana bo'yicha hisoblanadi (muallif tasdiqladi).",
   "id": "2026-10-07-0900",
   "scheduled_at": "2026-10-07T09:00:00+05:00",
-  "status": "approved",
+  "status": "published",
   "product_url": null,
   "image": "2026-10-07-0900-8adeff16.jpg",
   "error": null,
-  "publish_now": true
+  "message_id": 12,
+  "published_at": "2026-10-07T12:08:50+05:00",
+  "published_by": "qo'lda"
 }

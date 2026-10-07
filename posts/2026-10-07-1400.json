@@ -36,8 +36,11 @@
   "notes": "Og'irliklar taxminiy (jami ≈3,6 kg), yetkazish 9,50 $/kg. Narx rang va o'lchamga qarab o'zgarishi mumkin. Bojxona qiymati = tovar + yetkazish = 208.15 $ (muallif qoidasi, 05.10.2026). Boj: (208.15 − 200) × 30 % = 2.45 $ (obrazda 3 $/kg minimal hisoblanmaydi — muallif). BKO yig'imi 110 000 so'm. Sumkasiz: 148.96 $ + ~3,2 kg × 9,50 = 30.40 $ → 179.36 $ (norma ichida).",
   "id": "2026-10-07-1400",
   "scheduled_at": "2026-10-07T14:00:00+05:00",
-  "status": "approved",
+  "status": "published",
   "product_url": null,
   "image": "2026-10-07-1400-b679bc4f.jpg",
-  "error": null
+  "error": null,
+  "message_id": 13,
+  "published_at": "2026-10-07T14:34:14+05:00",
+  "published_by": "jadval"
 }

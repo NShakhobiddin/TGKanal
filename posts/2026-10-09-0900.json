@@ -36,7 +36,7 @@
   "notes": "Bojxona qiymati = tovar + yetkazish (yo'l harajati) — muallif tasdiqladi, 05.10.2026. Yo'l: 2,5 kg × 9,50 $ = 23,75 $. 5-QADAM LEX.UZ DA TASDIQLANMADI (lex.uz Claude muhitidan ochilmadi): 1 ta BKO uchun yig'im — BHM ning 25 % (muallif so'rovi, stavka qidiruv natijalaridan) va BHM 440 000 so'm — yangilik saytlaridan. Tasdiqlashdan oldin VM 55-son qarorida tekshiring.",
   "id": "2026-10-09-0900",
   "scheduled_at": "2026-10-09T09:00:00+05:00",
-  "status": "approved",
+  "status": "overdue",
   "product_url": null,
   "image": "2026-10-09-0900-e8f7eaa7.jpg",
   "error": null

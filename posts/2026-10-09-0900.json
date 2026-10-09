@@ -39,5 +39,6 @@
   "status": "overdue",
   "product_url": null,
   "image": "2026-10-09-0900-e8f7eaa7.jpg",
-  "error": null
+  "error": null,
+  "publish_now": true
 }

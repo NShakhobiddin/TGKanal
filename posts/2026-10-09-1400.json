@@ -29,7 +29,10 @@
   "notes": "TASDIQLASHDAN OLDIN: unibrands.co sahifasini oching — narx ($99.99) va rang (Abyss Blue, Aurora Purple) Claude muhitidan ochilmadi, qidiruv natijalaridan olingan. Do'kon AQSh ichiga yetkazadi — ekspeditor manzili kerak. Og'irlik qadoq bilan taxminan 0,2 kg. RASM: ChatGPT'ga do'kon sahifasidagi qalam suratini biriktiring.",
   "id": "2026-10-09-1400",
   "scheduled_at": "2026-10-09T14:00:00+05:00",
-  "status": "approved",
+  "status": "published",
   "image": "2026-10-09-1400-f9199992.jpg",
-  "error": null
+  "error": null,
+  "message_id": 18,
+  "published_at": "2026-10-09T14:50:08+05:00",
+  "published_by": "jadval"
 }

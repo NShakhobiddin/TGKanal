@@ -11,16 +11,21 @@ Claude Code ──git push──▶ repo «TGKanal» (postlar, rasmlar, settings
      https://nshakhobiddin.github.io/TGKanal/  ◀── GitHub Pages (pages.yml: faqat ui/index.html)
 ```
 
+**Ikki kanal — bitta repo.** `channels.json` — kanallar ro'yxati. Asosiy kanal (Pochtachi) repo ildizida, ikkinchisi — **«AI darslar»** (davlat xodimlari uchun AI o'quv kanali) `channels/ai/` papkasida: o'z `posts/`, `images/`, `files/`, `settings.json`, `state/`, `BRIEF.md`. Panelda har kanal — alohida oyna (`…/TGKanal/#ai`). Jadval (`publish.yml`) ikkala kanalni aylanib chiqadi; bot bitta. Quyidagi Pochtachi qoidalari (lex.uz, kurs, `#keys`) faqat asosiy kanalga tegishli — «AI darslar» qoidalari `channels/ai/BRIEF.md` da.
+
 ## Tuzilma
 | Yo'l | Nima |
 |---|---|
+| `channels.json` | Kanallar: `{key, name, dir}`. `dir` bo'sh — asosiy kanal (repo ildizi) |
+| `channels/ai/` | «AI darslar» kanali: `BRIEF.md` (qoidalar), `calendar.json` (12 haftalik reja), `posts/`, `images/`, `files/hNN/` (mashq fayllari), `settings.json` (`channel_id` bo'sh bo'lsa — joylanmaydi) |
+| `tools/ai_lib.py`, `tools/ai_week_NN.py` | «AI darslar» generatori: postlar, kartochka rasmlari (Pillow, `tools/fonts/`), mashq fayllari. `ai_week_01.py` — namuna |
 | `posts/<id>.json` | Postlar. Panel ham, bot ham, Claude Code ham shu fayllarni o'zgartiradi |
 | `images/` | Panelda yuklangan rasmlar (JPEG'ga siqiladi) |
 | `settings.json` | `channel_id`, `admin_username`, `admin_id` (bot o'zi topadi), `app_url`, `consult_url`, `late_grace_hours`, `ui_repo`, `panel_url`. **Maxfiy narsa yo'q** |
 | `state/` | Bot natijalari: `health.json`, `last_test.json`, `reminder.json`, `rate.json` (Markaziy bank USD kursi) |
 | `ui/index.html` | Panel sahifasi. Push qilinsa `.github/workflows/pages.yml` uni GitHub Pages'ga o'zi joylaydi |
 | `tools/publish.py` | Telegram'ga joylovchi (Actions ichida; faqat standart kutubxona) |
-| `tools/check_posts.py` | Post fayllarini tekshirish |
+| `tools/check_posts.py` | Post fayllarini tekshirish (argumentsiz — hamma kanal) |
 | `tools/build_week_*.py` | Haftalik postlar generatori (raqamlar skriptda hisoblanadi) |
 | `.github/workflows/publish.yml` | Jadval (`*/5 3-18 * * *` UTC = Toshkent 08:00–23:55; + tashqi jadval cron-job.org) + paneldan chaqiriladigan `test` / `health` |
 | `.github/workflows/rate.yml` | Markaziy bank kursi (cbu.uz) → `state/rate.json`, 6 soatda bir (`tools/update_rate.py`) |
@@ -49,16 +54,19 @@ Maxfiylar faqat GitHub secrets'da: `TELEGRAM_BOT_TOKEN`. Panel tokeni (fine-grai
  "status":"draft"}
 ```
 Holatlar: `draft` → (rasm) → `approved` → bot → `published`; `needs_input`, `failed` (+`error`), `overdue` (2 soatdan ko'p kechikdi). `publish_now: true` — paneldagi «Hozir joylash».
-Tokenlar: `{{APP_URL}}`, `{{CONSULT_URL}}` (settings.json da bo'sh bo'lsa qator yashiriladi), `<a href="{{LINK:<post_id>}}">matn</a>` — joylangan postga havola.
+Tokenlar: `{{APP_URL}}`, `{{CONSULT_URL}}` (settings.json da bo'sh bo'lsa qator yashiriladi), `<a href="{{LINK:<post_id>}}">matn</a>` — joylangan postga havola, `{{CHANNEL}}` — kanal manzili.
+«AI darslar» postlarida qo'shimcha: `attachments` (postdan keyin hujjat qilib yuboriladigan fayllar), `image_auto`, `long_ok`, `week` — `channels/ai/BRIEF.md`.
 
 ## Buyruqlar
 - `/ornat` — birinchi marta: repo'lar, bot tokeni secret'ga, GitHub Pages, ulanish tekshiruvi
 - `/yangila [izoh]` — tekshirib GitHub'ga yuborish (kerak bo'lsa panel sahifasini ham)
-- `/hafta [sana]` — keyingi hafta uchun 21 ta post
+- `/hafta [sana]` — Pochtachi: keyingi hafta uchun 21 ta post
+- `/ai-hafta [hafta] [sana]` — «AI darslar»: bir haftalik 5 ta post, mashq fayllari va kartochkalar
 - `/holat` — jadval ishlari, xatolar, postlar holati, limitlar
 
 ## Foydali buyruqlar
 - Qo'lda jadval: `gh workflow run publish.yml`
-- Ulanish tekshiruvi: `gh workflow run publish.yml -f mode=health -f req=cli`
+- Ulanish tekshiruvi: `gh workflow run publish.yml -f mode=health -f req=cli` («AI darslar» uchun: `-f post_id=ai:`)
+- «AI darslar» postini o'zingizga sinov: `gh workflow run publish.yml -f mode=test -f post_id=ai:<post_id> -f req=cli`
 - Oxirgi ishlar: `gh run list --workflow publish.yml -L 10`
 - Lokal sinov (Telegram'siz): `NO_GIT=1 TG_API_BASE=http://127.0.0.1:8901 TELEGRAM_BOT_TOKEN=x MODE=due python tools/publish.py`

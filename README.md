@@ -6,6 +6,18 @@
 - **Jadval** — GitHub Actions har 5 daqiqada tasdiqlangan postlarni kanalga joylaydi (Toshkent 08:00–23:55). GitHub bepul jadvalni kechiktirishi mumkin — aniq vaqt uchun pastdagi «Tashqi jadval» ni sozlang.
 - **Postlar va rasmlar** — `NShakhobiddin/TGKanal` repo'sida; bot tokeni — GitHub secret'da.
 
+## Ikkinchi kanal — «AI darslar»
+Shu repo ichida ikkinchi kanal yuritiladi: davlat idorasi xodimlariga AI imkoniyatlarini o'rgatadigan o'quv kanali. Hammasi `channels/ai/` papkasida, panelda — alohida oyna (yuqoridagi tugma yoki `https://nshakhobiddin.github.io/TGKanal/#ai`).
+
+- **Haftada 5 post** (dushanba–juma, 08:30): sinov → dars → ustalik → ehtiyot bo'ling → bonus. Har postda bitta yangi bilim va «Olib keting».
+- **Rasm tayyor keladi:** kartochkani generator o'zi chizadi — ChatGPT'da rasm chizdirish shart emas. Xohlasangiz panelda boshqasiga almashtirasiz.
+- **Mashq fayllari** (Excel va h.k.) postdan keyin alohida xabar bo'lib chiqadi.
+- **Ishga tushirish (bir marta):** kanal yarating → botni (@Pochtachiyordamchibot) kanalga admin qiling («Post joylash» huquqi bilan) → `channels/ai/settings.json` da `channel_id` ga kanal manzilini yozing (`@nom`, yopiq kanal bo'lsa `-100…`) → `/yangila` → panelning «AI darslar» oynasida «🔌 Ulanishni tekshirish».
+- **Izohlar:** postlarda «javobingizni izohda yozing» deyiladi — kanalga muhokama guruhini ulang (Telegram: kanal → Tahrirlash → Muhokama).
+- **Ish tartibi:** `/ai-hafta` → panelda 5 ta postni ko'rib chiqasiz → «📨 Menga sinov» → «✅ Tasdiqlash». Post 08:30 da o'zi chiqadi.
+- `channel_id` bo'sh turgan paytda bu kanalga hech narsa joylanmaydi — Pochtachi odatdagidek ishlayveradi.
+- Kanal nomini o'zgartirish: `channels.json` → `name`.
+
 ## Claude Code bilan ishlash
 
 Papkani Claude Code'da oching va buyruq yozing:
@@ -13,7 +25,8 @@ Papkani Claude Code'da oching va buyruq yozing:
 | Buyruq | Nima qiladi |
 |---|---|
 | `/ornat` | **Birinchi marta.** Repo'larni yaratadi, bot tokenini secret'ga qo'yadi, panelni GitHub Pages'da yoqadi, Telegram ulanishini tekshiradi |
-| `/hafta` | Keyingi hafta uchun 21 ta post tayyorlaydi, ko'rsatadi, «ha» desangiz yuboradi |
+| `/hafta` | Pochtachi: keyingi hafta uchun 21 ta post tayyorlaydi, ko'rsatadi, «ha» desangiz yuboradi |
+| `/ai-hafta` | «AI darslar»: keyingi haftaning 5 ta posti, mashq fayllari va kartochkalari |
 | `/yangila` | **Asosiy «belgi».** O'zgarishlarni tekshiradi va GitHub'ga yuboradi — panel va jadval o'zi yangilanadi |
 | `/holat` | Jadval ishlayaptimi, xatolar, qaysi postlar rasm yoki tasdiq kutyapti |
 

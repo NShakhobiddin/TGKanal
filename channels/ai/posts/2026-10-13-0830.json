@@ -1,0 +1,30 @@
+{
+  "id": "2026-10-13-0830",
+  "rubric": "#dars",
+  "title": "Dars: «hisobla» emas, «kod bilan hisobla»",
+  "scheduled_at": "2026-10-13T08:30:00+05:00",
+  "caption": "📘 <b>AI hisobda adashadi. Kod yozdirsangiz — adashmaydi</b>\n\nJadvalni AI ga matn qilib tashlab «jami qancha?» desangiz, javob ko'pincha xato chiqadi. Sababi: til modeli raqamni hisoblamaydi, keyingi so'zni taxmin qiladi. 500 qatorni u «ko'z bilan» qo'sha olmaydi.\n\n<b>Yechim:</b> faylning o'zini yuklang va hisobni kod bilan qildiring. Shunda AI faylni ochadi, dastur yozadi va ishga tushiradi — hisobni model emas, kompyuter bajaradi. Bu imkoniyat ChatGPT, Claude va Gemini'da bor. Bepul tarifda ham sinab ko'rish mumkin, lekin kunlik limit bor.\n\n📎 Fayl: kechagi <b>murojaatlar_2025.xlsx</b>\n\n<b>1-qadam. Avval faylni tekshirtiring</b>\n<pre>Bu faylni kod bilan och. Hech narsa hisoblama. Avval ayt:\nnechta qator va ustun bor, sarlavha qaysi qatorda, har ustunda nima bor, qayerda bo'sh katak, takror qator yoki sana matn bo'lib qolgan.</pre>\n<i>Nega:</i> iflos ma'lumotdan chiqqan xulosa ham xato. Odam buni bir soatda topadi, kod — 10 soniyada.\n\n<b>2-qadam. Tozalash qoidasini o'zingiz belgilang</b>\n<pre>Takror murojaatlarni olib tashla: murojaatchi kodi, sana va mavzu bir xil bo'lsa — bu takror. \"Toshkent sh.\", \"г.Ташкент\" kabi yozuvlarni bitta ko'rinishga keltir.\nNimani o'zgartirganingni ro'yxat qilib ber.</pre>\n<i>Nega:</i> «takror» nima ekanini siz bilasiz, AI emas.\n\n<b>3-qadam. Savol bering</b>\n<pre>Kod bilan hisobla: har bo'lim bo'yicha murojaatlar soni, muddatida bajarilganlar foizi, o'rtacha ko'rib chiqish kuni.\nJadval qilib ber, eng yomon 3 bo'limni ajrat.</pre>\n\n<b>4-qadam. So'ramagan narsangizni so'rang</b>\n<pre>Bu ma'lumotda rahbar bilishi kerak bo'lgan, lekin men so'ramagan 3 ta g'ayrioddiy holatni top. Har biriga raqamli dalil keltir.</pre>\n<i>Nega:</i> jadvalni Excel ham tuzadi. AI ning foydasi — siz qidirishni o'ylamagan narsani topishida.\n\n<b>5-qadam. Tayyor fayl oling</b>\n<pre>Natijani Excel fayl qilib ber: 1-varaq — tozalangan ma'lumot, 2-varaq — bo'limlar jadvali, 3-varaq — grafik.\nAlohida yarim betlik ma'lumotnoma matnini yoz.</pre>\n\n✅ <b>Tekshirish (1 daqiqa):</b> AI dan jami qatorlar sonini so'rang va Excel pastidagi hisoblagich bilan solishtiring. Mos kelmasa — «kodni ko'rsat» deng.\n\n🔑 <b>Kechagi sinov javoblari</b> (bosing):\n<tg-spoiler>1) Ruxsatnomalar bo'limi: muddatida 66 %, qolgan bo'limlarda 93 %. Umumiy ko'rsatkich 88 % — shuning uchun ko'rinmaydi.\n2) Sentabr: 77 ta murojaat, boshqa oylarda o'rtacha 37 ta. Shundan 41 tasi — «Elektron xizmat ishlamayapti».\n3) Takror ro'yxatga olingan: 12 ta.</tg-spoiler>\n\n⚠️ Xizmat hujjatlari va shaxsiy ma'lumotlar AI ga yuklanmaydi. Mashq — faqat o'ylab topilgan faylda.\n\n💡 <b>Bugungi yangi bilim:</b> «hisobla» emas, «<b>kod bilan</b> hisobla». Shu ikki so'z javobni taxmindan hisobga aylantiradi.\n\n🎁 <b>Olib keting:</b> 5 so'rovli tahlil zanjiri — istalgan jadvalga mos. Postni saqlab qo'ying.\n\n➖➖➖\n{{CHANNEL}}  #dars",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Style: clean paper-cut editorial illustration — flat layered shapes with soft shadows, like a neatly filled-in office form. Warm off-white paper background (#F5F2E9), deep navy ink (#141C2B) and one accent colour (#0B8457). Calm, trustworthy, no clutter.\n\n1) Top-left: a small solid #0B8457 rounded rectangle with white bold uppercase monospace text \"DARS\".\n2) Center: a spreadsheet sheet feeding into a small tidy machine with five numbered gears in a row; out of the machine comes a clean one-page report. Paper-cut style, matte, generous empty space around it. No people's faces, no real logos, no state emblems or flags.\n3) Below the illustration: a large bold navy headline in a characterful grotesque sans-serif, at most three lines: \"«Hisobla» emas, «kod bilan hisobla»\"\n4) Bottom, above a thin hairline: left small monospace navy text \"AI darslar\".\n\nRender every piece of text EXACTLY as written, spelled correctly, with straight apostrophes. No other text, no watermarks.",
+  "product_url": null,
+  "notes": "Vositalar holati 09.10.2026 da rasmiy yordam sahifalaridan tekshirildi (manbalarga qarang). Gemini bepul tarifida kod bilan tahlil qilish rasmiy sahifada aniq yozilmagan — tasdiqlashdan oldin o'zingiz bir sinab ko'ring. Faylda ataylab qo'yilgan: 42 ta turlicha yozilgan hudud, 7 ta bo'sh «Mas'ul bo'lim», 6 ta matn bo'lib qolgan sana, sarlavha 3-qatorda.",
+  "sources": [
+    {
+      "label": "ChatGPT: fayl yuklash va cheklovlar — bepul tarifda kuniga 3 ta fayl (09.10.2026 holatiga)",
+      "url": "https://help.openai.com/en/articles/8555545-file-uploads-faq-advanced-data-analysis"
+    },
+    {
+      "label": "Claude: kod bajarish va fayl yaratish — hamma tarifda, bepulida ham (09.10.2026 holatiga)",
+      "url": "https://support.claude.com/en/articles/12111783-create-and-edit-files-with-claude"
+    },
+    {
+      "label": "Gemini: fayl yuklash va tahlil (09.10.2026 holatiga)",
+      "url": "https://support.google.com/gemini/answer/14903178?hl=en"
+    }
+  ],
+  "status": "draft",
+  "week": 1,
+  "attachments": [],
+  "long_ok": true,
+  "image": "2026-10-13-0830-auto.png",
+  "image_auto": true
+}

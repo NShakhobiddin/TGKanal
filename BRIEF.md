@@ -1,5 +1,7 @@
 # Pochtachi kanali — kontent brifi
 
+> Bu brif faqat Pochtachi kanali uchun. Ikkinchi kanal — «AI darslar» — qoidalari: `channels/ai/BRIEF.md`.
+
 Bu hujjat har kuni ishga tushadigan avtomatik seanslar uchun. Post tayyorlashdan oldin shuni o'qing.
 
 ## Kanal haqida

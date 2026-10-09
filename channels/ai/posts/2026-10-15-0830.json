@@ -1,0 +1,17 @@
+{
+  "id": "2026-10-15-0830",
+  "rubric": "#ehtiyot",
+  "title": "Ehtiyot: fayl tahlili adashadigan 5 joy",
+  "scheduled_at": "2026-10-15T08:30:00+05:00",
+  "caption": "⚠️ <b>Fayl tahlili adashadigan 5 joy</b>\n\nKod bilan hisoblash taxmindan yaxshi. Lekin kod ham faylni noto'g'ri o'qishi mumkin. Beshta joy va har biriga bitta nazorat savoli:\n\n<b>1. Sana.</b> 03.04.2025 — uchinchi aprelmi, to'rtinchi martmi? Kod ko'pincha amerikacha o'qiydi.\n→ <code>Sanalar kun.oy.yil formatida. Eng erta va eng kech sanani ko'rsat.</code>\n\n<b>2. Matn bo'lib qolgan raqam.</b> «1 250 000» probel bilan yozilsa, yig'indiga kirmay qoladi.\n→ <code>Qaysi ustunlarda raqam matn bo'lib turibdi? Nechta katak?</code>\n\n<b>3. Sarlavha.</b> Jadval tepasida nom yoki birlashtirilgan katak bo'lsa, ustunlar siljib ketadi.\n→ <code>Sarlavhani qaysi qatordan olding? Ustun nomlarini sanab ber.</code>\n\n<b>4. Faqat boshini ko'rish.</b> AI birinchi qatorlarga qarab xulosa aytishi mumkin.\n→ <code>Nechta qator qayta ishlandi?</code> Javob fayldagi qatorlar soniga teng bo'lishi kerak.\n\n<b>5. Kodsiz javob.</b> AI hisoblamasdan raqam aytadi.\n→ <code>Kodni va uning natijasini ko'rsat.</code>\n\n🧪 <b>Sinab ko'ring:</b> bu hafta fayllarida uchala tuzoq ham bor. murojaatlar_2025.xlsx da 6 ta sana matn bo'lib yozilgan va sarlavha 3-qatorda, buxgalteriya.xlsx da 5 ta qiymat matn. AI ularni o'zi aytdimi?\n\n💡 <b>Bugungi yangi bilim:</b> AI ning javobini emas, <b>hisoblash yo'lini</b> tekshirasiz. Besh savol — ikki daqiqa.\n\n🎁 <b>Olib keting:</b> 5 nazorat savoli — rasmni saqlab qo'ying, har tahlildan keyin bering.\n\n➖➖➖\n{{CHANNEL}}  #ehtiyot",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Style: clean paper-cut editorial illustration — flat layered shapes with soft shadows, like a neatly filled-in office form. Warm off-white paper background (#F5F2E9), deep navy ink (#141C2B) and one accent colour (#D7263D). Calm, trustworthy, no clutter.\n\n1) Top-left: a small solid #D7263D rounded rectangle with white bold uppercase monospace text \"EHTIYOT BO'LING\".\n2) Center: a paper checklist with five rows on a clipboard; a small warning triangle stamp in the accent colour on the top corner. Paper-cut style, matte, generous empty space around it. No people's faces, no real logos, no state emblems or flags.\n3) Below the illustration: a large bold navy headline in a characterful grotesque sans-serif, at most three lines: \"Fayl tahlili adashadigan 5 joy\"\n4) Bottom, above a thin hairline: left small monospace navy text \"AI darslar\".\n\nRender every piece of text EXACTLY as written, spelled correctly, with straight apostrophes. No other text, no watermarks.",
+  "product_url": null,
+  "notes": "Rasmning o'zi — «olib keting» kartochkasi: 5 tuzoq va 5 savol. Savollar postda <code> ichida — bosilsa nusxalanadi.",
+  "sources": [],
+  "status": "draft",
+  "week": 1,
+  "attachments": [],
+  "long_ok": true,
+  "image": "2026-10-15-0830-auto.png",
+  "image_auto": true
+}

@@ -3,7 +3,7 @@ name: Postlarni tekshirish
 on:
   push:
     branches: [main]
-    paths: ["posts/**", "tools/**"]
+    paths: ["posts/**", "channels/**", "channels.json", "tools/**"]
   workflow_dispatch:
 
 jobs:
@@ -14,4 +14,4 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-      - run: python3 tools/check_posts.py posts
+      - run: python3 tools/check_posts.py

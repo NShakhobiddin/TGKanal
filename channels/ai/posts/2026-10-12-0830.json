@@ -1,0 +1,21 @@
+{
+  "id": "2026-10-12-0830",
+  "rubric": "#sinov",
+  "title": "Sinov: 500 qator, 3 yashirin muammo",
+  "scheduled_at": "2026-10-12T08:30:00+05:00",
+  "caption": "🔍 <b>500 qator, 3 ta yashirin muammo</b>\n\nRahbar so'radi: «Murojaatlar bilan ishlashda ahvol qanday?» Qo'lingizda bir yillik reestr — 500 qator.\n\n📎 Keyingi xabarda <b>murojaatlar_2025.xlsx</b> — o'ylab topilgan idoraning reestri. Ichiga ataylab 3 ta muammo yashirilgan:\n\n1️⃣ Bitta bo'lim muddatni boshqalardan bir necha barobar ko'p buzadi. Umumiy foizga qarasangiz — hammasi joyida.\n2️⃣ Bir oyda murojaatlar keskin ko'paygan, sababi — bitta mavzu.\n3️⃣ Ayrim murojaatlar ikki marta ro'yxatga olingan.\n\n✍️ <b>Vazifa:</b> Excelda qo'lda topib ko'ring va vaqtni belgilang: qaysi bo'lim, qaysi oy, nechta takror? Javobingizni izohda yozing.\n\nErtaga shu ishni AI bilan qilamiz va javoblarni solishtiramiz.\n\n💡 <b>Bugungi yangi bilim:</b> AI ga jadvalni matn qilib ko'chirish shart emas. Faylning o'zini bersangiz, u faylni ochib, ichida ishlaydi.\n\n🎁 <b>Olib keting:</b> mashq fayli <b>murojaatlar_2025.xlsx</b>. Bu haftaning hamma darsi shu faylda.\n\n➖➖➖\n{{CHANNEL}}  #sinov",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Style: clean paper-cut editorial illustration — flat layered shapes with soft shadows, like a neatly filled-in office form. Warm off-white paper background (#F5F2E9), deep navy ink (#141C2B) and one accent colour (#2F5BEA). Calm, trustworthy, no clutter.\n\n1) Top-left: a small solid #2F5BEA rounded rectangle with white bold uppercase monospace text \"HAFTA SINOVI\".\n2) Center: a tall stack of paper registry sheets with a magnifying glass over it; three small accent-coloured flags stick out of the stack at different heights. Paper-cut style, matte, generous empty space around it. No people's faces, no real logos, no state emblems or flags.\n3) Below the illustration: a large bold navy headline in a characterful grotesque sans-serif, at most three lines: \"Qo'lda topa olasizmi?\"\n4) Bottom, above a thin hairline: left small monospace navy text \"AI darslar\".\n\nRender every piece of text EXACTLY as written, spelled correctly, with straight apostrophes. No other text, no watermarks.",
+  "product_url": null,
+  "notes": "Fayldagi javoblar (tozalangan 488 qator bo'yicha): Ruxsatnomalar bo'limi — muddatida 66 %, qolganlar 93 %, umumiy 88 %; sentabr — 77 ta murojaat (boshqa oylarda o'rtacha 37), shundan 41 tasi «Elektron xizmat ishlamayapti»; takror — 12 ta. Javoblar seshanba postida spoyler ostida.",
+  "sources": [],
+  "status": "draft",
+  "week": 1,
+  "attachments": [
+    {
+      "file": "files/h01/murojaatlar_2025.xlsx",
+      "caption": "📎 <b>Hafta mashq fayli.</b> O'ylab topilgan ma'lumot — haqiqiy idora yoki shaxslarga aloqasi yo'q.\n\n{{CHANNEL}}"
+    }
+  ],
+  "image": "2026-10-12-0830-auto.png",
+  "image_auto": true
+}

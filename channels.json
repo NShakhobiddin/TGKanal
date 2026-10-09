@@ -1,0 +1,6 @@
+{
+  "channels": [
+    {"key": "pochtachi", "name": "Pochtachi", "dir": ""},
+    {"key": "ai", "name": "AI darslar", "dir": "channels/ai"}
+  ]
+}

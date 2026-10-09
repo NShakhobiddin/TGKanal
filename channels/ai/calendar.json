@@ -1,0 +1,17 @@
+{
+  "izoh": "12 haftalik reja: har hafta — bitta imkoniyat. holat: tayyor (postlar yozilgan) | reja. /ai-hafta shu fayldan keyingi haftani oladi va tugagach holatini yangilaydi.",
+  "haftalar": [
+    {"n": 1,  "mavzu": "Excel faylni kod bilan tahlil qildirish", "bonus": "Oilaviy xarajatlar tahlili", "holat": "tayyor", "skript": "tools/ai_week_01.py"},
+    {"n": 2,  "mavzu": "Tayyor Word, Excel, PowerPoint faylni AI yaratadi", "bonus": "Rezyume va taklifnoma", "holat": "reja"},
+    {"n": 3,  "mavzu": "Rasm va skandan ma'lumot: qog'oz jadval Excelga", "bonus": "Retsept, kvitansiya, daftar", "holat": "reja"},
+    {"n": 4,  "mavzu": "Chuqur izlanish: o'nlab manbadan havolali hisobot", "bonus": "Katta xarid oldidan solishtiruv", "holat": "reja"},
+    {"n": 5,  "mavzu": "Faqat o'z hujjatlaringizdan javob beradigan baza", "bonus": "Kitoblar kutubxonasi", "holat": "reja"},
+    {"n": 6,  "mavzu": "Doimiy ko'rsatmali shaxsiy yordamchi", "bonus": "Til o'rgatuvchi murabbiy", "holat": "reja"},
+    {"n": 7,  "mavzu": "Ovoz: yig'ilish yozuvidan bayon va topshiriqlar", "bonus": "Ovozli kundalik", "holat": "reja"},
+    {"n": 8,  "mavzu": "Ikki tahrir farqi va taqqoslama jadval", "bonus": "Shartnomani imzolashdan oldin o'qitish", "holat": "reja"},
+    {"n": 9,  "mavzu": "Jarayon sxemasi va infografika chizdirish", "bonus": "Bolaga mavzuni sxemada tushuntirish", "holat": "reja"},
+    {"n": 10, "mavzu": "Kod bilmasdan mini-dastur: kalkulyator, forma", "bonus": "Oilaviy byudjet kalkulyatori", "holat": "reja"},
+    {"n": 11, "mavzu": "Agent: AI ishni o'zi bajaradi", "bonus": "Safar rejasi va bron variantlari", "holat": "reja"},
+    {"n": 12, "mavzu": "Rejali vazifa: har hafta avtomatik hisobot", "bonus": "Haftalik shaxsiy xulosa", "holat": "reja"}
+  ]
+}

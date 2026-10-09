@@ -1,0 +1,26 @@
+{
+  "id": "2026-10-14-0830",
+  "rubric": "#ustalik",
+  "title": "Ustalik: ikki ro'yxatni solishtirish",
+  "scheduled_at": "2026-10-14T08:30:00+05:00",
+  "caption": "🔗 <b>Ikki ro'yxatni solishtirish</b>\n\nHar idorada bor ish: ombor ro'yxati buxgalteriya hisobi bilan mos kelishi kerak. Qo'lda — yarim kun. Excel formulasi esa «Noutbuk HP 250 G8» bilan «Noutbuk HP250G8» bitta buyum ekanini tanimaydi.\n\n📎 Keyingi xabarlarda: <b>ombor.xlsx</b> (108 qator) va <b>buxgalteriya.xlsx</b> (100 qator), ikkalasi o'ylab topilgan.\n\n<b>1. Yozilishini ko'rsin</b>\n<pre>Ikki faylni kod bilan och. Har birida nomlar qanday yozilganini ko'rsat: lotin yoki kirill, qisqartmalar, ortiqcha probel va belgilar.</pre>\n\n<b>2. Bir xil ko'rinishga keltirsin</b>\n<pre>Nomlarni bir xil ko'rinishga keltir. Asl ustunga tegma, yonida yangi ustun och.</pre>\n\n<b>3. Uch guruhga ajratsin</b>\n<pre>Ikki ro'yxatni solishtir va uch guruhga ajrat:\naniq mos keldi / o'xshash, lekin ishonch yo'q / faqat bittasida bor.\n\"O'xshash\" guruhida ikkala yozuvni yonma-yon ko'rsat.\nMos kelganlarda soni farq qilsa — alohida belgilab ber.</pre>\n\n<b>4. Faylga chiqarsin</b>\n<pre>Natijani Excel qilib ber, har guruh alohida varaqda.</pre>\n\n<i>Nega uch guruh:</i> xavfli joy — «o'xshash» guruhi. Uni siz hal qilasiz. «O'zing hal qil» desangiz, AI HP 250 G8 bilan HP 250 G9 ni bitta buyum qilib yuboradi.\n\n🔑 <b>O'zingizni tekshiring</b> (bosing):\n<tg-spoiler>Aniq mos: 54 ta · boshqacha yozilgan, lekin bitta buyum: 34 ta · faqat omborda: 20 ta · faqat buxgalteriyada: 12 ta · soni farq qiladi: 6 ta.</tg-spoiler>\n\n🔒 Ro'yxatda shaxsiy yoki xizmat ma'lumoti bo'lsa — faylni yuklamang. Ustun nomlarini va 2–3 ta o'ylab topilgan qatorni bering, AI dan Excel formulasi yoki makros so'rang: hisob o'z kompyuteringizda bajariladi.\n\n💡 <b>Bugungi yangi bilim:</b> AI dan javob emas, <b>saralash</b> so'rang: aniq / shubhali / yo'q. Shubhalisini o'zingiz hal qilasiz.\n\n🎁 <b>Olib keting:</b> 4 so'rov va ikki mashq fayli — o'z ro'yxatlaringizga ham shu tartib ishlaydi.\n\n➖➖➖\n{{CHANNEL}}  #ustalik",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Style: clean paper-cut editorial illustration — flat layered shapes with soft shadows, like a neatly filled-in office form. Warm off-white paper background (#F5F2E9), deep navy ink (#141C2B) and one accent colour (#6D3FD0). Calm, trustworthy, no clutter.\n\n1) Top-left: a small solid #6D3FD0 rounded rectangle with white bold uppercase monospace text \"USTALIK\".\n2) Center: two paper lists side by side; thin threads connect matching lines between them — some threads solid, some dashed, a few lines left unconnected. Paper-cut style, matte, generous empty space around it. No people's faces, no real logos, no state emblems or flags.\n3) Below the illustration: a large bold navy headline in a characterful grotesque sans-serif, at most three lines: \"Ikki ro'yxatni solishtirish\"\n4) Bottom, above a thin hairline: left small monospace navy text \"AI darslar\".\n\nRender every piece of text EXACTLY as written, spelled correctly, with straight apostrophes. No other text, no watermarks.",
+  "product_url": null,
+  "notes": "Fayllar: jami 120 xil buyum. Tuzoqlar: HP 250 G8 (ikkalasida, boshqacha yozilgan) va HP 250 G9 (faqat omborda); Canon LBP6030 va LBP2900; LG 24MK430 va 27MP400; APC 650VA va 1100VA. Buxgalteriyada 5 ta qiymat matn bo'lib yozilgan — ertangi #ehtiyot posti uchun.",
+  "sources": [],
+  "status": "draft",
+  "week": 1,
+  "attachments": [
+    {
+      "file": "files/h01/ombor.xlsx",
+      "caption": "📎 Ombor ro'yxati (o'ylab topilgan)."
+    },
+    {
+      "file": "files/h01/buxgalteriya.xlsx",
+      "caption": "📎 Buxgalteriya hisobi (o'ylab topilgan).\n\n{{CHANNEL}}"
+    }
+  ],
+  "long_ok": true,
+  "image": "2026-10-14-0830-auto.png",
+  "image_auto": true
+}

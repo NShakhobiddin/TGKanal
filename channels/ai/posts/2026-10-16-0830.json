@@ -1,0 +1,26 @@
+{
+  "id": "2026-10-16-0830",
+  "rubric": "#bonus",
+  "title": "Bonus: pul qayerga ketyapti",
+  "scheduled_at": "2026-10-16T08:30:00+05:00",
+  "caption": "💳 <b>Pul qayerga ketyapti</b>\n\nBu hafta o'rganganingiz uyda ham ishlaydi: bank ko'chirmasi — xuddi o'sha jadval.\n\n📎 Avval namunada mashq qiling: keyingi xabarda <b>kochirma_namuna.xlsx</b> — o'ylab topilgan 3 oylik ko'chirma.\n\n<b>1. Toifalarga ajratsin</b>\n<pre>Bu ko'chirmani kod bilan och. Har chiqimni toifaga ajrat:\noziq-ovqat, transport, kommunal, aloqa, obuna, kafe, sog'liq, kiyim, boshqa.\nIshonching komil bo'lmagan to'lovlarni alohida ko'rsat.</pre>\n\n<b>2. Takroriy to'lovlarni topsin</b>\n<pre>Har oy bir xil summada takrorlanadigan to'lovlarni top.\nHar birining yillik summasini hisobla.</pre>\n\n<b>3. Byudjet tuzsin</b>\n<pre>Toifalar bo'yicha oylik o'rtacha chiqim jadvalini tuz.\nQaysi uch toifada tejash imkoni borligini raqam bilan ko'rsat.</pre>\n\n🔑 <b>Namunadagi javob</b> (bosing):\n<tg-spoiler>Har oy bir xil summada takrorlanadigan 9 ta to'lov: oyiga 1 120 000 so'm — yiliga 13 440 000 so'm.</tg-spoiler>\n\nKeyin o'z ko'chirmangizda sinang. Bank ilovasidan Excel qilib oling va yuklashdan oldin <b>karta raqami, F.I.Sh. va hisob raqami</b> bor qatorlarni o'chiring.\n\n💡 <b>Bugungi yangi bilim:</b> mayda takroriy to'lov oyda sezilmaydi — yillik summada ko'rinadi.\n\n🎁 <b>Olib keting:</b> <b>byudjet_shablon.xlsx</b> — reja, haqiqat va takroriy to'lovlarning yillik hisobi. Sariq kataklarni o'zingiz to'ldirasiz.\n\n➖➖➖\n{{CHANNEL}}  #bonus",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Style: clean paper-cut editorial illustration — flat layered shapes with soft shadows, like a neatly filled-in office form. Warm off-white paper background (#F5F2E9), deep navy ink (#141C2B) and one accent colour (#D97706). Calm, trustworthy, no clutter.\n\n1) Top-left: a small solid #D97706 rounded rectangle with white bold uppercase monospace text \"BONUS\".\n2) Center: a household budget sheet with a few coins and small receipt slips; one repeating small receipt is highlighted in the accent colour and multiplied into a tall stack. Paper-cut style, matte, generous empty space around it. No people's faces, no real logos, no state emblems or flags.\n3) Below the illustration: a large bold navy headline in a characterful grotesque sans-serif, at most three lines: \"Pul qayerga ketyapti\"\n4) Bottom, above a thin hairline: left small monospace navy text \"AI darslar\".\n\nRender every piece of text EXACTLY as written, spelled correctly, with straight apostrophes. No other text, no watermarks.",
+  "product_url": null,
+  "notes": "Ko'chirma va raqamlar o'ylab topilgan. Takroriy to'lovlar: ichimlik suvi 48 000, chiqindi olib ketish 30 000, uy interneti 149 000, mobil aloqa tarifi 70 000, onlayn kinoteatr obuna 39 000, musiqa obuna 19 000, bulutli xotira obuna 15 000, sport zali abonement 350 000, bolalar to'garagi 400 000. Shundan obuna va abonementlar oyiga 823 000 so'm.",
+  "sources": [],
+  "status": "draft",
+  "week": 1,
+  "attachments": [
+    {
+      "file": "files/h01/kochirma_namuna.xlsx",
+      "caption": "📎 Namunaviy ko'chirma (o'ylab topilgan) — avval shunda mashq qiling."
+    },
+    {
+      "file": "files/h01/byudjet_shablon.xlsx",
+      "caption": "📎 Byudjet shabloni: sariq kataklarni to'ldirasiz, qolgani o'zi hisoblanadi.\n\n{{CHANNEL}}"
+    }
+  ],
+  "long_ok": true,
+  "image": "2026-10-16-0830-auto.png",
+  "image_auto": true
+}

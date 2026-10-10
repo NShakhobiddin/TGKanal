@@ -40,7 +40,7 @@
   "notes": "Muallif so'rovi: bojxona qiymatiga 10 $ yo'l harajati qo'shildi va 1 ta BKO yig'imi (BHM 25 % = 110 000) hisoblandi. Hisob: (1 299 + 10 − 200) × 30 % = 332,70 $ × 11772.95 = 3916860 so'm; + 110000 BKO + 88000 UzIMEI = 4114860 so'm. Telefon bilan: (1 299 + 10) × kurs + to'lovlar = 19525652 so'm. Apple narxi ($1 299) va rang (Burgundy) qidiruv natijalaridan — apple.com da tekshiring (Claude muhitidan ochilmadi). Rasm: telefon to'q qizil (Burgundy); ChatGPT'ga Apple sahifasidagi Burgundy surati biriktirilsa — aniqroq chiqadi. Og'irlik qadoq bilan ≈0,5 kg (minimal to'lov tekshiruvi uchun). UzIMEI: BHM 440 000 × 20 % = 88 000; 30 kundan keyin × 25 % = 110 000.",
   "id": "2026-10-10-0900",
   "scheduled_at": "2026-10-10T09:00:00+05:00",
-  "status": "approved",
+  "status": "overdue",
   "product_url": null,
   "image": "2026-10-10-0900-4ba5aeb9.jpg",
   "error": null

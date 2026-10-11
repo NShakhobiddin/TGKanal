@@ -19,9 +19,12 @@
   ],
   "id": "2026-10-11-1400",
   "scheduled_at": "2026-10-11T14:00:00+05:00",
-  "status": "approved",
+  "status": "published",
   "notes": "",
   "product_url": null,
   "image": "2026-10-11-1400-b0af8680.jpg",
-  "error": null
+  "error": null,
+  "message_id": 23,
+  "published_at": "2026-10-11T14:30:57+05:00",
+  "published_by": "jadval"
 }

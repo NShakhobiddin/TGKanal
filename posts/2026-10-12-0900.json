@@ -1,0 +1,37 @@
+{
+  "rubric": "#boj",
+  "title": "Normadan biroz oshish — yig'im bojdan qimmat",
+  "caption": "💸 <b>Normadan 9 $ oshdingiz — 142 124 so'm to'laysiz</b>\n\nMisol: kuryer orqali kiyim-kechak — tovarlar <b>190 $</b>, og'irligi 2 kg, yo'l harajati 19 $.\n\n1️⃣ <b>Bojxona qiymati</b> (tovar + yo'l): 190 + 19 = <b>209 $</b>\n2️⃣ <b>Normadan ortig'i:</b> 209 − 200 = <b>9 $</b>\n3️⃣ <b>Boj 30 %:</b> 9 × 30 % = <b>2,70 $</b> ≈ 32 124 so'm\n4️⃣ <b>1 ta BKO uchun yig'im:</b> BHM ning 25 % = <b>110 000 so'm</b>\n\n💰 <b>Jami: 142 124 so'm</b> — yig'im bojdan 3,4 baravar katta.\n\n✂️ <b>Yechim:</b> 15 $ lik bitta mayda tovarni keyingi oyga qoldiring — qiymat 194 $ bo'ladi: boj ham, yig'im ham yo'q.\n\n📅 2027-yil 1-iyundan: boj yig'imdan kam bo'lsa, yig'im undirilmaydi (PF-174, 3-band «g»).\n\n📄 Asos: VM 244-son; PQ-4508, 3-band; VM 55-son, 31.01.2025; PF-174 — lex.uz\n📲 <a href=\"{{APP_URL}}\">Normangizni ilovada hisoblang</a>\n\n➖➖➖\n@Pochtam_shopo  #boj",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Clean, modern 3D-minimal style, calm and trustworthy. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper half.\n\n1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#boj\".\n2) Center: a cardboard parcel on a balance scale, tipping slightly past a thin indigo line marked 200 $; next to it a small coin and a much bigger stack of coins with a receipt slip, showing the fee outweighs the duty. Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of amber (#F59E0B); soft studio lighting, gentle shadows, generous space around it.\n3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: \"Normadan biroz oshdingizmi?\"\n4) Under the headline, a smaller medium-grey line: \"Yig'im bojdan qimmat bo'lishi mumkin\"\n5) Bottom, above a thin light divider: left bold near-black \"@Pochtam_shopo\".\n\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
+  "sources": [
+    {
+      "label": "VM 244-son qarori, 19.04.2025 (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-7484114"
+    },
+    {
+      "label": "PQ-4508, 07.11.2019 — 3-band, 2019-yil tahriri: 30 %, 3 $/kg (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-4585742?ONDATE=07.11.2019%2000"
+    },
+    {
+      "label": "VM 55-son qarori, 31.01.2025 — bojxona yig'imlari stavkalari (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-7357270"
+    },
+    {
+      "label": "PF-174, 27.08.2026 (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-8444993"
+    },
+    {
+      "label": "Yetkazib beruvchilar narxi, 16.07.2026 (spot.uz)",
+      "url": "https://www.spot.uz/oz/2026/07/16/delivery"
+    },
+    {
+      "label": "Markaziy bank kursi, 10.10.2026 (cbu.uz)",
+      "url": "https://cbu.uz/uz/arkhiv-kursov-valyut/"
+    }
+  ],
+  "notes": "Bojxona qiymati = tovar + yo'l (muallif qoidasi). Minimal 3 $/kg qo'llanmadi (muallif: faqat normadan oshgan qism × 30 %). Hisob: (190.0 + 19.0 − 200) × 30 % = 2.7 $ × 11897.9 = 32124 so'm; + BKO 110000. Kesilgan variant: 175.0 + yo'l 19.0 = 194.0 $. BKO stavkasi va BHM lex.uz da qayta tekshirilmagan.",
+  "id": "2026-10-12-0900",
+  "scheduled_at": "2026-10-12T09:00:00+05:00",
+  "status": "draft",
+  "product_url": null
+}

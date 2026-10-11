@@ -1,0 +1,17 @@
+{
+  "rubric": "#keys",
+  "title": "Keys: sovg'a savatchasidagi sharob",
+  "caption": "🔍 <b>Keys: sovg'a savatchasi posilkani to'xtatdi</b>\n\n📦 <b>Nima keldi:</b> kuryer orqali Amazon'dan tayyor «gourmet» sovg'a savatchasi — <b>79 $</b>:\n• Shokolad va pechenye to'plami\n• Pishloq va kraker\n• Bir shisha qizil sharob\n\nSumma normadan ancha kam, lekin posilka to'xtadi.\n\n⛔ <b>Muammo:</b> savatchada <b>sharob</b> bor edi. Alkogol va tamaki mahsulotlarini pochta va kuryer orqali olib kirish <b>taqiqlangan</b> — narxi ahamiyatsiz. Xaridor tavsifdagi «wine» so'zini ko'rmagan.\n\n🛠 <b>Qanday hal qilindi:</b> sharob chiqarilmadi, qolgan tovarlar bo'yicha qaror kutildi — jo'natma bir necha kun kechikdi.\n\n✅ <b>Xulosa:</b> sovg'a to'plamlari tarkibini oxirigacha o'qing. «wine», «champagne», «liqueur», «cigar» bo'lsa — olmang.\n\n📄 Asos: VM 244-son, 1-ilova «a» izohi (VM 154-son, 09.04.2026 tahriri) — lex.uz\n\nPosilkangiz to'xtab qoldimi? Vaziyatingizni ko'rib chiqib, yo'l ko'rsataman 👇\n💬 <a href=\"{{CONSULT_URL}}\">Maslahat olish</a>\n\n<i>Holat bojxona amaliyotidagi tipik vaziyatlar asosida tuzilgan.</i>\n➖➖➖\n@Pochtam_shopo  #keys",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Clean, modern 3D-minimal style, calm and trustworthy. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper half.\n\n1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#keys\".\n2) Center: a wicker gift basket with chocolates, crackers and cheese on a customs inspection counter; a wine bottle lifted out of the basket stands beside it with a bold crimson prohibition circle, and a large indigo magnifying glass hovers over the basket label. Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of crimson (#E11D48); soft studio lighting, gentle shadows, generous space around it.\n3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: \"Sovg'a savatchasi posilkani to'xtatdi\"\n4) Under the headline, a smaller medium-grey line: \"Pochta va kuryerda alkogol taqiqlangan\"\n5) Bottom, above a thin light divider: left bold near-black \"@Pochtam_shopo\".\n\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
+  "sources": [
+    {
+      "label": "VM 244-son, 1-ilova «a» izohi (VM 154-son, 09.04.2026 tahriri) (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-7484114"
+    }
+  ],
+  "notes": "Keysni Claude tuzdi (tipik holat, real voqea emas). Narxlar misol uchun. Tekshiring: «Qanday hal qilindi» qatoridagi amaliyot (sharob chiqarilmadi, qolgan tovarlar bo'yicha qaror) tajribangizga mos kelsinmi — kerak bo'lsa tahrir qiling.",
+  "id": "2026-10-15-0900",
+  "scheduled_at": "2026-10-15T09:00:00+05:00",
+  "status": "draft",
+  "product_url": null
+}

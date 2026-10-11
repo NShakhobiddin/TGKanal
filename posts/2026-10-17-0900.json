@@ -1,0 +1,17 @@
+{
+  "rubric": "#savol",
+  "title": "Oy oxiridagi buyurtma qaysi oyga yoziladi",
+  "caption": "❓ <b>Savol: «Buyurtmani oktabr oxirida berdim. Qaysi oy normasiga yoziladi?»</b>\n\nBuyurtma sanasi ham, posilka kelgan kun ham emas — <b>bojxonada rasmiylashtirilgan sana</b> hisoblanadi.\n\n📅 <b>Misol</b> (kuryer, norma — oyiga 200 $)\n• 10-oktabr: 1-posilka rasmiylashtirildi — 150 $ (tovar + yo'l)\n• 28-oktabr: 2-buyurtma berildi — 120 $\n• 3-noyabr: 2-posilka rasmiylashtirildi → <b>noyabr</b> normasiga yoziladi\n\nNatija: oktabrda 150 $, noyabrda 120 $ — ikkalasi ham norma ichida, <b>boj yo'q</b> ✅\n\nAgar 2-posilka 30-oktabrda rasmiylashtirilganda edi — oktabr jami 270 $, 70 $ normadan oshardi ❌\n\n💡 <b>Maslahat</b>\n• Oy oxirida xarid qilsangiz — trek-raqam orqali posilka qachon rasmiylashtirilishini kuzating\n• Katta xaridni oy boshiga rejalang — oyning normasi to'liq turadi\n\n📄 Asos: VM 244-son, 19.04.2025 — lex.uz\n📲 <a href=\"{{APP_URL}}\">Oylik normangizni ilovada kuzating</a>\n\n➖➖➖\n@Pochtam_shopo  #savol",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Clean, modern 3D-minimal style, calm and trustworthy. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper half.\n\n1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#savol\".\n2) Center: two wall-calendar pages, October and November, side by side; a cardboard parcel with a small indigo stamp sits on the November page, and a curved arrow shows it moving from late October to early November. Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of sky blue (#38BDF8); soft studio lighting, gentle shadows, generous space around it.\n3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: \"Qaysi oy normasiga yoziladi?\"\n4) Under the headline, a smaller medium-grey line: \"Rasmiylashtirilgan sana hisoblanadi\"\n5) Bottom, above a thin light divider: left bold near-black \"@Pochtam_shopo\".\n\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
+  "sources": [
+    {
+      "label": "VM 244-son qarori, 19.04.2025 (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-7484114"
+    }
+  ],
+  "notes": "Norma kalendar oy bo'yicha, rasmiylashtirilgan sana bo'yicha — muallif tasdiqlagan (BRIEF.md). Yetkazish narxi bojxona qiymatiga kiradi — misoldagi summalarni «tovar + yo'l» deb tushuning.",
+  "id": "2026-10-17-0900",
+  "scheduled_at": "2026-10-17T09:00:00+05:00",
+  "status": "draft",
+  "product_url": null
+}

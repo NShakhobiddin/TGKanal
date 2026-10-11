@@ -1,0 +1,33 @@
+{
+  "rubric": "#dokon",
+  "title": "AliExpress — O'zbekistonga to'g'ridan-to'g'ri",
+  "caption": "🛍 <b>AliExpress: to'g'ridan-to'g'ri, so'mda to'lab</b>\n\nXitoy marketpleysi O'zbekistonga <b>to'g'ridan-to'g'ri</b> yetkazadi — AQShdagi kabi ombor manzili kerak emas.\n\n✅ <b>Qulayliklari</b>\n• <b>Uzcard va Humo</b> bilan to'lov, summa so'mda (2023-yil dekabridan)\n• Xitoy — O'zbekiston to'g'ridan-to'g'ri reyslari: o'rtacha <b>~14 kun</b>\n• <b>Uzum Market topshirish punktlari</b>: buyurtmada xaritadan punkt tanlanadi, SMS-kod bilan olinadi\n• Xaridor himoyasi: tovar kelmasa yoki tavsifga mos bo'lmasa — buyurtma sahifasidan nizo (dispute) ochiladi\n\n⚠️ <b>E'tibor bering</b>\n• Punktga yetkazish faqat «Pickup point» belgisi bor sotuvchilarda\n• Tovarni tekshirmasdan <b>«Qabul qildim»</b> tugmasini bosmang — pul sotuvchiga o'tadi\n• Mashhur brend juda arzon bo'lsa — nusxa bo'lishi mumkin\n• Muddat va to'lov shartlari o'zgarib turadi — ilovada tekshiring\n\n🛃 Bojxona: oylik norma pochta orqali — <b>100 $</b>, kuryer orqali — <b>200 $</b> (tovar + yo'l).\n\n📲 <a href=\"{{APP_URL}}\">Buyurtmangiz normasini ilovada hisoblang</a>\n\n➖➖➖\n@Pochtam_shopo  #dokon",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Clean, modern 3D-minimal style, calm and trustworthy. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper half.\n\n1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#dokon\".\n2) Center: a smartphone showing a generic shopping app with a red-orange header (no logo), a small airplane flying along a dotted arc from a tiny pagoda-style landmark toward a small parcel locker with an indigo pin, and two plain bank cards beside the phone. Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of orange (#F97316); soft studio lighting, gentle shadows, generous space around it.\n3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: \"AliExpress: to'g'ridan-to'g'ri\"\n4) Under the headline, a smaller medium-grey line: \"So'mda to'lov · ~14 kun · topshirish punkti\"\n5) Bottom, above a thin light divider: left bold near-black \"@Pochtam_shopo\".\n\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
+  "sources": [
+    {
+      "label": "kun.uz — AliExpress to'g'ridan-to'g'ri yetkazish, Uzcard/Humo, 21.12.2023",
+      "url": "https://kun.uz/en/64857911"
+    },
+    {
+      "label": "spot.uz — AliExpress Uzcard va Humo, 21.12.2023",
+      "url": "https://www.spot.uz/oz/2023/12/21/aliexpress-uzcard-humo/"
+    },
+    {
+      "label": "spot.uz — AliExpress va Uzum topshirish punktlari, 25.04.2023",
+      "url": "https://www.spot.uz/oz/2023/04/25/aliexpress-to-uzum/"
+    },
+    {
+      "label": "AliExpress — to'lov usullari",
+      "url": "https://aliexpress.ru/gid/payment_methods"
+    },
+    {
+      "label": "VM 244-son qarori, 19.04.2025 (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-7484114"
+    }
+  ],
+  "notes": "Yetkazish muddati (~14 kun), Uzcard/Humo va Uzum punktlari bo'yicha manbalar 2023-yilniki — 2025–26 yangilanishi topilmadi; ilovada tekshiring. AliExpress posilkalari pochta yoki kuryer kanalida kelishi aniqlanmadi — shuning uchun ikkala norma ko'rsatildi. Nizo muddatlari ilovada.",
+  "id": "2026-10-12-1400",
+  "scheduled_at": "2026-10-12T14:00:00+05:00",
+  "status": "draft",
+  "product_url": null
+}

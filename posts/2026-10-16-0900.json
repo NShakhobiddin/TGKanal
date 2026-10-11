@@ -1,0 +1,29 @@
+{
+  "rubric": "#boj",
+  "title": "Pochta yoki kuryer: bir xil buyurtma — boshqa boj",
+  "caption": "📮 <b>Bir xil buyurtma: pochtada 288 468 so'm, kuryerda — 0</b>\n\nBojsiz norma kanalga qarab ikki xil:\n• <b>Pochta</b> orqali — oyiga <b>100 $</b>\n• <b>Kuryer</b> orqali — oyiga <b>200 $</b>\n\n🧮 <b>Misol:</b> bojxona qiymati (tovar + yo'l) — <b>150 $</b>\n\n📮 <b>Pochta orqali</b>\n• Normadan ortig'i: 150 − 100 = 50 $\n• Boj 30 %: 50 × 30 % = <b>15 $</b> ≈ 178 468 so'm\n• 1 ta BKO uchun yig'im — <b>110 000 so'm</b>\n• Jami: <b>288 468 so'm</b>\n\n🚚 <b>Kuryer orqali</b>\n• 150 $ < 200 $ — norma ichida, <b>boj yo'q</b> ✅\n\n💡 <b>Qoida:</b> buyurtma (tovar + yo'l) 100 $ dan oshsa — yetkazish usulini oldindan tanlang. Do'kon o'zi pochta bilan jo'natadigan bo'lsa, norma 100 $ ekanini unutmang.\n\n📄 Asos: VM 244-son, 19.04.2025; PQ-4508, 3-band; VM 55-son — lex.uz\n📲 <a href=\"{{APP_URL}}\">Ikkala variantni ilovada solishtiring</a>\n\n➖➖➖\n@Pochtam_shopo  #boj",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Clean, modern 3D-minimal style, calm and trustworthy. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper half.\n\n1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#boj\".\n2) Center: two identical cardboard parcels side by side: the left one on a classic postal mailbox with a small amber coin stack beside it, the right one on a small courier delivery van with a green check mark badge. Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of emerald green (#059669); soft studio lighting, gentle shadows, generous space around it.\n3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: \"Pochta yoki kuryer?\"\n4) Under the headline, a smaller medium-grey line: \"Norma: 100 $ va 200 $\"\n5) Bottom, above a thin light divider: left bold near-black \"@Pochtam_shopo\".\n\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
+  "sources": [
+    {
+      "label": "VM 244-son qarori, 19.04.2025 (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-7484114"
+    },
+    {
+      "label": "PQ-4508, 07.11.2019 — 3-band, 2019-yil tahriri: 30 %, 3 $/kg (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-4585742?ONDATE=07.11.2019%2000"
+    },
+    {
+      "label": "VM 55-son qarori, 31.01.2025 — bojxona yig'imlari stavkalari (lex.uz)",
+      "url": "https://lex.uz/uz/docs/-7357270"
+    },
+    {
+      "label": "Markaziy bank kursi, 10.10.2026 (cbu.uz)",
+      "url": "https://cbu.uz/uz/arkhiv-kursov-valyut/"
+    }
+  ],
+  "notes": "Normalar: pochta 100 $/oy, kuryer 200 $/oy (VM 244, BRIEF.md). Bojxona qiymati = tovar + yo'l. Minimal 3 $/kg qo'llanmadi. Hisob: (150.0 − 100) × 30 % = 15.0 $ × 11897.9 = 178468 so'm + BKO 110000.",
+  "id": "2026-10-16-0900",
+  "scheduled_at": "2026-10-16T09:00:00+05:00",
+  "status": "draft",
+  "product_url": null
+}

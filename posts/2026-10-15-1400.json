@@ -1,0 +1,12 @@
+{
+  "rubric": "#kuryer",
+  "title": "Hajmiy og'irlik — yengil posilka nega qimmat",
+  "caption": "📦 <b>Kurtka 1 kg chiqdi, kuryer 10 kg uchun pul so'radi. Nega?</b>\n\nBu — <b>hajmiy og'irlik</b>. Katta, lekin yengil qutida kuryer haqiqiy og'irlik emas, quti hajmi bo'yicha hisoblaydi.\n\n🧮 <b>Formula</b> (ko'p xizmatlarda):\nuzunlik × kenglik × balandlik (sm) ÷ 5 000\n\n<b>Misol:</b> puxovik 50×40×25 sm qutida\n• Haqiqiy og'irlik — 1,2 kg\n• Hajmiy — 50×40×25 ÷ 5 000 = <b>10 kg</b>\n• Kuryer kattasini oladi → <b>10 kg</b> uchun to'laysiz\n\n✅ <b>Qanday tejash mumkin</b>\n1. Kuryerdan <b>qayta qadoqlash</b>ni so'rang — 40×30×12 sm paketda hajmiy og'irlik 2,9 kg\n2. Bir nechta buyurtmani bitta qutiga birlashtiring (konsolidatsiya)\n3. Hajmiy og'irlik qoidasini va bo'luvchini (5000 yoki 6000) xizmatning o'zidan so'rang\n\n📲 <a href=\"{{APP_URL}}\">Yetkazishni ilovada hisoblang</a>\n\n➖➖➖\n@Pochtam_shopo  #kuryer",
+  "prompt": "Create a vertical 4:5 cover image for a Telegram channel post. Clean, modern 3D-minimal style, calm and trustworthy. Pure white background with one large soft lavender (#EEEEFC) rounded shape behind the upper half.\n\n1) Top-left: a small solid indigo (#4F46E5) rounded pill with white bold text \"#kuryer\".\n2) Center: a large mostly empty cardboard box with a small folded puffer jacket inside, a tape measure stretched along its edges, and next to it the same jacket packed tightly in a small flat poly mailer. Render it as a soft 3D clay illustration with matte surfaces in white and indigo (#4F46E5) with small touches of amber (#F59E0B); soft studio lighting, gentle shadows, generous space around it.\n3) Below the illustration: a large bold near-black (#11111B) headline, at most two lines: \"Hajmiy og'irlik nima?\"\n4) Under the headline, a smaller medium-grey line: \"Katta quti — katta to'lov\"\n5) Bottom, above a thin light divider: left bold near-black \"@Pochtam_shopo\".\n\nOne geometric sans-serif font family throughout (Poppins / Montserrat style). Generous whitespace. Render every piece of text EXACTLY as written, spelled correctly, with straight apostrophes; numbers use spaces as thousand separators. No other text, no logos, no brand marks, no watermarks.",
+  "sources": [],
+  "notes": "Hajmiy og'irlik — xalqaro kuryer xizmatlarida keng qo'llanadigan amaliyot; bo'luvchi (5000/6000) va qoidani har bir kuryer xizmati o'zi belgilaydi. Raqamlar misol uchun.",
+  "id": "2026-10-15-1400",
+  "scheduled_at": "2026-10-15T14:00:00+05:00",
+  "status": "draft",
+  "product_url": null
+}

@@ -69,6 +69,17 @@ def duty_usd(value: float, kg: float, per_kg_min: bool = True) -> float:
     return r2(max(pct, kg * 3) if per_kg_min else pct)
 
 
+def customs(goods: float, road: float, limit: float = None):
+    """Muallif qoidasi (11.10.2026): tovar narxi normagacha bo'lsa — boj yo'q, yo'l harajati qo'shilmaydi.
+    Tovar narxi normadan oshsa — BKO rasmiylashtiriladi: bojxona qiymati = tovar + yo'l,
+    boj = (qiymat − norma) × 30 %. Minimal 3 $/kg qo'llanmaydi. Qaytaradi: (qiymat, boj $, BKO yig'imi so'm)."""
+    limit = LIMIT if limit is None else limit
+    if goods <= limit:
+        return goods, 0.0, 0
+    value = r2(goods + road)
+    return value, r2((value - limit) * DUTY), BKO_FEE
+
+
 def ship(weight_kg: float) -> float:
     """Kichik posilka: taxminan 1 kg tarifi; kattasi — og'irlik × tarif."""
     return round(max(1.0, math.ceil(weight_kg * 2) / 2) * SHIP_PER_KG, 2)
@@ -147,16 +158,14 @@ Soft even studio lighting, realistic fabric texture, muted palette ({palette}). 
 def deal(pid, title, emoji, headline, hook, store, country, pnew, pold, weight, uz_store, uz_price, uz_note,
          url, note_lines, card_title, notes, sources, badge="CHEGIRMA", honest=False, mid_line=None):
     sh = ship(weight)
-    # Bojxona qiymati = tovar + yetkazish (yo'l harajati) — muallif tasdiqladi, 05.10.2026
-    duty = r2(max(0.0, pnew + sh - LIMIT) * DUTY)
+    value, duty, fee = customs(pnew, sh)
     total_usd = pnew + sh + duty
-    fee = BKO_FEE if duty else 0           # boj to'lansa — 1 ta BKO uchun yig'im
     total = som(total_usd) + fee
     save = int(round((uz_price - total) / 1000.0)) * 1000
     pct = round(save / uz_price * 100)
     disc = round((pold - pnew) / pold * 100)
 
-    duty_line = (f"• Bojxona — <b>0 so'm</b> (tovar + yetkazish 200 $ normadan past)" if duty == 0
+    duty_line = (f"• Bojxona — <b>0 so'm</b> (tovar 200 $ normadan arzon)" if duty == 0
                  else f"• Yagona bojxona to'lovi — ({money(pnew)} + {money(sh)} − 200) × 30 % = <b>{money(duty)}</b>\n"
                       f"• 1 ta BKO uchun yig'im — <b>{fmt(fee)} so'm</b>")
     w_txt = f"~{str(weight).replace('.', ',')} kg"
@@ -224,28 +233,29 @@ TIPIK = "<i>Holat bojxona amaliyotidagi tipik vaziyatlar asosida tuzilgan.</i>"
 NUM = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣"]
 
 # ============ DUSHANBA 12-oktabr ============
-# #boj — normadan biroz oshish: boj kichik, BKO yig'imi katta. Minimal 3 $/kg qo'llanmaydi (muallif ko'rsatmasi).
-B1_GOODS, B1_KG = 190.0, 2.0
+# #boj — tovar normadan biroz oshdi: BKO rasmiylashtiriladi, yo'l qo'shiladi, yig'im bojdan katta (muallif qoidasi 11.10.2026)
+B1_GOODS, B1_KG = 205.0, 2.0
 b1_ship = ship(B1_KG)
-b1_value = r2(B1_GOODS + b1_ship)
+b1_value, b1_duty, b1_fee = customs(B1_GOODS, b1_ship)
 b1_over = r2(b1_value - LIMIT)
-b1_duty = duty_usd(b1_value, B1_KG, per_kg_min=False)
 b1_duty_som = round(b1_duty * RATE)
-B1_CUT, B1_CUT_KG = 15.0, 0.3
-b1_value2 = r2(B1_GOODS - B1_CUT + ship(B1_KG - B1_CUT_KG))
+B1_CUT = 15.0
+b1_goods2 = r2(B1_GOODS - B1_CUT)
 add("2026-10-12-0900", rubric="#boj", title="Normadan biroz oshish — yig'im bojdan qimmat",
-    caption=f"""💸 <b>Normadan {uzn(b1_over)} $ oshdingiz — {fmt(b1_duty_som + BKO_FEE)} so'm to'laysiz</b>
+    caption=f"""💸 <b>Tovar normadan {uzn(B1_GOODS - LIMIT)} $ oshdi — {fmt(b1_duty_som + b1_fee)} so'm to'laysiz</b>
 
-Misol: kuryer orqali kiyim-kechak — tovarlar <b>{uzn(B1_GOODS)} $</b>, og'irligi {uzn(B1_KG)} kg, yo'l harajati {uzn(b1_ship)} $.
+Misol: kuryer orqali kiyim-kechak — tovarlar <b>{uzn(B1_GOODS)} $</b>, {uzn(B1_KG)} kg, yo'l harajati {uzn(b1_ship)} $.
 
-1️⃣ <b>Bojxona qiymati</b> (tovar + yo'l): {uzn(B1_GOODS)} + {uzn(b1_ship)} = <b>{uzn(b1_value)} $</b>
+Tovar narxi 200 $ dan oshgani uchun BKO rasmiylashtiriladi va bojxona qiymatiga <b>yo'l harajati ham qo'shiladi</b>:
+
+1️⃣ <b>Bojxona qiymati:</b> {uzn(B1_GOODS)} + {uzn(b1_ship)} = <b>{uzn(b1_value)} $</b>
 2️⃣ <b>Normadan ortig'i:</b> {uzn(b1_value)} − 200 = <b>{uzn(b1_over)} $</b>
 3️⃣ <b>Boj 30 %:</b> {uzn(b1_over)} × 30 % = <b>{uzn(b1_duty)} $</b> ≈ {fmt(b1_duty_som)} so'm
-4️⃣ <b>1 ta BKO uchun yig'im:</b> BHM ning 25 % = <b>{fmt(BKO_FEE)} so'm</b>
+4️⃣ <b>1 ta BKO uchun yig'im:</b> BHM ning 25 % = <b>{fmt(b1_fee)} so'm</b>
 
-💰 <b>Jami: {fmt(b1_duty_som + BKO_FEE)} so'm</b> — yig'im bojdan {uzn(BKO_FEE / b1_duty_som, 1)} baravar katta.
+💰 <b>Jami: {fmt(b1_duty_som + b1_fee)} so'm</b>
 
-✂️ <b>Yechim:</b> {uzn(B1_CUT)} $ lik bitta mayda tovarni keyingi oyga qoldiring — qiymat {uzn(b1_value2)} $ bo'ladi: boj ham, yig'im ham yo'q.
+✂️ <b>Yechim:</b> {uzn(B1_CUT)} $ lik bitta mayda tovarni keyingi oyga qoldiring — tovarlar {uzn(b1_goods2)} $ bo'ladi: norma ichida, yo'l hisobga olinmaydi, boj ham, yig'im ham yo'q.
 
 📅 2027-yil 1-iyundan: boj yig'imdan kam bo'lsa, yig'im undirilmaydi (PF-174, 3-band «g»).
 
@@ -257,9 +267,8 @@ Misol: kuryer orqali kiyim-kechak — tovarlar <b>{uzn(B1_GOODS)} $</b>, og'irli
         "a cardboard parcel on a balance scale, tipping slightly past a thin indigo line marked 200 $; next to it a small coin and a much bigger stack of coins with a receipt slip, showing the fee outweighs the duty.",
         sub="Yig'im bojdan qimmat bo'lishi mumkin", accent="amber (#F59E0B)"),
     sources=[LEX_VM244, LEX_PQ4508, LEX_VM55, LEX_PF174, SPOT_COURIER, SPOT_RATE],
-    notes=f"Bojxona qiymati = tovar + yo'l (muallif qoidasi). Minimal 3 $/kg qo'llanmadi (muallif: faqat normadan oshgan qism × 30 %). "
-          f"Hisob: ({B1_GOODS} + {b1_ship} − 200) × 30 % = {b1_duty} $ × {RATE} = {b1_duty_som} so'm; + BKO {BKO_FEE}. "
-          f"Kesilgan variant: {B1_GOODS - B1_CUT} + yo'l {ship(B1_KG - B1_CUT_KG)} = {b1_value2} $. BKO stavkasi va BHM lex.uz da qayta tekshirilmagan.")
+    notes=f"Muallif qoidasi (11.10.2026): tovar 200 $ gacha — boj yo'q, yo'l qo'shilmaydi; oshsa — BKO, bojxona qiymati = tovar + yo'l. Minimal 3 $/kg qo'llanmadi. "
+          f"Hisob: ({B1_GOODS} + {b1_ship} − 200) × 30 % = {b1_duty} $ × {RATE} = {b1_duty_som} so'm; + BKO {b1_fee}. BKO stavkasi va BHM lex.uz da qayta tekshirilmagan.")
 
 # ============ SESHANBA 13-oktabr ============
 add("2026-10-13-0900", rubric="#taqiq", title="Dori va vitamin: posilkada qancha mumkin",
@@ -325,35 +334,37 @@ Uniqlo'da: 110, 120, 130, 140, 150 — bu ham bo'y (sm).
     notes="O'lcham va yosh mosligi taxminiy (H&M bolalar o'lchamlari bo'y bo'yicha). H&M/Uniqlo sahifalari Claude muhitidan ochilmadi — jadvalni do'kon saytida tekshiring.")
 
 # ============ CHORSHANBA 14-oktabr ============
-# #savol — yetkazish bojxona qiymatiga kiradi (muallif qoidasi)
-S1_A, S1_B, S1_KG = 180.0, 185.0, 2.0
+# #savol — yo'l harajati qachon hisoblanadi (muallif qoidasi 11.10.2026)
+S1_A, S1_B, S1_KG = 185.0, 215.0, 2.0
 s1_ship = ship(S1_KG)
-s1_a, s1_b = r2(S1_A + s1_ship), r2(S1_B + s1_ship)
-s1_duty = duty_usd(s1_b, S1_KG, per_kg_min=False)
-add("2026-10-14-0900", rubric="#savol", title="Yetkazish narxi normaga kiradimi?",
-    caption=f"""❓ <b>Savol: «Tovar 200 $ dan arzon. Nega boj so'rashdi?»</b>
+s1_val_b, s1_duty, s1_fee = customs(S1_B, s1_ship)
+s1_duty_som = round(s1_duty * RATE)
+add("2026-10-14-0900", rubric="#savol", title="Yo'l harajati normaga qo'shiladimi?",
+    caption=f"""❓ <b>Savol: «Yetkazish narxi ham 200 $ normaga qo'shiladimi?»</b>
 
-Chunki normaga <b>tovar narxi + yetkazish (yo'l) harajati</b> birga hisoblanadi.
+<b>Tovar 200 $ gacha bo'lsa — yo'q.</b> Norma faqat tovar narxi bo'yicha tekshiriladi.
+<b>Tovar 200 $ dan oshsa</b> — BKO rasmiylashtiriladi va bojxona qiymatiga yo'l harajati ham qo'shiladi.
 
 🧮 <b>Ikki misol</b> (kuryer, {uzn(S1_KG)} kg, yo'l {uzn(s1_ship)} $)
-• Kurtka {uzn(S1_A)} $ + {uzn(s1_ship)} $ = <b>{uzn(s1_a)} $</b> → norma ichida, boj yo'q ✅
-• Kurtka {uzn(S1_B)} $ + {uzn(s1_ship)} $ = <b>{uzn(s1_b)} $</b> → {uzn(r2(s1_b - LIMIT))} $ ortiq ❌
-  Boj: {uzn(r2(s1_b - LIMIT))} × 30 % = {uzn(s1_duty)} $ (≈ {fmt(round(s1_duty * RATE))} so'm) + 1 ta BKO uchun yig'im <b>{fmt(BKO_FEE)} so'm</b>
+• Kurtka <b>{uzn(S1_A)} $</b> → norma ichida, yo'l hisobga olinmaydi, <b>boj yo'q</b> ✅
+• Kurtka <b>{uzn(S1_B)} $</b> → normadan oshdi ❌
+  Bojxona qiymati: {uzn(S1_B)} + {uzn(s1_ship)} = {uzn(s1_val_b)} $
+  Boj: ({uzn(s1_val_b)} − 200) × 30 % = {uzn(s1_duty)} $ ≈ {fmt(s1_duty_som)} so'm
+  1 ta BKO uchun yig'im — {fmt(s1_fee)} so'm
+  <b>Jami: {fmt(s1_duty_som + s1_fee)} so'm</b>
 
-Atigi {uzn(S1_B - S1_A)} $ farq — to'lov esa {fmt(round(s1_duty * RATE) + BKO_FEE)} so'm.
-
-💡 <b>Qoida:</b> do'kondagi narxni emas, <b>«tovar + yetkazish»</b> summasini 200 $ bilan solishtiring. Yetkazish narxini kuryer xizmatidan oldindan bilib oling.
+💡 <b>Qoida:</b> tovarlar 200 $ dan oshmasin — shunda yo'l harajati ham, boj ham, yig'im ham yo'q.
 
 📄 Asos: VM 244-son; PQ-4508, 3-band; VM 55-son — lex.uz
-📲 <a href="{{{{APP_URL}}}}">Tovar + yetkazishni ilovada hisoblang</a>
+📲 <a href="{{{{APP_URL}}}}">Normangizni ilovada hisoblang</a>
 
 """ + FOOT + "#savol",
-    prompt=cover_prompt("#savol", "Yetkazish narxi normaga kiradimi?",
-        "a price tag reading 185 $ and a small delivery-truck tag reading +19 $ hanging together from a cardboard parcel, both tied with one indigo string to a sign showing a thin line at 200 $.",
-        sub="Tovar + yo'l = bojxona qiymati", accent="sky blue (#38BDF8)"),
+    prompt=cover_prompt("#savol", "Yo'l harajati normaga qo'shiladimi?",
+        "two cardboard parcels with price tags: the left tag reads 185 $ next to a green check mark and a crossed-out small delivery-truck tag; the right tag reads 215 $ with a delivery-truck tag attached and a small receipt, beside a thin indigo line marked 200 $.",
+        sub="200 $ gacha — faqat tovar narxi", accent="sky blue (#38BDF8)"),
     sources=[LEX_VM244, LEX_PQ4508, LEX_VM55, SPOT_COURIER, SPOT_RATE],
-    notes="Bojxona qiymati = tovar + yetkazish — muallif tasdiqlagan qoida (05.10.2026); lex.uz dagi aniq band ko'rsatilmagan. Minimal 3 $/kg qo'llanmadi. "
-          f"Yo'l: {S1_KG} kg × 9,50 $ = {s1_ship} $.")
+    notes="Muallif qoidasi (11.10.2026): tovar 200 $ gacha — boj yo'q, yo'l qo'shilmaydi; oshsa — BKO, bojxona qiymati = tovar + yo'l. Minimal 3 $/kg qo'llanmadi. "
+          f"Yo'l: {S1_KG} kg × 9,50 $ = {s1_ship} $. Hisob: ({S1_B} + {s1_ship} − 200) × 30 % = {s1_duty} $.")
 
 # ============ PAYSHANBA 15-oktabr ============
 K_ITEMS = [("Shokolad va pechenye to'plami", 34.0), ("Pishloq va kraker", 21.0), ("Bir shisha qizil sharob", 24.0)]
@@ -424,7 +435,7 @@ add("2026-10-17-0900", rubric="#savol", title="Oy oxiridagi buyurtma qaysi oyga 
 Buyurtma sanasi ham, posilka kelgan kun ham emas — <b>bojxonada rasmiylashtirilgan sana</b> hisoblanadi.
 
 📅 <b>Misol</b> (kuryer, norma — oyiga 200 $)
-• 10-oktabr: 1-posilka rasmiylashtirildi — 150 $ (tovar + yo'l)
+• 10-oktabr: 1-posilka rasmiylashtirildi — 150 $
 • 28-oktabr: 2-buyurtma berildi — 120 $
 • 3-noyabr: 2-posilka rasmiylashtirildi → <b>noyabr</b> normasiga yoziladi
 
@@ -444,7 +455,7 @@ Agar 2-posilka 30-oktabrda rasmiylashtirilganda edi — oktabr jami 270 $, 70 $ 
         "two wall-calendar pages, October and November, side by side; a cardboard parcel with a small indigo stamp sits on the November page, and a curved arrow shows it moving from late October to early November.",
         sub="Rasmiylashtirilgan sana hisoblanadi", accent="sky blue (#38BDF8)"),
     sources=[LEX_VM244],
-    notes="Norma kalendar oy bo'yicha, rasmiylashtirilgan sana bo'yicha — muallif tasdiqlagan (BRIEF.md). Yetkazish narxi bojxona qiymatiga kiradi — misoldagi summalarni «tovar + yo'l» deb tushuning.")
+    notes="Norma kalendar oy bo'yicha, rasmiylashtirilgan sana bo'yicha — muallif tasdiqlagan (BRIEF.md). Summalar — tovar narxi (200 $ gacha yo'l qo'shilmaydi, muallif qoidasi).")
 
 # ============ YAKSHANBA 18-oktabr ============
 add("2026-10-18-1400", rubric="#firibgar", title="Soxta do'kon saytlari",
@@ -476,29 +487,31 @@ Shunday saytga duch kelganmisiz? Izohda manzilini yozing — boshqalarni ogohlan
 
 # ============ JUMA 16-oktabr — #boj: pochta va kuryer normasi ============
 POST_LIMIT = 100.0
-B2_VALUE = 150.0            # tovar + yo'l
-b2_post_over = r2(B2_VALUE - POST_LIMIT)
-b2_post_duty = r2(b2_post_over * DUTY)
-b2_post_som = round(b2_post_duty * RATE)
+B2_GOODS, B2_ROAD = 150.0, 10.0
+b2_val, b2_duty, b2_fee = customs(B2_GOODS, B2_ROAD, limit=POST_LIMIT)
+b2_post_over = r2(b2_val - POST_LIMIT)
+b2_post_som = round(b2_duty * RATE)
+_, b2_kur_duty, _ = customs(B2_GOODS, B2_ROAD)
+assert b2_kur_duty == 0
 add("2026-10-16-0900", rubric="#boj", title="Pochta yoki kuryer: bir xil buyurtma — boshqa boj",
-    caption=f"""📮 <b>Bir xil buyurtma: pochtada {fmt(b2_post_som + BKO_FEE)} so'm, kuryerda — 0</b>
+    caption=f"""📮 <b>Bir xil buyurtma: pochtada {fmt(b2_post_som + b2_fee)} so'm, kuryerda — 0</b>
 
 Bojsiz norma kanalga qarab ikki xil:
 • <b>Pochta</b> orqali — oyiga <b>{uzn(POST_LIMIT)} $</b>
 • <b>Kuryer</b> orqali — oyiga <b>{uzn(LIMIT)} $</b>
 
-🧮 <b>Misol:</b> bojxona qiymati (tovar + yo'l) — <b>{uzn(B2_VALUE)} $</b>
+🧮 <b>Misol:</b> tovarlar <b>{uzn(B2_GOODS)} $</b>, yo'l harajati {uzn(B2_ROAD)} $
 
-📮 <b>Pochta orqali</b>
-• Normadan ortig'i: {uzn(B2_VALUE)} − {uzn(POST_LIMIT)} = {uzn(b2_post_over)} $
-• Boj 30 %: {uzn(b2_post_over)} × 30 % = <b>{uzn(b2_post_duty)} $</b> ≈ {fmt(b2_post_som)} so'm
-• 1 ta BKO uchun yig'im — <b>{fmt(BKO_FEE)} so'm</b>
-• Jami: <b>{fmt(b2_post_som + BKO_FEE)} so'm</b>
+📮 <b>Pochta orqali</b> — tovar 100 $ dan oshdi, BKO rasmiylashtiriladi
+• Bojxona qiymati (tovar + yo'l): {uzn(B2_GOODS)} + {uzn(B2_ROAD)} = {uzn(b2_val)} $
+• Boj: ({uzn(b2_val)} − {uzn(POST_LIMIT)}) × 30 % = <b>{uzn(b2_duty)} $</b> ≈ {fmt(b2_post_som)} so'm
+• 1 ta BKO uchun yig'im — <b>{fmt(b2_fee)} so'm</b>
+• Jami: <b>{fmt(b2_post_som + b2_fee)} so'm</b>
 
 🚚 <b>Kuryer orqali</b>
-• {uzn(B2_VALUE)} $ < {uzn(LIMIT)} $ — norma ichida, <b>boj yo'q</b> ✅
+• Tovar {uzn(B2_GOODS)} $ < {uzn(LIMIT)} $ — norma ichida, yo'l hisobga olinmaydi, <b>boj yo'q</b> ✅
 
-💡 <b>Qoida:</b> buyurtma (tovar + yo'l) 100 $ dan oshsa — yetkazish usulini oldindan tanlang. Do'kon o'zi pochta bilan jo'natadigan bo'lsa, norma 100 $ ekanini unutmang.
+💡 <b>Qoida:</b> tovarlar 100 $ dan qimmat bo'lsa — yetkazish usulini oldindan tanlang. Do'kon o'zi pochta bilan jo'natsa, norma 100 $ ekanini unutmang.
 
 📄 Asos: VM 244-son, 19.04.2025; PQ-4508, 3-band; VM 55-son — lex.uz
 📲 <a href="{{{{APP_URL}}}}">Ikkala variantni ilovada solishtiring</a>
@@ -508,8 +521,8 @@ Bojsiz norma kanalga qarab ikki xil:
         "two identical cardboard parcels side by side: the left one on a classic postal mailbox with a small amber coin stack beside it, the right one on a small courier delivery van with a green check mark badge.",
         sub="Norma: 100 $ va 200 $", accent="emerald green (#059669)"),
     sources=[LEX_VM244, LEX_PQ4508, LEX_VM55, SPOT_RATE],
-    notes="Normalar: pochta 100 $/oy, kuryer 200 $/oy (VM 244, BRIEF.md). Bojxona qiymati = tovar + yo'l. Minimal 3 $/kg qo'llanmadi. "
-          f"Hisob: ({B2_VALUE} − 100) × 30 % = {b2_post_duty} $ × {RATE} = {b2_post_som} so'm + BKO {BKO_FEE}.")
+    notes="Normalar: pochta 100 $/oy, kuryer 200 $/oy (VM 244, BRIEF.md). Muallif qoidasi: tovar normadan oshsa — BKO, bojxona qiymati = tovar + yo'l. Minimal 3 $/kg qo'llanmadi. "
+          f"Hisob: ({B2_GOODS} + {B2_ROAD} − 100) × 30 % = {b2_duty} $ × {RATE} = {b2_post_som} so'm + BKO {b2_fee}.")
 
 # ============ #obraz — aniq tovarlar (BRIEF.md → #obraz) ============
 # (do'kon, nom uz, rang uz, narx, eski narx, url, og'irlik kg, rasm uchun tavsif)
@@ -518,17 +531,15 @@ def obraz(pid, title, emoji, headline, sub, items, palette, person, cut_word, no
     full = r2(sum(x[4] or x[3] for x in items))
     kg = round(sum(x[6] for x in items), 2)
     sh = ship(kg)
-    value = r2(total + sh)
-    duty = duty_usd(value, kg, per_kg_min=False)
-    fee = BKO_FEE if duty else 0
+    value, duty, fee = customs(total, sh)
     stores = " + ".join(dict.fromkeys(x[0] for x in items)).replace("&", "&amp;")
     lines = "\n".join(f'{NUM[i]} <a href="{x[5]}">{x[1]}</a>, {x[2]} — <b>{usd(x[3])}</b>' + (f" <s>{usd(x[4])}</s>" if x[4] else "")
                       for i, x in enumerate(items))
-    duty_line = (f"• Boj — ({usd(value)} − 200) × 30 % = {usd(duty)} + BKO yig'imi {fmt(fee)} so'm\n" if duty
-                 else "• Boj — yo'q (tovar + yo'l 200 $ dan kam)\n")
+    duty_line = (f"• Boj — (tovar + yo'l {usd(value)} − 200) × 30 % = {usd(duty)} + BKO yig'imi {fmt(fee)} so'm\n" if duty
+                 else "• Boj — yo'q (tovarlar 200 $ normaga sig'adi)\n")
     caption = (f"{emoji} <b>Tayyor obraz: {headline}</b>\n<i>{sub} · 5 element · {stores} (AQSh)</i>\n\n{lines}\n\n"
                f"🛒 <b>Tovarlar: {usd(total)}</b>" + (f" (aksiyasiz {usd(full)})" if full != total else "") +
-               f" + yo'l {usd(sh)} = bojxona qiymati <b>{usd(value)}</b>\n\n"
+               (" — normadan oshadi\n\n" if duty else " — 200 $ normaga sig'adi, boj yo'q\n\n") +
                f"📦 <b>Toshkentgacha</b>\n• Yetkazish — ~{usd(sh)} (≈{uzn(kg, 1)} kg)\n{duty_line}• Toshkent bo'ylab — ~$3\n"
                f"• <b>Jami ≈ {fmt(som(total + sh + duty + 3) + fee)} so'm</b>\n\n"
                f"⚠️ Aksiya tugasa summa oshadi — to'lashdan oldin savatni tekshiring.\n\n"
@@ -541,7 +552,7 @@ def obraz(pid, title, emoji, headline, sub, items, palette, person, cut_word, no
         notes="TASDIQLASHDAN OLDIN: 5 ta havolani brauzerda oching — narx, rang va o'lcham bor-yo'qligini tekshiring "
               "(H&M sayti Claude muhitidan ochilmadi, narxlar qidiruv natijalaridan). " + notes_extra +
               " RASM: ChatGPT'ga 5 ta tovar suratini (do'kon sahifasidan) ham biriktiring — kiyimlar aynan o'xshash chiqadi. "
-              f"Og'irliklar taxminiy (≈{kg} kg). Bojxona qiymati = tovar + yo'l = {value} $.")
+              f"Og'irliklar taxminiy (≈{kg} kg). Tovarlar {total} $ — " + ("normadan oshadi: bojxona qiymati = tovar + yo'l = " + str(value) + " $." if duty else "norma ichida, yo'l qo'shilmaydi."))
 
 
 OUTFIT_W = [
@@ -600,7 +611,7 @@ Xitoy marketpleysi O'zbekistonga <b>to'g'ridan-to'g'ri</b> yetkazadi — AQShdag
 • Mashhur brend juda arzon bo'lsa — nusxa bo'lishi mumkin
 • Muddat va to'lov shartlari o'zgarib turadi — ilovada tekshiring
 
-🛃 Bojxona: oylik norma pochta orqali — <b>100 $</b>, kuryer orqali — <b>200 $</b> (tovar + yo'l).
+🛃 Bojxona: oylik norma pochta orqali — <b>100 $</b>, kuryer orqali — <b>200 $</b> (tovar narxi bo'yicha).
 
 📲 <a href="{{APP_URL}}">Buyurtmangiz normasini ilovada hisoblang</a>
 
@@ -635,7 +646,7 @@ add("2026-10-16-1400", rubric="#topilma", title="Aylanuvchi pichoq charxlagich (
 • Toshkent bo'ylab — ~$3
 • <b>Jami ≈ {fmt(som(TB_PRICE + tb_ship + 3))} so'm</b>
 
-✅ <b>Olib kira olasizmi?</b> Ha. Batareyasiz oddiy oshxona asbobi, cheklangan ro'yxatlarda yo'q. Bojxona qiymati (tovar + yo'l) {money(tb_value)} — kuryer normasi 200 $ dan kam, boj yo'q.
+✅ <b>Olib kira olasizmi?</b> Ha. Batareyasiz oddiy oshxona asbobi, cheklangan ro'yxatlarda yo'q. Narxi {money(TB_PRICE)} — kuryer normasi 200 $ dan kam, boj yo'q.
 
 ⚠️ Amazon'da arzon nusxalari ko'p — rasmiy do'kondan oling.
 
@@ -736,15 +747,15 @@ posts.append(deal("2026-10-17-2000", title="Kindle Paperwhite Signature 32 GB", 
              {"label": "Uzum — Kindle", "url": "https://uzum.uz/ru/product/elektronnaya-kniga-kindle-kids-7-821057"},
              SPOT_RATE]))
 
-posts.append(deal("2026-10-18-2000", title="Apple Watch SE 3 — boj va yig'im bilan ham foydali", emoji="⌚",
-    headline="Apple Watch SE 3 — $199: normadan oshsa ham arzon", hook="Apple Watch SE 3 GPS, 40 mm:",
+posts.append(deal("2026-10-18-2000", title="Apple Watch SE 3 — normaga sig'adi", emoji="⌚",
+    headline="Apple Watch SE 3 — $199, boj yo'q", hook="Apple Watch SE 3 GPS, 40 mm:",
     store="Amazon", country="AQSh", pnew=199.00, pold=249.00, weight=0.4,
     uz_store="iSpace", uz_price=4299000, uz_note="Midnight, 40 mm",
     url="https://www.amazon.com/s?k=Apple+Watch+SE+3+GPS+40mm",
-    note_lines=["💡 Tovar + yo'l normadan biroz oshadi — kichik boj va BKO yig'imi bilan ham Toshkentdan ancha arzon."],
+    note_lines=["💡 Narxi 200 $ normadan atigi 1 $ kam — boj yo'q. Shu oyda boshqa posilka kutayotgan bo'lsangiz, uni keyingi oyga qoldiring."],
     card_title="Apple Watch SE 3",
     notes=NOTE_CHECK + "9to5Toys 07.10.2026: $199 (Prime Day) — keyin narxlar qaytayotgani aytilgan, hali amaldami tekshiring. ASIN topilmadi — havola Amazon qidiruvi. "
-          "Toshkent: iSpace 4 299 000 (Midnight 40 mm), Olcha 4 038 000, Texnomart 4 399 000–4 900 000. Boj: minimal 3 $/kg qo'llanmadi.",
+          "Toshkent: iSpace 4 299 000 (Midnight 40 mm), Olcha 4 038 000, Texnomart 4 399 000–4 900 000. Tovar 199 $ ≤ 200 — yo'l qo'shilmaydi, boj yo'q (muallif qoidasi).",
     sources=[{"label": "9to5Toys — Apple Watch from $199, 07.10.2026", "url": "https://9to5toys.com/2026/10/07/current-gen-apple-watch-199-fall-prime-day/"},
              {"label": "iSpace — Apple Watch SE 3", "url": "https://ispace.uz/en/category/apple-watch-se-3"},
              LEX_PQ4508, LEX_VM55, SPOT_RATE]))
@@ -753,9 +764,9 @@ posts.append(deal("2026-10-18-2000", title="Apple Watch SE 3 — boj va yig'im b
 add("2026-10-18-0900", rubric="#digest", title="Hafta yakuni — 5 ta post",
     caption="""🗂 <b>Hafta yakuni: eng foydali 5 ta post</b>
 
-1️⃣ <a href="{{LINK:2026-10-12-0900}}">Normadan biroz oshdingizmi?</a> — 9 $ uchun 140 ming so'm to'lamaslik yo'li
+1️⃣ <a href="{{LINK:2026-10-12-0900}}">Normadan biroz oshdingizmi?</a> — 5 $ ortiqcha uchun yuz minglab so'm to'lamaslik yo'li
 2️⃣ <a href="{{LINK:2026-10-13-0900}}">Dori va vitamin: qancha mumkin</a> — pul emas, dona hisoblanadi
-3️⃣ <a href="{{LINK:2026-10-14-0900}}">Yetkazish narxi normaga kiradimi?</a> — ha, va bu muhim
+3️⃣ <a href="{{LINK:2026-10-14-0900}}">Yo'l harajati normaga qo'shiladimi?</a> — 200 $ gacha yo'q
 4️⃣ <a href="{{LINK:2026-10-15-1400}}">Hajmiy og'irlik</a> — 1 kg kurtka nega 10 kg bo'lib chiqadi
 5️⃣ <a href="{{LINK:2026-10-16-2000}}">AirPods Pro 3</a> — haftaning eng katta tejashi
 

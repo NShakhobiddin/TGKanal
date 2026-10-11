@@ -92,6 +92,7 @@ Tovar topish manbalari: Yanko Design, Stuff.tv, TechRadar, Tom's Guide, Dezeen, 
 - Qisqa xatboshilar, Telegram HTML teglari: `<b>`, `<i>`, `<u>`, `<s>`, `<code>`, `<a href="">`
 - Post oxirida: `➖➖➖` va `@Pochtam_shopo` + rubrika hashtagi
 - Affiliate/referal linklar **hozircha yo'q** — toza havolalar
+- **«Ekspeditor» so'zini ishlatmang — «kuryer»** deb yozing (masalan: «kuryerning AQShdagi ombor manzili») — muallif talabi
 - Caption cheklovi: `card` bo'lsa ≤ 1024 belgi, bo'lmasa ≤ 4096
 
 ## Manba qoidasi — QONUNCHILIK (muallif talabi)

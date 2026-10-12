@@ -35,5 +35,6 @@
   "status": "approved",
   "product_url": null,
   "image": "2026-10-12-0900-d5cecabd.jpg",
-  "error": null
+  "error": null,
+  "publish_now": true
 }

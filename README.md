@@ -30,6 +30,7 @@ Izoh qo'shish mumkin: `/yangila tugma rangi o'zgardi`, `/hafta 2026-10-12`.
 3. Panelga yuklang: postni bosib **Ctrl+V**, yoki faylni tashlang (PNG avtomatik JPEG'ga siqiladi)
 4. **📨 Menga sinov** → 20–60 soniyada Telegram'da o'zingizga keladi
 5. **✅ Tasdiqlash** — jadval bo'yicha chiqadi; **🚀 Hozir joylash** — ~1 daqiqada
+6. **🗑 O'chirish** — kanalga chiqmagan postni paneldan o'chiradi. Chiqqan postda **🗑 Kanaldan o'chirish** — bot xabarni Telegram kanaldan ham o'chiradi (botda «Xabarlarni o'chirish» huquqi bo'lishi kerak)
 
 Har kuni ertalab bot sizga shu kuni tayyor bo'lmagan postlar ro'yxatini yuboradi.
 

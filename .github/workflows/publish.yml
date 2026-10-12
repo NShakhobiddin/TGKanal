@@ -11,12 +11,12 @@ on:
   workflow_dispatch:
     inputs:
       mode:
-        description: "due — jadval, test — o'zingizga sinov, health — ulanish tekshiruvi"
+        description: "due — jadval, test — o'zingizga sinov, health — ulanish tekshiruvi, delete — postni o'chirish"
         type: choice
-        options: [due, test, health]
+        options: [due, test, health, delete]
         default: due
       post_id:
-        description: "Post ID (test uchun)"
+        description: "Post ID (test va delete uchun)"
         type: string
         default: ""
       req:

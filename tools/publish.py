@@ -6,6 +6,7 @@ Rejimlar (MODE muhit o'zgaruvchisi):
   due     — vaqti kelgan tasdiqlangan va «hozir joylash» belgilangan postlarni kanalga chiqaradi (jadval)
   test    — POST_ID postini faqat adminning shaxsiy chatiga yuboradi -> state/last_test.json
   health  — bot, kanal, huquqlarni tekshiradi, admin_id ni topadi -> state/health.json
+  delete  — POST_ID postini kanaldan o'chiradi (joylangan bo'lsa) va repo'dan olib tashlaydi -> state/last_delete.json
 
 Muhit: TELEGRAM_BOT_TOKEN (GitHub secret), MODE, POST_ID, REQ (panel so'rov ID si),
        TG_API_BASE (faqat sinov uchun), NO_GIT=1 (git commit/push qilmaslik).
@@ -208,7 +209,8 @@ def tg(method: str, data: dict | None = None, files: dict | None = None) -> dict
 NO_PREVIEW = {"is_disabled": True}
 
 
-def send_post(post: dict, chat_id, cfg: dict, posts_by_id: dict) -> int:
+def send_post(post: dict, chat_id, cfg: dict, posts_by_id: dict) -> list:
+    """Postni yuboradi. Qaytaradi: xabar ID lari ro'yxati (birinchisi — asosiy)."""
     caption = render_caption(post.get("caption", ""), cfg, posts_by_id)
     n = vislen(caption)
     if n > TEXT_LIMIT:
@@ -220,14 +222,14 @@ def send_post(post: dict, chat_id, cfg: dict, posts_by_id: dict) -> int:
             raise TgError(f"Rasm fayli topilmadi ({img}) — panelda qayta yuklang")
         photo = {"photo": (path.name, path.read_bytes())}
         if n <= CAPTION_LIMIT:
-            return tg("sendPhoto", {"chat_id": chat_id, "caption": caption, "parse_mode": "HTML"}, photo)["message_id"]
+            return [tg("sendPhoto", {"chat_id": chat_id, "caption": caption, "parse_mode": "HTML"}, photo)["message_id"]]
         res = tg("sendPhoto", {"chat_id": chat_id}, photo)
-        tg("sendMessage", {"chat_id": chat_id, "text": caption, "parse_mode": "HTML",
-                           "link_preview_options": NO_PREVIEW,
-                           "reply_parameters": {"message_id": res["message_id"]}})
-        return res["message_id"]
-    return tg("sendMessage", {"chat_id": chat_id, "text": caption, "parse_mode": "HTML",
-                              "link_preview_options": NO_PREVIEW})["message_id"]
+        txt = tg("sendMessage", {"chat_id": chat_id, "text": caption, "parse_mode": "HTML",
+                                 "link_preview_options": NO_PREVIEW,
+                                 "reply_parameters": {"message_id": res["message_id"]}})
+        return [res["message_id"], txt["message_id"]]
+    return [tg("sendMessage", {"chat_id": chat_id, "text": caption, "parse_mode": "HTML",
+                               "link_preview_options": NO_PREVIEW})["message_id"]]
 
 
 def notify_admin(cfg: dict, text: str) -> None:
@@ -256,7 +258,8 @@ def publish_one(pid: str, reason: str, cfg: dict) -> bool:
         raise SystemExit("settings.json da channel_id yo'q")
     by_id = {p["id"]: p for p in list_posts()}
     try:
-        mid = send_post(post, channel, cfg, by_id)
+        mids = send_post(post, channel, cfg, by_id)
+        mid = mids[0]
     except TgError as e:
         post.update(status="failed", error=str(e))
         post.pop("publish_now", None)
@@ -265,6 +268,8 @@ def publish_one(pid: str, reason: str, cfg: dict) -> bool:
         log(f"JOYLANMADI {pid}: {e}")
         notify_admin(cfg, f"❌ <b>Joylanmadi:</b> {esc(post.get('title', pid))}\n{esc(e)}")
         return False
+    if len(mids) > 1:
+        post["extra_message_ids"] = mids[1:]
     post.update(status="published", message_id=mid, error=None,
                 published_at=now().isoformat(timespec="seconds"), published_by=reason)
     post.pop("publish_now", None)
@@ -351,6 +356,38 @@ def mode_test(cfg: dict, pid: str, req: str) -> None:
     commit(f"sinov {pid}")
 
 
+def mode_delete(cfg: dict, pid: str, req: str) -> None:
+    """Postni o'chiradi: joylangan bo'lsa — avval kanaldan (deleteMessage), so'ng repo'dan (post + rasm)."""
+    res = {"req": req, "post_id": pid, "at": now().isoformat(timespec="seconds")}
+    pf = post_file(pid)
+    post = read_json(pf)
+    try:
+        if not post:
+            raise TgError("Post topilmadi (allaqachon o'chirilgan bo'lishi mumkin)")
+        ids = ([post["message_id"]] if post.get("message_id") else []) + list(post.get("extra_message_ids") or [])
+        if ids:
+            channel = (cfg.get("channel_id") or "").strip()
+            for mid in ids:
+                try:
+                    tg("deleteMessage", {"chat_id": channel, "message_id": mid})
+                except TgError as e:
+                    if "message to delete not found" not in str(e).lower():
+                        raise TgError(f"{e}. Xabarni Telegram'da qo'lda o'chirib, postni faqat paneldan o'chiring")
+            res["channel_deleted"] = True
+        img = post.get("image")
+        if img and (IMAGES / img).exists() and not any(
+                p.get("image") == img and p.get("id") != pid for p in list_posts()):
+            (IMAGES / img).unlink()
+        pf.unlink()
+        res["ok"] = True
+        log(f"o'chirildi {pid}" + (" (kanaldan ham)" if ids else ""))
+    except TgError as e:
+        res.update(ok=False, error=str(e))
+        log("o'chirilmadi:", res)
+    write_json(STATE / "last_delete.json", res)
+    commit(f"o'chirildi {pid}" if res.get("ok") else f"o'chirish xatosi {pid}")
+
+
 def mode_health(cfg: dict, req: str) -> None:
     out = {"req": req, "at": now().isoformat(timespec="seconds"), "channel_id": cfg.get("channel_id"),
            "token": bool(os.environ.get("TELEGRAM_BOT_TOKEN"))}
@@ -382,6 +419,7 @@ def mode_health(cfg: dict, req: str) -> None:
             m = tg("getChatMember", {"chat_id": cfg.get("channel_id"), "user_id": me["id"]})
             out["bot_status"] = m.get("status")
             out["can_post"] = m.get("status") == "creator" or bool(m.get("can_post_messages"))
+            out["can_delete"] = m.get("status") == "creator" or bool(m.get("can_delete_messages"))
         except TgError as e:
             out["error"] = f"Kanal: {e}"
     except TgError as e:
@@ -406,6 +444,8 @@ def main() -> int:
         mode_test(cfg, pid, req)
     elif mode == "health":
         mode_health(cfg, req)
+    elif mode == "delete":
+        mode_delete(cfg, pid, req)
     else:
         log("Noma'lum rejim:", mode)
         return 2

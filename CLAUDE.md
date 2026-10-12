@@ -22,7 +22,7 @@ Claude Code ──git push──▶ repo «TGKanal» (postlar, rasmlar, settings
 | `tools/publish.py` | Telegram'ga joylovchi (Actions ichida; faqat standart kutubxona) |
 | `tools/check_posts.py` | Post fayllarini tekshirish |
 | `tools/build_week_*.py` | Haftalik postlar generatori (raqamlar skriptda hisoblanadi) |
-| `.github/workflows/publish.yml` | Jadval (`*/5 3-18 * * *` UTC = Toshkent 08:00–23:55; + tashqi jadval cron-job.org) + paneldan chaqiriladigan `test` / `health` |
+| `.github/workflows/publish.yml` | Jadval (`*/5 3-18 * * *` UTC = Toshkent 08:00–23:55; + tashqi jadval cron-job.org) + paneldan chaqiriladigan `test` / `health` / `delete` (kanaldan va repo'dan o'chirish) |
 | `.github/workflows/rate.yml` | Markaziy bank kursi (cbu.uz) → `state/rate.json`, 6 soatda bir (`tools/update_rate.py`) |
 | `.github/workflows/pages.yml` | Panelni GitHub Pages'ga joylaydi (`ui/**` o'zgarganda) |
 | `.github/workflows/check.yml` | Claude Code yuborgan postlarni tekshiradi (`panel:` / `bot:` commitlari o'tkazib yuboriladi) |

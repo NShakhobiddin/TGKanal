@@ -727,6 +727,9 @@ function buttons(p){
   if (p.status === "published") {
     const ch = (S.settings.channel_id||"").replace(/^@/,"");
     if (p.message_id && ch) b.push(el("a",{class:"btn", href:`https://t.me/${ch}/${p.message_id}`, target:"_blank", rel:"noopener", text:"Kanalda ochish ↗"}));
+    b.push(el("span",{class:"spacer"}));
+    b.push(el("button",{class:"btn danger", type:"button", text:"🗑 Kanaldan o'chirish", title:"Xabarni Telegram kanaldan va paneldan o'chiradi",
+      onclick: () => { if (confirm(`«${p.title}» Telegram kanaldan va paneldan o'chirilsinmi?\n\nBuni qaytarib bo'lmaydi.`)) deletePublished(p); }}));
     return b;
   }
   if (p.prompt) b.push(el("button",{class:"btn", type:"button", text:"📋 Prompt",
@@ -749,6 +752,8 @@ function buttons(p){
             "Tasdiqlandi — vaqtida kanalga chiqadi");
       }}));
   }
+  b.push(el("button",{class:"btn danger", type:"button", text:"🗑 O'chirish", title:"Postni paneldan o'chirish (kanalga hali chiqmagan)",
+    onclick: () => { if (confirm(`«${p.title}» o'chirilsinmi?\n\nPost va uning rasmi o'chadi, qaytarib bo'lmaydi.`)) run(() => deleteLocal(p.id), "Post o'chirildi"); }}));
   b.push(el("button",{class:"btn primary", type:"button", text:"🚀 Hozir joylash", disabled: p.publish_now ? true : null,
     onclick: () => {
       const warn = p.image ? "" : "\n\nDiqqat: rasm yo'q — faqat matn chiqadi.";
@@ -903,6 +908,36 @@ async function uploadImage(id, file){
     toast(`Rasm yuklandi: ${p ? p.title : id}`, "ok");
   } catch (e) { handleErr(e); }
   finally { S.busy--; if (!S.busy) setJob(null); }
+  await safeLoad();
+}
+
+/* ---------- o'chirish ---------- */
+/** Postni repo'dan o'chiradi (post + rasm). allowPublished — kanaldan qo'lda o'chirilgan postlar uchun. */
+async function deleteLocal(id, allowPublished=false){
+  await transact(`o'chirildi ${id}`, async (head, read) => {
+    const x = await read(postPath(id));
+    if (!x) throw new Error("Post topilmadi (allaqachon o'chirilgan bo'lishi mumkin)");
+    if (!allowPublished) notPublished(x);
+    const files = [{path: postPath(id), del: true}];
+    const usedElsewhere = x.image && S.posts.some(o => o.id !== id && o.image === x.image);
+    if (x.image && S.tree["images/" + x.image] && !usedElsewhere) files.push({path: "images/" + x.image, del: true});
+    return files;
+  });
+  if (S.active === id) S.active = null;
+  if (S.editing === id) S.editing = null;
+}
+
+async function deletePublished(p){
+  try {
+    const req = await dispatch("delete", p.id);
+    const res = await waitRun(req, "Kanaldan o'chirilmoqda", async () => {
+      const r = await readAt(await headSha(), "state/last_delete.json");
+      return r && r.req === req ? r : null;
+    });
+    if (res.ok) toast("Kanaldan va paneldan o'chirildi ✓", "ok");
+    else if (confirm("Kanaldan o'chirib bo'lmadi:\n" + res.error + "\n\nXabarni Telegram'da o'zingiz o'chirgan bo'lsangiz — postni faqat paneldan o'chiraymi?"))
+      await run(() => deleteLocal(p.id, true), "Post paneldan o'chirildi");
+  } catch (e) { handleErr(e); }
   await safeLoad();
 }
 

@@ -355,6 +355,8 @@ add("2026-10-14-0900", rubric="#savol", title="Yo'l harajati normaga qo'shiladim
 
 💡 <b>Qoida:</b> tovarlar 200 $ dan oshmasin — shunda yo'l harajati ham, boj ham, yig'im ham yo'q.
 
+✏️ <b>Tuzatish:</b> <a href="{{{{LINK:2026-10-07-1400}}}}">7-oktabr</a> va <a href="{{{{LINK:2026-10-10-1400}}}}">10-oktabr</a> obrazlarida yo'l harajati normaga qo'shib hisoblangan edi — bu xato. Ikkalasida ham tovarlar 200 $ dan arzon: <b>boj ham, yig'im ham yo'q</b>.
+
 📄 Asos: VM 244-son; PQ-4508, 3-band; VM 55-son — lex.uz
 📲 <a href="{{{{APP_URL}}}}">Normangizni ilovada hisoblang</a>
 

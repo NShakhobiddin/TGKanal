@@ -1,6 +1,6 @@
 {
-  "req": "nu7uxmda",
-  "at": "2026-10-11T16:15:15+05:00",
+  "req": "delete-check",
+  "at": "2026-10-12T09:06:04+05:00",
   "channel_id": "@Pochtam_shopo",
   "token": true,
   "token_format_ok": true,
@@ -8,5 +8,6 @@
   "admin_known": true,
   "channel_title": "Pochtam",
   "bot_status": "administrator",
-  "can_post": true
+  "can_post": true,
+  "can_delete": true
 }

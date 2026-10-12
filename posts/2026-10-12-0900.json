@@ -32,9 +32,11 @@
   "notes": "Muallif qoidasi (11.10.2026): tovar 200 $ gacha — boj yo'q, yo'l qo'shilmaydi; oshsa — BKO, bojxona qiymati = tovar + yo'l. Minimal 3 $/kg qo'llanmadi. Hisob: (205.0 + 19.0 − 200) × 30 % = 7.2 $ × 11897.9 = 85665 so'm; + BKO 110000. BKO stavkasi va BHM lex.uz da qayta tekshirilmagan.",
   "id": "2026-10-12-0900",
   "scheduled_at": "2026-10-12T09:00:00+05:00",
-  "status": "approved",
+  "status": "published",
   "product_url": null,
   "image": "2026-10-12-0900-d5cecabd.jpg",
   "error": null,
-  "publish_now": true
+  "message_id": 25,
+  "published_at": "2026-10-12T09:07:20+05:00",
+  "published_by": "qo'lda"
 }

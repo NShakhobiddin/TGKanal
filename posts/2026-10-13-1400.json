@@ -7,8 +7,11 @@
   "notes": "O'lcham va yosh mosligi taxminiy (H&M bolalar o'lchamlari bo'y bo'yicha). H&M/Uniqlo sahifalari Claude muhitidan ochilmadi — jadvalni do'kon saytida tekshiring.",
   "id": "2026-10-13-1400",
   "scheduled_at": "2026-10-13T14:00:00+05:00",
-  "status": "approved",
+  "status": "published",
   "product_url": null,
   "image": "2026-10-13-1400-9dca9de5.jpg",
-  "error": null
+  "error": null,
+  "message_id": 27,
+  "published_at": "2026-10-13T14:54:11+05:00",
+  "published_by": "jadval"
 }

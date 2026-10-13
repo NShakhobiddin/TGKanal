@@ -7,7 +7,8 @@
   "notes": "Hajmiy og'irlik — xalqaro kuryer xizmatlarida keng qo'llanadigan amaliyot; bo'luvchi (5000/6000) va qoidani har bir kuryer xizmati o'zi belgilaydi. Raqamlar misol uchun.",
   "id": "2026-10-15-1400",
   "scheduled_at": "2026-10-15T14:00:00+05:00",
-  "status": "draft",
+  "status": "approved",
   "product_url": null,
-  "image": "2026-10-15-1400-3fd4e104.jpg"
+  "image": "2026-10-15-1400-3fd4e104.jpg",
+  "error": null
 }

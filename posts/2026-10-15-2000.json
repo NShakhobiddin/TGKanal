@@ -21,6 +21,7 @@
     }
   ],
   "scheduled_at": "2026-10-15T20:00:00+05:00",
-  "status": "draft",
-  "image": "2026-10-15-2000-e344bda8.jpg"
+  "status": "approved",
+  "image": "2026-10-15-2000-e344bda8.jpg",
+  "error": null
 }

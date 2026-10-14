@@ -21,8 +21,10 @@
     }
   ],
   "scheduled_at": "2026-10-13T20:00:00+05:00",
-  "status": "overdue",
+  "status": "published",
   "image": "2026-10-13-2000-969f0f6d.jpg",
   "error": null,
-  "publish_now": true
+  "message_id": 29,
+  "published_at": "2026-10-14T18:46:47+05:00",
+  "published_by": "qo'lda"
 }

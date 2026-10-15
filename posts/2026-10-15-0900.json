@@ -12,8 +12,11 @@
   "notes": "Keysni Claude tuzdi (tipik holat, real voqea emas). Narxlar misol uchun. Tekshiring: «Qanday hal qilindi» qatoridagi amaliyot (sharob chiqarilmadi, qolgan tovarlar bo'yicha qaror) tajribangizga mos kelsinmi — kerak bo'lsa tahrir qiling.",
   "id": "2026-10-15-0900",
   "scheduled_at": "2026-10-15T09:00:00+05:00",
-  "status": "approved",
+  "status": "published",
   "product_url": null,
   "image": "2026-10-15-0900-93598e80.jpg",
-  "error": null
+  "error": null,
+  "message_id": 32,
+  "published_at": "2026-10-15T09:13:57+05:00",
+  "published_by": "jadval"
 }

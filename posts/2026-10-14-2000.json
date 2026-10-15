@@ -23,5 +23,6 @@
   "scheduled_at": "2026-10-14T20:00:00+05:00",
   "status": "overdue",
   "image": "2026-10-14-2000-346d87bf.jpg",
-  "error": null
+  "error": null,
+  "publish_now": true
 }
